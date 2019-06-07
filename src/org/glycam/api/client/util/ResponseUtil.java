@@ -6,6 +6,9 @@ import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class ResponseUtil
 {
@@ -18,8 +21,7 @@ public class ResponseUtil
     }
 
     /**
-     * Gets the JobID from a provided content string: output:
-     * "{\"entity\": {\"type\": \"Sequence\"}, \"responses\": [{\"Build3DStructure\": {\"payload\": \"5c7f2265-0eb8-48ce-9737-1b913bd56645\"}}]}"
+     * Gets the JobID from a provided content string:
      *
      * @param a_responseContent
      *            Content provided by the webservices
@@ -27,20 +29,59 @@ public class ResponseUtil
      */
     public static String extractJobId(String a_responseContent)
     {
+        /*
+         * { "entity":{ "type":"Sequence" }, "responses":[ {
+         * "Build3DStructure":{ "payload":"7fde6e72-5864-43a9-ac71-92eb9e878fdb"
+         * } } ] }
+         */
         try
         {
-            Integer t_pos = a_responseContent.indexOf("payload");
-            String t_jobId = a_responseContent.substring(t_pos);
-            String[] t_parts = t_jobId.split("\"");
-            t_jobId = t_parts[2];
-            t_jobId = t_jobId.replaceAll("\\\\", "");
-            return t_jobId;
+            a_responseContent = a_responseContent.replaceAll("'", "\"");
+            JSONParser t_parser = new JSONParser();
+            JSONObject t_jsonObject = (JSONObject) t_parser.parse(a_responseContent);
+            JSONArray t_array = ResponseUtil.getArray(t_jsonObject, "responses");
+            for (Object t_object : t_array)
+            {
+                if (t_object instanceof JSONObject)
+                {
+                    t_jsonObject = ResponseUtil.getObject((JSONObject) t_object, "Build3DStructure");
+                    String t_jobId = ResponseUtil.getString(t_jsonObject, "payload");
+                    return t_jobId;
+                }
+            }
         }
         catch (Exception t_e)
         {
             return null;
         }
+        return null;
+    }
 
+    private static JSONObject getObject(JSONObject a_jsonObject, String a_key)
+    {
+        return (JSONObject) a_jsonObject.get(a_key);
+    }
+
+    private static JSONArray getArray(JSONObject a_jsonObject, String a_key)
+    {
+        return (JSONArray) a_jsonObject.get(a_key);
+    }
+
+    private static String getString(JSONObject a_jsonObject, String a_key) throws IOException
+    {
+        Object t_stringObject = a_jsonObject.get(a_key);
+        if (t_stringObject == null)
+        {
+            return null;
+        }
+        if (t_stringObject instanceof String)
+        {
+            return (String) t_stringObject;
+        }
+        else
+        {
+            throw new IOException("JSON format error: Value for " + a_key + " is not a string.");
+        }
     }
 
     public static String glycanSequenceToJSON(String a_sequence)

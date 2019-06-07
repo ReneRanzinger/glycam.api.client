@@ -1,0 +1,17 @@
+{
+   "entity":{
+      "responses":[
+         {
+            "CommonServicerNotice":{
+               "notice":{
+                  "code":"301",
+                  "blockID":"Transaction",
+                  "brief":"NoEntityDefined",
+                  "message":"The JSON object does not contain an Entity."
+               },
+               "type":"error"
+            }
+         }
+      ]
+   }
+}

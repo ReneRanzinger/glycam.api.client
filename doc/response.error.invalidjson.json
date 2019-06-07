@@ -1,0 +1,22 @@
+{
+   "entity":{
+      "responses":[
+         {
+            "FrontEndNotice":{
+               "notice":{
+                  "message":"There was a problem submitting job requests. <_Rendezvous of RPC that terminated with:\n\tstatus = StatusCode.UNKNOWN\n\tdetails =                   Exception calling application:Expecting \",
+                  \" delimiter:line 1 column 97 (char 96)\n\tdebug_error_string = ",                  
+                     "created":"@1559931879.513580110",
+                     "description":"Error received from peer ipv4:172.19.0.2:50051",
+                     "file":"src/core/lib/surface/call.cc",
+                     "file_line":1041,
+                     "grpc_message":"Exception calling application: Expecting \",\" delimiter: line 1 column 97 (char 96)",
+                     "grpc_status":2
+                  }                  "\n>"
+               },
+               "type":"error"
+            }
+         }
+      ]
+   }
+}

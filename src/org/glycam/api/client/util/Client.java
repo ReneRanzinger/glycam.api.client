@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -36,8 +37,9 @@ public class Client
     private void connect() throws ClientProtocolException, IOException
     {
         int timeout = 90;
-        RequestConfig t_config = RequestConfig.custom().setConnectTimeout(timeout * 1000)
-                .setConnectionRequestTimeout(timeout * 1000).setSocketTimeout(timeout * 1000).build();
+        RequestConfig t_config = RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD)
+                .setConnectTimeout(timeout * 1000).setConnectionRequestTimeout(timeout * 1000)
+                .setSocketTimeout(timeout * 1000).build();
         // create cookie store and HTTP client
         this.m_cookieStore = new BasicCookieStore();
         this.m_httpclient = HttpClients.custom().setDefaultCookieStore(this.m_cookieStore)
