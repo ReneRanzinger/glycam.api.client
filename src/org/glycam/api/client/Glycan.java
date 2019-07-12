@@ -10,8 +10,7 @@ public class Glycan
     public static void main(String[] args) throws IOException
     {
         // create the client
-        Client t_client = new Client("https://glygen.ccrc.uga.edu/glycam/json/",
-                "https://glygen.ccrc.uga.edu/glycam/userdata/tools/");
+        Client t_client = new Client("https://dev.glycam.org/json/", "https://dev.glycam.org/userdata/tools/");
 
         String t_sequence = "DGlcpNAcb1-OH";
         String t_jobId = t_client.submitGlycan(t_sequence);
