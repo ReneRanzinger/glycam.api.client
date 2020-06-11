@@ -45,8 +45,11 @@ public class ResponseUtil
                 if (t_object instanceof JSONObject)
                 {
                     t_jsonObject = ResponseUtil.getObject((JSONObject) t_object, "Build3DStructure");
-                    String t_jobId = ResponseUtil.getString(t_jsonObject, "payload");
-                    return t_jobId;
+                    if (t_jsonObject != null)
+                    {
+                        String t_jobId = ResponseUtil.getString(t_jsonObject, "payload");
+                        return t_jobId;
+                    }
                 }
             }
         }

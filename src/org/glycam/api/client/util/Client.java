@@ -23,20 +23,20 @@ import org.apache.http.util.EntityUtils;
 public class Client
 {
     private String m_baseUrl = null;
-    private String m_pdbStore = null;
     private BasicCookieStore m_cookieStore = null;
     private CloseableHttpClient m_httpclient = null;
     private String m_csrfToken = null;
+    private boolean m_verbose = true;
 
-    public Client(String a_baseURL, String a_pdbStore) throws ClientProtocolException, IOException
+    public Client(String a_baseURL) throws ClientProtocolException, IOException
     {
         this.m_baseUrl = a_baseURL;
-        this.m_pdbStore = a_pdbStore;
-        // we need to get the cookie to be used in the subsequent calls
+        // we need to get the cookie and token to be used in the subsequent
+        // calls
         this.connect();
     }
 
-    private void connect() throws ClientProtocolException, IOException
+    private void connect() throws IOException
     {
         int timeout = 90;
         RequestConfig t_config = RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD)
@@ -79,9 +79,14 @@ public class Client
         this.m_httpclient.close();
     }
 
-    public String submitGlycan(String a_sequence) throws ClientProtocolException, IOException
+    public String submitGlycan(String a_sequence) throws IOException
     {
+        // build the JSON string with the sequence
         String t_json = ResponseUtil.glycanSequenceToJSON(a_sequence);
+        if (this.m_verbose)
+        {
+            System.out.println(t_json);
+        }
         // build post request
         HttpPost t_httpPost = new HttpPost(this.m_baseUrl);
         // set the json as payload
@@ -91,11 +96,15 @@ public class Client
         t_httpPost.setHeader("Accept", "application/json");
         t_httpPost.setHeader("Content-type", "application/json");
         t_httpPost.setHeader("X-CSRFToken", this.m_csrfToken);
-        // execute request
+        // execute request using the open client that has the cookie
         CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpPost);
         HttpEntity t_entity = t_response.getEntity();
         // extract response
         String t_responseContent = ResponseUtil.entityToString(t_entity);
+        if (this.m_verbose)
+        {
+            System.out.println(t_responseContent);
+        }
         String t_jobId = ResponseUtil.extractJobId(t_responseContent);
         // close response
         EntityUtils.consume(t_entity);
@@ -103,9 +112,10 @@ public class Client
         return t_jobId;
     }
 
-    public String downloadPDB(String a_jobId) throws ClientProtocolException, IOException
+    public String downloadPDB(String a_downloadURL) throws ClientProtocolException, IOException
     {
-        HttpGet t_httpGet = new HttpGet(this.m_pdbStore + a_jobId + "/structure.pdb");
+        // get request for PDB file
+        HttpGet t_httpGet = new HttpGet(a_downloadURL);
         CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpGet);
         HttpEntity t_entity = t_response.getEntity();
         if (t_response.getStatusLine().getStatusCode() >= 400)
