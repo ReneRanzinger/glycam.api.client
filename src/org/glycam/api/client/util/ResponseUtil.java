@@ -13,7 +13,8 @@ import org.json.simple.parser.JSONParser;
 public class ResponseUtil
 {
 
-    public static String entityToString(HttpEntity a_entity) throws UnsupportedOperationException, IOException
+    public static String entityToString(HttpEntity a_entity)
+            throws UnsupportedOperationException, IOException
     {
         StringWriter t_writer = new StringWriter();
         IOUtils.copy(a_entity.getContent(), t_writer, StandardCharsets.UTF_8);
@@ -36,7 +37,6 @@ public class ResponseUtil
          */
         try
         {
-            a_responseContent = a_responseContent.replaceAll("'", "\"");
             JSONParser t_parser = new JSONParser();
             JSONObject t_jsonObject = (JSONObject) t_parser.parse(a_responseContent);
             JSONArray t_array = ResponseUtil.getArray(t_jsonObject, "responses");
@@ -44,7 +44,8 @@ public class ResponseUtil
             {
                 if (t_object instanceof JSONObject)
                 {
-                    t_jsonObject = ResponseUtil.getObject((JSONObject) t_object, "Build3DStructure");
+                    t_jsonObject = ResponseUtil.getObject((JSONObject) t_object,
+                            "Build3DStructure");
                     if (t_jsonObject != null)
                     {
                         String t_jobId = ResponseUtil.getString(t_jsonObject, "payload");

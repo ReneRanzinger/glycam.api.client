@@ -23,20 +23,20 @@ import org.apache.http.util.EntityUtils;
 public class Client
 {
     private String m_baseUrl = null;
+    private String m_pdbStore = null;
     private BasicCookieStore m_cookieStore = null;
     private CloseableHttpClient m_httpclient = null;
     private String m_csrfToken = null;
-    private boolean m_verbose = true;
 
-    public Client(String a_baseURL) throws ClientProtocolException, IOException
+    public Client(String a_baseURL, String a_pdbStore) throws ClientProtocolException, IOException
     {
         this.m_baseUrl = a_baseURL;
-        // we need to get the cookie and token to be used in the subsequent
-        // calls
+        this.m_pdbStore = a_pdbStore;
+        // we need to get the cookie to be used in the subsequent calls
         this.connect();
     }
 
-    private void connect() throws IOException
+    private void connect() throws ClientProtocolException, IOException
     {
         int timeout = 90;
         RequestConfig t_config = RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD)
@@ -56,8 +56,8 @@ public class Client
         }
         // create cookie store and HTTP client
         this.m_cookieStore = new BasicCookieStore();
-        this.m_httpclient = HttpClients.custom().setDefaultCookieStore(this.m_cookieStore).setSSLSocketFactory(sslsf)
-                .setDefaultRequestConfig(t_config).build();
+        this.m_httpclient = HttpClients.custom().setDefaultCookieStore(this.m_cookieStore)
+                .setSSLSocketFactory(sslsf).setDefaultRequestConfig(t_config).build();
         // get request the token to get initial cookies
         HttpGet t_httpGet = new HttpGet(this.m_baseUrl + "getToken/");
         CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpGet);
@@ -79,32 +79,28 @@ public class Client
         this.m_httpclient.close();
     }
 
-    public String submitGlycan(String a_sequence) throws IOException
+    public String submitGlycan(String a_sequence) throws ClientProtocolException, IOException
     {
-        // build the JSON string with the sequence
         String t_json = ResponseUtil.glycanSequenceToJSON(a_sequence);
-        if (this.m_verbose)
-        {
-            System.out.println(t_json);
-        }
         // build post request
         HttpPost t_httpPost = new HttpPost(this.m_baseUrl);
         // set the json as payload
         StringEntity t_entityJson = new StringEntity(t_json);
         t_httpPost.setEntity(t_entityJson);
+        this.log("JSON Input", t_json);
         // add content type and token
         t_httpPost.setHeader("Accept", "application/json");
         t_httpPost.setHeader("Content-type", "application/json");
         t_httpPost.setHeader("X-CSRFToken", this.m_csrfToken);
-        // execute request using the open client that has the cookie
+        // execute request
         CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpPost);
+        this.log("HTTP Response Code",
+                Integer.toString(t_response.getStatusLine().getStatusCode()));
         HttpEntity t_entity = t_response.getEntity();
         // extract response
         String t_responseContent = ResponseUtil.entityToString(t_entity);
-        if (this.m_verbose)
-        {
-            System.out.println(t_responseContent);
-        }
+        this.log("Response body", t_responseContent);
+
         String t_jobId = ResponseUtil.extractJobId(t_responseContent);
         // close response
         EntityUtils.consume(t_entity);
@@ -112,10 +108,16 @@ public class Client
         return t_jobId;
     }
 
-    public String downloadPDB(String a_downloadURL) throws ClientProtocolException, IOException
+    private void log(String a_message, String a_content)
     {
-        // get request for PDB file
-        HttpGet t_httpGet = new HttpGet(a_downloadURL);
+        System.out.println(a_message);
+        System.out.println(a_content);
+        System.out.println();
+    }
+
+    public String downloadPDB(String a_jobId) throws ClientProtocolException, IOException
+    {
+        HttpGet t_httpGet = new HttpGet(this.m_pdbStore + a_jobId + "/structure.pdb");
         CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpGet);
         HttpEntity t_entity = t_response.getEntity();
         if (t_response.getStatusLine().getStatusCode() >= 400)

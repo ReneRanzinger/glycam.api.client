@@ -4,14 +4,14 @@ import java.io.IOException;
 
 import org.glycam.api.client.util.Client;
 
-// https://github.com/GLYCAM-Web/website/tree/master/Examples/JsonApi
 public class Glycan
 {
-
-    public static void main(String[] args) throws IOException, InterruptedException
+    // https://github.com/GLYCAM-Web/website/issues/25
+    public static void main(String[] args) throws IOException
     {
         // create the client
-        Client t_client = new Client("https://dev.glycam.org/json/");
+        Client t_client = new Client("https://dev.glycam.org/json/",
+                "https://dev.glycam.org/userdata/tools/");
 
         String t_sequence = "DGlcpNAcb1-OH";
         String t_jobId = t_client.submitGlycan(t_sequence);
@@ -22,9 +22,8 @@ public class Glycan
         else
         {
             System.out.println(t_jobId);
-            // Thread.sleep(30000);
-            String t_pdb = t_client.downloadPDB(t_jobId);
-            System.out.println(t_pdb);
+            // String t_pdb = t_client.downloadPDB(t_jobId);
+            // System.out.println(t_pdb);
         }
         // close the client connection and cleanup
         t_client.close();
