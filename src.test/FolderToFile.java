@@ -1,4 +1,3 @@
-package glycam.api.client;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +12,8 @@ public class FolderToFile
 
     public static void main(String[] args) throws IOException
     {
-        String t_folder = "./input/fullydetermined/";
-        PrintWriter t_writer = new PrintWriter("./input/GlyTouCan.glygen.input");
+        String t_folder = "./input/glycam_iupac/";
+        PrintWriter t_writer = new PrintWriter("./input/2021.08.20.glygen.input");
         // get all files in the folder
         File t_fileFolder = new File(t_folder);
         String[] t_files = t_fileFolder.list();
@@ -23,7 +22,7 @@ public class FolderToFile
         {
             String t_fileContent = FolderToFile.readFile(t_folder + t_fileName, StandardCharsets.UTF_8);
             String t_id = t_fileName.substring(0, t_fileName.length() - 4);
-            t_writer.println(t_id + ":" + t_fileContent);
+            t_writer.println(t_id + ":" + t_fileContent.trim());
         }
         t_writer.flush();
         t_writer.close();

@@ -1,4 +1,4 @@
-package glycam.api.client;
+
 
 public class StringTester
 {

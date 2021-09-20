@@ -1,15 +1,22 @@
 {
    "entity":{
+      "type":"GRPC",
       "responses":[
          {
-            "CommonServicerNotice":{
+            "Error":{
+               "respondingService":"JSONServer",
                "notice":{
-                  "code":"301",
-                  "blockID":"Transaction",
-                  "brief":"NoEntityDefined",
-                  "message":"The JSON object does not contain an Entity."
+                  "type":"Exit",
+                  "code":"9",
+                  "brief":"HaveStderr",
+                  "message":"Process returned 0 as exit status, but also returned standard error."
                },
-               "type":"error"
+               "options":{
+                  "osExitCode":"None",
+                  "theStandardError":"b'Exception thrown in condensedSequence constructor. Look in the response object.\\n'",
+                  "theStandardOutput":"b'the transaction is : \\n<gemsModules.sequence.io.Transaction object at 0x7fb381ccb290>\\n{\"timestamp\": null, \"entity\": {\"entityType\": \"Sequence\", \"requestID\": null, \"services\": {\"build\": {\"typename\": \"Build3DStructure\", \"givenName\": null, \"myUuid\": null, \"inputs\": null, \"options\": null}}, \"responses\": null, \"resources\": [], \"notices\": null, \"options\": null, \"inputs\": {\"sequence\": {\"payload\": \"A-R-R123\", \"sequenceFormat\": \"GlycamCondensed\"}, \"sequenceVariants\": null, \"systemSolvationOptions\": null, \"geometryOptions\": null, \"buildOptions\": null, \"evaluationOptions\": null, \"drawOptions\": null}, \"outputs\": {\"sequenceEvaluationOutput\": {\"sequenceIsValid\": false, \"sequenceVariants\": null, \"evaluationOptions\": {\"validateOnly\": false, \"evaluateForBuild\": true, \"noBuild\": false}, \"buildOptions\": null, \"drawOptions\": null}, \"structureBuildInfo\": null}}, \"project\": {\"pUUID\": \"5be5a7e1-32fa-4cb6-8ba4-3eb93023bb68\", \"title\": \"\", \"comment\": \"\", \"timestamp\": \"2021-09-20T15:20:10.427006\", \"gems_timestamp\": \"2021-09-20T15:20:10.427006\", \"project_type\": \"cb\", \"parent_entity\": \"Sequence\", \"requested_service\": \"Build3DStructure\", \"entity_id\": \"sequence\", \"service_id\": \"cb\", \"filesystem_path\": \"/website/userdata/\", \"compute_cluster_filesystem_path\": \"\", \"service_dir\": \"/website/userdata/sequence/cb\", \"project_dir\": \"/website/userdata/sequence/cb/Builds/5be5a7e1-32fa-4cb6-8ba4-3eb93023bb68\", \"logs_dir\": \"/website/userdata/sequence/cb/Builds/5be5a7e1-32fa-4cb6-8ba4-3eb93023bb68/logs\", \"requesting_agent\": \"\", \"has_input_files\": false, \"site_version\": \"e58620687f0254e974a39ee5f34233562227b16e\", \"site_branch\": \"master\", \"gems_version\": \"9d38c3f34c27f72a3c7972d9df1d6db1641b1f0f\", \"gems_branch\": \"gems-dev\", \"md_utils_version\": \"4e0395c9a9472ed7a957268350f7bacdf77196c8\", \"md_utils_branch\": \"main\", \"gmml_version\": \"5ed98ccaba7902bd95a17722b96a148121ecb621\", \"gmml_branch\": \"gmml-dev\", \"gp_version\": \"0228f03c36aa44a731abfcb387cedd4069558a61\", \"gp_branch\": \"stable\", \"site_mode\": \"SWARM\", \"site_host_name\": \"dev.glycam.org\", \"versions_file_path\": \"/website/userdata/VERSIONS.sh\", \"host_url_base_path\": \"https://dev.glycam.org\", \"download_url_path\": \"https://dev.glycam.org/json/download/sequence/cb/5be5a7e1-32fa-4cb6-8ba4-3eb93023bb68/\", \"force_field\": \"default\", \"parameter_version\": \"default\", \"amber_version\": \"default\", \"json_api_version\": \"\", \"django_project_id\": \"\", \"notices\": [], \"sequence_id\": \"\", \"sequence_path\": \"\", \"indexOrderedSequence\": \"\", \"seqID\": \"\"}, \"prettyPrint\": false, \"mdMinimize\": true, \"options\": null, \"notices\": [{\"noticeType\": [\"error\"], \"noticeCode\": [\"400\"], \"noticeBrief\": \"InvalidInputPayload\", \"noticeMessage\": [\"An invalid payload was detected.\"], \"noticeScope\": \"Transaction\", \"messagingEntity\": \"CommonServicer\", \"additionalInfo\": {\"hint\": \"Sequence is invalid\"}}]}'",
+                  "theExceptionError":"None"
+               }
             }
          }
       ]

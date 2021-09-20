@@ -1,0 +1,13 @@
+. https://github.com/GLYCAM-Web/website/tree/master/Examples/JsonApi
+
+
+https://github.com/GLYCAM-Web/website/issues/41
+Invalid sequence result into strange PDB file
+
+JobStatus 25
+https://github.com/GLYCAM-Web/website/tree/master/Examples/JsonApi
+
+Invalid JSON input 23
+https://github.com/GLYCAM-Web/website/issues/23
+
+Invalide sequence input 24

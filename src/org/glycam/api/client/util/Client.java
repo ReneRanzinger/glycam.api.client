@@ -56,8 +56,8 @@ public class Client
         }
         // create cookie store and HTTP client
         this.m_cookieStore = new BasicCookieStore();
-        this.m_httpclient = HttpClients.custom().setDefaultCookieStore(this.m_cookieStore)
-                .setSSLSocketFactory(sslsf).setDefaultRequestConfig(t_config).build();
+        this.m_httpclient = HttpClients.custom().setDefaultCookieStore(this.m_cookieStore).setSSLSocketFactory(sslsf)
+                .setDefaultRequestConfig(t_config).build();
         // get request the token to get initial cookies
         HttpGet t_httpGet = new HttpGet(this.m_baseUrl + "getToken/");
         CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpGet);
@@ -81,7 +81,8 @@ public class Client
 
     public String submitGlycan(String a_sequence) throws ClientProtocolException, IOException
     {
-        String t_json = ResponseUtil.glycanSequenceToJSON(a_sequence);
+        String t_json = SequenceBuildInputUtil.glycanSequenceToJSON(a_sequence);
+        t_json = t_json.substring(0, 10);
         // build post request
         HttpPost t_httpPost = new HttpPost(this.m_baseUrl);
         // set the json as payload
@@ -94,18 +95,15 @@ public class Client
         t_httpPost.setHeader("X-CSRFToken", this.m_csrfToken);
         // execute request
         CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpPost);
-        this.log("HTTP Response Code",
-                Integer.toString(t_response.getStatusLine().getStatusCode()));
+        this.log("HTTP Response Code", Integer.toString(t_response.getStatusLine().getStatusCode()));
         HttpEntity t_entity = t_response.getEntity();
         // extract response
         String t_responseContent = ResponseUtil.entityToString(t_entity);
         this.log("Response body", t_responseContent);
-
-        String t_jobId = ResponseUtil.extractJobId(t_responseContent);
         // close response
         EntityUtils.consume(t_entity);
         t_response.close();
-        return t_jobId;
+        return t_responseContent;
     }
 
     private void log(String a_message, String a_content)

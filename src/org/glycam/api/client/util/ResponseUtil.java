@@ -13,8 +13,7 @@ import org.json.simple.parser.JSONParser;
 public class ResponseUtil
 {
 
-    public static String entityToString(HttpEntity a_entity)
-            throws UnsupportedOperationException, IOException
+    public static String entityToString(HttpEntity a_entity) throws UnsupportedOperationException, IOException
     {
         StringWriter t_writer = new StringWriter();
         IOUtils.copy(a_entity.getContent(), t_writer, StandardCharsets.UTF_8);
@@ -44,8 +43,7 @@ public class ResponseUtil
             {
                 if (t_object instanceof JSONObject)
                 {
-                    t_jsonObject = ResponseUtil.getObject((JSONObject) t_object,
-                            "Build3DStructure");
+                    t_jsonObject = ResponseUtil.getObject((JSONObject) t_object, "Build3DStructure");
                     if (t_jsonObject != null)
                     {
                         String t_jobId = ResponseUtil.getString(t_jsonObject, "payload");
@@ -86,13 +84,6 @@ public class ResponseUtil
         {
             throw new IOException("JSON format error: Value for " + a_key + " is not a string.");
         }
-    }
-
-    public static String glycanSequenceToJSON(String a_sequence)
-    {
-        String t_json = "{ \"entity\" : { \"type\": \"Sequence\", \"services\" : [ { \"Build\" :  { \"type\" : \"Build3DStructure\" } } ], \"inputs\" : [ { \"Sequence\" : { \"payload\" : \"XxXxX\" } } ] }}";
-        t_json = t_json.replace("XxXxX", a_sequence);
-        return t_json;
     }
 
 }
