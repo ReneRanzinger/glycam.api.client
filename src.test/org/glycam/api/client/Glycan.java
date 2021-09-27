@@ -2,6 +2,7 @@ package org.glycam.api.client;
 
 import java.io.IOException;
 
+import org.glycam.api.client.om.SubmitResponse;
 import org.glycam.api.client.util.GlycamClient;
 
 /**
@@ -19,7 +20,7 @@ public class Glycan
 
         // DGlpNAcb1-OH
         String t_sequence = "DGlpNAcb1-3DGalpNAca1-3[LFucpa1-2]DGalpb1-3[DGlcpNAcb1-3DGlcpNAcb1-6]DGalpNAca1-OH";
-        String t_response = t_client.submitGlycan(t_sequence);
+        SubmitResponse t_response = t_client.submitGlycan(t_sequence);
 
         if (t_response == null)
         {

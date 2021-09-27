@@ -16,6 +16,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
+import org.glycam.api.client.om.SubmitResponse;
 
 public class GlycamClient
 {
@@ -74,38 +75,44 @@ public class GlycamClient
         this.m_httpclient.close();
     }
 
-    public String submitGlycan(String a_sequence) throws ClientProtocolException, IOException
+    public SubmitResponse submitGlycan(String a_sequence) throws ClientProtocolException, IOException
     {
-        String t_json = SequenceBuildInputUtil.glycanSequenceToJSON(a_sequence);
+    	SubmitResponse t_submitReport = new SubmitResponse();
+        t_submitReport.setSuccessful(false);
+    	String t_json = SequenceBuildInputUtil.glycanSequenceToJSON(a_sequence);
+        t_submitReport.setRequest(t_json);
         // build post request
         HttpPost t_httpPost = new HttpPost(this.m_baseUrl);
         // set the json as payload
         StringEntity t_entityJson = new StringEntity(t_json);
         t_httpPost.setEntity(t_entityJson);
-        this.log("JSON Input", t_json);
         // add content type and token
         t_httpPost.setHeader("Accept", "application/json");
         t_httpPost.setHeader("Content-type", "application/json");
         t_httpPost.setHeader("X-CSRFToken", this.m_csrfToken);
         // execute request
         CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpPost);
-        this.log("HTTP Response Code",
-                Integer.toString(t_response.getStatusLine().getStatusCode()));
+        t_submitReport.setHttpCode(t_response.getStatusLine().getStatusCode());
         HttpEntity t_entity = t_response.getEntity();
         // extract response
         String t_responseContent = ResponseUtil.entityToString(t_entity);
-        this.log("Response body", t_responseContent);
+        t_submitReport.setResponse(t_responseContent);
         // close response
         EntityUtils.consume(t_entity);
         t_response.close();
-        return t_responseContent;
-    }
-
-    private void log(String a_message, String a_content)
-    {
-        System.out.println(a_message);
-        System.out.println(a_content);
-        System.out.println();
+        if ( t_submitReport.getHttpCode() < 400 )
+        {
+        	try
+        	{
+        		ResponseUtil.processGlycanResponse(t_submitReport);
+        	}
+        	catch (Exception e) 
+        	{
+        		t_submitReport.setSuccessful(false);
+        		t_submitReport.setErrorMessage("Error parsing JSON response: " + e.getMessage());
+			}
+        }
+        return t_submitReport;
     }
 
     // public String downloadPDB(String a_jobId) throws ClientProtocolException,
