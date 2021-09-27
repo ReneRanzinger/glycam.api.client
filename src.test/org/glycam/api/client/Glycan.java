@@ -2,7 +2,7 @@ package org.glycam.api.client;
 
 import java.io.IOException;
 
-import org.glycam.api.client.util.Client;
+import org.glycam.api.client.util.GlycamClient;
 
 /**
  *
@@ -15,8 +15,7 @@ public class Glycan
     public static void main(String[] args) throws IOException
     {
         // create the client
-        Client t_client = new Client("https://dev.glycam.org/json/",
-                "https://dev.glycam.org/userdata/tools/");
+        GlycamClient t_client = new GlycamClient("https://dev.glycam.org/json/");
 
         // DGlpNAcb1-OH
         String t_sequence = "DGlpNAcb1-3DGalpNAca1-3[LFucpa1-2]DGalpb1-3[DGlcpNAcb1-3DGlcpNAcb1-6]DGalpNAca1-OH";

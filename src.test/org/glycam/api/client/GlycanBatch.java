@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.glycam.api.client.util.Client;
+import org.glycam.api.client.util.GlycamClient;
 
 public class GlycanBatch
 {
@@ -18,10 +18,10 @@ public class GlycanBatch
         PrintWriter t_writerError = new PrintWriter(new File("./input/error.txt"));
         PrintWriter t_writerSuccess = new PrintWriter(new File("./input/success.txt"));
         // create the client
-        Client t_client = new Client("https://glygen.ccrc.uga.edu/glycam/json/",
-                "https://glygen.ccrc.uga.edu/glycam/userdata/tools/");
+        GlycamClient t_client = new GlycamClient("https://glygen.ccrc.uga.edu/glycam/json/");
 
-        BufferedReader t_reader = new BufferedReader(new FileReader("./input/GlyTouCan.glygen.input"));
+        BufferedReader t_reader = new BufferedReader(
+                new FileReader("./input/GlyTouCan.glygen.input"));
         for (String t_line; (t_line = t_reader.readLine()) != null;)
         {
             try
@@ -44,8 +44,9 @@ public class GlycanBatch
                         t_client.downloadPDB(t_jobId);
                         long t_endPDB = System.currentTimeMillis();
                         t_countSuccess++;
-                        String t_message = Integer.toString(t_countError + t_countSuccess) + " - " + t_parts[0] + "\t"
-                                + Long.toString(t_end - t_start) + "\t" + Long.toString(t_endPDB - t_startPDB);
+                        String t_message = Integer.toString(t_countError + t_countSuccess) + " - "
+                                + t_parts[0] + "\t" + Long.toString(t_end - t_start) + "\t"
+                                + Long.toString(t_endPDB - t_startPDB);
                         System.out.println(t_message);
                         t_writerSuccess.println(t_message);
                         t_writerSuccess.flush();
