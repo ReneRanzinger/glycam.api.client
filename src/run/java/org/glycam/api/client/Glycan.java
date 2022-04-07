@@ -7,7 +7,7 @@ import org.glycam.api.client.util.GlycamClient;
 
 /**
  *
- * @author rene
+ * @author Rene Ranzinger
  *
  */
 public class Glycan
