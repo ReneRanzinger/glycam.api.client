@@ -1,0 +1,98 @@
+{
+	"timestamp": null,
+	"entity": {
+		"entityType": "Sequence",
+		"requestID": null,
+		"services": {
+			"build": {
+				"typename": "Build3DStructure",
+				"givenName": null,
+				"myUuid": null,
+				"inputs": null,
+				"options": null
+			}
+		},
+		"responses": null,
+		"resources": [],
+		"notices": null,
+		"options": null,
+		"inputs": {
+			"sequence": {
+				"payload": "DGlpNAcb1-3DGlcpNAcb1-OH",
+				"sequenceFormat": "GlycamCondensed"
+			},
+			"sequenceVariants": null,
+			"systemSolvationOptions": null,
+			"geometryOptions": null,
+			"buildOptions": null,
+			"evaluationOptions": null,
+			"drawOptions": null
+		},
+		"outputs": null
+	},
+	"project": {
+		"pUUID": "c2481312-a652-4b82-a300-9bcdb751dfbf",
+		"title": "",
+		"comment": "",
+		"timestamp": "2022-04-07T22:25:26.350465",
+		"gems_timestamp": "2022-04-07T22:25:26.350465",
+		"project_type": "cb",
+		"parent_entity": "Sequence",
+		"requested_service": "Build3DStructure",
+		"entity_id": "sequence",
+		"service_id": "cb",
+		"filesystem_path": "/website/userdata/",
+		"compute_cluster_filesystem_path": "",
+		"service_dir": "/website/userdata/sequence/cb",
+		"project_dir": "/website/userdata/sequence/cb/Builds/c2481312-a652-4b82-a300-9bcdb751dfbf",
+		"logs_dir": "/website/userdata/sequence/cb/Builds/c2481312-a652-4b82-a300-9bcdb751dfbf/logs",
+		"requesting_agent": "",
+		"has_input_files": false,
+		"site_version": "4a742868e1ddf00ced85327451e07547c4288c81",
+		"site_branch": "web-test",
+		"site_code_name": "quiet-quinn",
+		"gems_version": "5f99d34d21b2ca278accd6b7bf92395739832e73",
+		"gems_branch": "gems-test",
+		"md_utils_version": "589abe37c358b65119194ec8859d85aea3cadcf4",
+		"md_utils_branch": "md-test",
+		"gmml_version": "9e2ac2f004a97017eb8135106f477f5b3611dd7c",
+		"gmml_branch": "gmml-test",
+		"gp_version": "",
+		"gp_branch": "",
+		"site_mode": "SWARM",
+		"site_host_name": "glycam.org",
+		"versions_file_path": "/website/userdata/VERSIONS.sh",
+		"host_url_base_path": "https://glycam.org",
+		"download_url_path": "https://glycam.org/json/download/sequence/cb/c2481312-a652-4b82-a300-9bcdb751dfbf/",
+		"force_field": "default",
+		"parameter_version": "default",
+		"amber_version": "default",
+		"json_api_version": "0.0.1",
+		"django_project_id": "",
+		"app": "project",
+		"notices": [],
+		"sequence_id": "",
+		"sequence_path": "",
+		"indexOrderedSequence": "",
+		"seqID": "",
+		"selected_rotamers": ""
+	},
+	"prettyPrint": false,
+	"mdMinimize": true,
+	"options": null,
+	"notices": [
+		{
+			"noticeType": [
+				"error"
+			],
+			"noticeCode": [
+				"400"
+			],
+			"noticeBrief": "InvalidInputPayload",
+			"noticeMessage": "Cannot create 3D structure as no GLYCAM residue code was found in the GMML metadata for residue: DGlpNAcb",
+			"noticeScope": "Transaction",
+			"messagingEntity": "CommonServicer",
+			"additionalInfo": null
+		}
+	]
+}

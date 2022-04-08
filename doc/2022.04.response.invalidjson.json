@@ -1,0 +1,15 @@
+{
+   "entity": {
+      "responses": [
+         {
+            "FrontEndNotice": {
+               "type": "error",
+               "notice": {
+                  "code": "400",
+                  "message": "There was a problem getting the entity type from the requestDict."
+               }
+            }
+         }
+      ]
+   }
+}

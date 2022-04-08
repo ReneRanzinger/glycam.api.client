@@ -1,7 +1,10 @@
-package org.glycam.api.client.util;
+package org.glycam.api.client.http;
 
 import java.io.IOException;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.CookieSpecs;
@@ -16,7 +19,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
-import org.glycam.api.client.om.SubmitResponse;
+import org.glycam.api.client.util.SequenceBuildInputUtil;
 
 public class GlycamClient
 {
@@ -64,7 +67,7 @@ public class GlycamClient
                     + Integer.toString(t_response.getStatusLine().getStatusCode()));
         }
         // now we read the response to get the token
-        this.m_csrfToken = ResponseUtil.entityToString(t_entity);
+        this.m_csrfToken = this.entityToString(t_entity);
         // consume and close the response
         EntityUtils.consume(t_entity);
         t_response.close();
@@ -75,44 +78,47 @@ public class GlycamClient
         this.m_httpclient.close();
     }
 
-    public SubmitResponse submitGlycan(String a_sequence) throws ClientProtocolException, IOException
+    public String entityToString(HttpEntity a_entity)
+            throws UnsupportedOperationException, IOException
     {
-    	SubmitResponse t_submitReport = new SubmitResponse();
-        t_submitReport.setSuccessful(false);
-    	String t_json = SequenceBuildInputUtil.glycanSequenceToJSON(a_sequence);
-        t_submitReport.setRequest(t_json);
-        // build post request
-        HttpPost t_httpPost = new HttpPost(this.m_baseUrl);
-        // set the json as payload
-        StringEntity t_entityJson = new StringEntity(t_json);
-        t_httpPost.setEntity(t_entityJson);
-        // add content type and token
-        t_httpPost.setHeader("Accept", "application/json");
-        t_httpPost.setHeader("Content-type", "application/json");
-        t_httpPost.setHeader("X-CSRFToken", this.m_csrfToken);
-        // execute request
-        CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpPost);
-        t_submitReport.setHttpCode(t_response.getStatusLine().getStatusCode());
-        HttpEntity t_entity = t_response.getEntity();
-        // extract response
-        String t_responseContent = ResponseUtil.entityToString(t_entity);
-        t_submitReport.setResponse(t_responseContent);
-        // close response
-        EntityUtils.consume(t_entity);
-        t_response.close();
-        if ( t_submitReport.getHttpCode() < 400 )
+        StringWriter t_writer = new StringWriter();
+        IOUtils.copy(a_entity.getContent(), t_writer, StandardCharsets.UTF_8);
+        return t_writer.toString();
+    }
+
+    public ClientResponse submitGlycan(String a_sequence) throws IOException
+    {
+        ClientResponse t_submitReport = new ClientResponse();
+        String t_json = SequenceBuildInputUtil.glycanSequenceToJSON(a_sequence);
+        t_submitReport.setPayLoad(t_json);
+        try
         {
-        	try
-        	{
-        		ResponseUtil.processGlycanResponse(t_submitReport);
-        	}
-        	catch (Exception e) 
-        	{
-        		t_submitReport.setSuccessful(false);
-        		t_submitReport.setErrorMessage("Error parsing JSON response: " + e.getMessage());
-			}
+            // build post request
+            HttpPost t_httpPost = new HttpPost(this.m_baseUrl);
+            // set the json as payload
+            StringEntity t_entityJson = new StringEntity(t_json);
+            t_httpPost.setEntity(t_entityJson);
+            // add content type and token
+            t_httpPost.setHeader("Accept", "application/json");
+            t_httpPost.setHeader("Content-type", "application/json");
+            t_httpPost.setHeader("X-CSRFToken", this.m_csrfToken);
+            // execute request
+            CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpPost);
+            t_submitReport.setStatusCode(t_response.getStatusLine().getStatusCode());
+            t_submitReport.setStatusPhrase(t_response.getStatusLine().getReasonPhrase());
+            HttpEntity t_entity = t_response.getEntity();
+            // extract response
+            String t_responseContent = this.entityToString(t_entity);
+            t_submitReport.setResponseBody(t_responseContent);
+            // close response
+            EntityUtils.consume(t_entity);
+            t_response.close();
+            return t_submitReport;
         }
-        return t_submitReport;
+        catch (Exception e)
+        {
+            throw new IOException(e.getMessage(), e);
+        }
     }
 
     // public String downloadPDB(String a_jobId) throws ClientProtocolException,
