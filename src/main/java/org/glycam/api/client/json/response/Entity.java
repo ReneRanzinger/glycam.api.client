@@ -1,4 +1,4 @@
-package org.glycam.api.client.json.submit;
+package org.glycam.api.client.json.response;
 
 import java.util.ArrayList;
 import java.util.List;

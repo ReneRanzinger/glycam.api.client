@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_pEGTELePEeyn9oFzaDcctQ">
+  <modelElement href="glycam.api.client.uml#_pQoTMLePEeyn9oFzaDcctQ"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_pWhf0LePEeyn9oFzaDcctQ" sourceAnchor="148.0,104.0" targetAnchor="204.0,0.0" target="_pXtyoLePEeyn9oFzaDcctQ" source="_pWiG6LePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pS-ckLePEeyn9oFzaDcctQ"/>
+    <stereotypes xmi:id="_pWiG4LePEeyn9oFzaDcctQ" name="Reference">
+      <modelElement href="glycam.api.client.uml#_pS_DoLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_pWiG4bePEeyn9oFzaDcctQ" text="">
+      <visualProperties xmi:id="_pcpV8bePEeyn9oFzaDcctQ" position="2.0,-20.439999999999998"/>
+    </nameVisual>
+    <sourceRole xmi:id="_pWiG4rePEeyn9oFzaDcctQ" aggregationKind="NONE" name="">
+      <modelElement href="glycam.api.client.uml#_pS-ckbePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pcpV8LePEeyn9oFzaDcctQ" position="-17.0,47.5"/>
+      <visibility xmi:id="_pWiG47ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pWiG5LePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_pWiG5bePEeyn9oFzaDcctQ" aggregationKind="NONE" name="m_responses" navigable="true">
+      <modelElement href="glycam.api.client.uml#_pSi-wLePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pcp9ALePEeyn9oFzaDcctQ" position="-98.0,-100.5"/>
+      <visibility xmi:id="_pWiG5rePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pWiG57ePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_pXJK4LePEeyn9oFzaDcctQ" sourceAnchor="0.0,51.0" targetAnchor="249.0,88.0" target="_pXM1SbePEeyn9oFzaDcctQ" source="_pXtyoLePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pS_qsbePEeyn9oFzaDcctQ"/>
+    <stereotypes xmi:id="_pXLAE7ePEeyn9oFzaDcctQ" name="Reference">
+      <modelElement href="glycam.api.client.uml#_pTARwLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_pXLAELePEeyn9oFzaDcctQ" text="">
+      <visualProperties xmi:id="_pcrLIbePEeyn9oFzaDcctQ" position="-37.14285714285711,-22.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_pXLAEbePEeyn9oFzaDcctQ" aggregationKind="NONE" name="">
+      <modelElement href="glycam.api.client.uml#_pS_qsrePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pcrLILePEeyn9oFzaDcctQ" position="-29.315789473684163,-54.5"/>
+      <visibility xmi:id="_pXLnIbePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXLnILePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_pXLAErePEeyn9oFzaDcctQ" aggregationKind="NONE" name="m_frontendNotice" navigable="true">
+      <modelElement href="glycam.api.client.uml#_pSmCELePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pcryMLePEeyn9oFzaDcctQ" position="47.66666666666674,2.5"/>
+      <visibility xmi:id="_pXLnI7ePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pXLnIrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_pXM1QLePEeyn9oFzaDcctQ" sourceAnchor="124.0,0.0" targetAnchor="133.0,199.0" target="_pXUxELePEeyn9oFzaDcctQ" source="_pXM1SbePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pS_DobePEeyn9oFzaDcctQ"/>
+    <stereotypes xmi:id="_pXM1QbePEeyn9oFzaDcctQ" name="Reference">
+      <modelElement href="glycam.api.client.uml#_pS_qsLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_pXM1QrePEeyn9oFzaDcctQ" text="">
+      <visualProperties xmi:id="_pcqkELePEeyn9oFzaDcctQ" position="2.5,-10.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_pXM1Q7ePEeyn9oFzaDcctQ" aggregationKind="NONE" name="">
+      <modelElement href="glycam.api.client.uml#_pS_DorePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pcp9AbePEeyn9oFzaDcctQ" position="2.5,-91.20000000000005"/>
+      <visibility xmi:id="_pXM1RLePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXM1RbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_pXM1RrePEeyn9oFzaDcctQ" aggregationKind="NONE" name="m_notice" navigable="true">
+      <modelElement href="glycam.api.client.uml#_pSkM4LePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pcqkEbePEeyn9oFzaDcctQ" position="2.5,38.200000000000045"/>
+      <visibility xmi:id="_pXM1R7ePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pXM1SLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_pXz5QLePEeyn9oFzaDcctQ" sourceAnchor="303.0,96.0" targetAnchor="0.0,52.0" target="_pWiG6LePEeyn9oFzaDcctQ" source="_pX6m-bePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pTA40LePEeyn9oFzaDcctQ"/>
+    <stereotypes xmi:id="_pX3jorePEeyn9oFzaDcctQ" name="Reference">
+      <modelElement href="glycam.api.client.uml#_pTA40rePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_pX28kLePEeyn9oFzaDcctQ" text="">
+      <visualProperties xmi:id="_pcsZQLePEeyn9oFzaDcctQ" position="-1.599999999999909,-23.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_pX3joLePEeyn9oFzaDcctQ" aggregationKind="NONE" name="">
+      <modelElement href="glycam.api.client.uml#_pTA40bePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pcryMbePEeyn9oFzaDcctQ" position="20.161290322580612,-55.0"/>
+      <visibility xmi:id="_pX5Y0bePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pX5Y0LePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_pX3jobePEeyn9oFzaDcctQ" aggregationKind="NONE" name="m_entiry" navigable="true">
+      <modelElement href="glycam.api.client.uml#_pSmpILePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pcsZQbePEeyn9oFzaDcctQ" position="-130.8888888888889,-55.0"/>
+      <visibility xmi:id="_pX5Y07ePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pX5Y0rePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_pX2VgLePEeyn9oFzaDcctQ" sourceAnchor="0.0,96.0" targetAnchor="317.0,99.0" target="_pXnE8LePEeyn9oFzaDcctQ" source="_pX6m-bePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pTBf4LePEeyn9oFzaDcctQ"/>
+    <stereotypes xmi:id="_pX3jprePEeyn9oFzaDcctQ" name="Reference">
+      <modelElement href="glycam.api.client.uml#_pTBf4rePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_pX3jo7ePEeyn9oFzaDcctQ" text="">
+      <visualProperties xmi:id="_pctAUbePEeyn9oFzaDcctQ" position="-21.0,-22.500000000000057"/>
+    </nameVisual>
+    <sourceRole xmi:id="_pX3jpLePEeyn9oFzaDcctQ" aggregationKind="NONE" name="">
+      <modelElement href="glycam.api.client.uml#_pTBf4bePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pctAULePEeyn9oFzaDcctQ" position="-29.66666666666663,2.5"/>
+      <visibility xmi:id="_pX5Y1bePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pX5Y1LePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_pX3jpbePEeyn9oFzaDcctQ" aggregationKind="NONE" name="m_project" navigable="true">
+      <modelElement href="glycam.api.client.uml#_pSmpIrePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pctAUrePEeyn9oFzaDcctQ" position="49.0,2.5"/>
+      <visibility xmi:id="_pX5Y17ePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pX5Y1rePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_pX6m8LePEeyn9oFzaDcctQ" sourceAnchor="152.0,192.0" targetAnchor="153.0,0.0" target="_pYDw4LePEeyn9oFzaDcctQ" source="_pX6m-bePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pTBf47ePEeyn9oFzaDcctQ"/>
+    <stereotypes xmi:id="_pX6m8bePEeyn9oFzaDcctQ" name="Reference">
+      <modelElement href="glycam.api.client.uml#_pTCG8LePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_pX6m8rePEeyn9oFzaDcctQ" text="">
+      <visualProperties xmi:id="_pcuOcLePEeyn9oFzaDcctQ" position="-49.0,-10.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_pX6m87ePEeyn9oFzaDcctQ" aggregationKind="NONE" name="">
+      <modelElement href="glycam.api.client.uml#_pTBf5LePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pctnYLePEeyn9oFzaDcctQ" position="-17.0,39.0"/>
+      <visibility xmi:id="_pX6m9LePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pX6m9bePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_pX6m9rePEeyn9oFzaDcctQ" aggregationKind="NONE" name="m_notices" navigable="true">
+      <modelElement href="glycam.api.client.uml#_pSnQMLePEeyn9oFzaDcctQ"/>
+      <visualProperties xmi:id="_pcuOcbePEeyn9oFzaDcctQ" position="-79.0,-92.0"/>
+      <visibility xmi:id="_pX6m97ePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pX6m-LePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+    </targetRole>
+  </edges>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_pWiG6LePEeyn9oFzaDcctQ" name="Entity" associationsIn="_pXz5QLePEeyn9oFzaDcctQ" associationsOut="_pWhf0LePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pRDJ8LePEeyn9oFzaDcctQ"/>
+    <visualProperties xmi:id="_pWit8LePEeyn9oFzaDcctQ" position="1464.0,78.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_pWit8bePEeyn9oFzaDcctQ" name="LegacyStyledElement">
+      <modelElement href="glycam.api.client.uml#_pRFmMLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <stereotypes xmi:id="_pWit8rePEeyn9oFzaDcctQ" name="Annotations">
+      <modelElement href="glycam.api.client.uml#_pRLs0LePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <visibility xmi:id="_pWit87ePEeyn9oFzaDcctQ" label="+"/>
+    <attributes xmi:id="_pWit9LePEeyn9oFzaDcctQ" defaultValue="new ArrayList&lt;>()" name="m_responses">
+      <modelElement href="glycam.api.client.uml#_pSi-wLePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pWit9bePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pWit9rePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_pWit97ePEeyn9oFzaDcctQ" name="Responses">
+        <modelElement href="glycam.api.client.uml#_pRcyk7ePEeyn9oFzaDcctQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_pWit-LePEeyn9oFzaDcctQ" name="getResponses">
+      <modelElement href="glycam.api.client.uml#_pRICcLePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pWit-bePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRKesLePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pWit-rePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pWit-7ePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_pWit_LePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRIpgLePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pWit_bePEeyn9oFzaDcctQ" name="Responses">
+          <modelElement href="glycam.api.client.uml#_pRcyk7ePEeyn9oFzaDcctQ"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pWit_rePEeyn9oFzaDcctQ" name="setResponses">
+      <modelElement href="glycam.api.client.uml#_pScRELePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pWit_7ePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pSc4ILePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pWiuALePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pWiuAbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pWiuArePEeyn9oFzaDcctQ" name="a_responses">
+        <modelElement href="glycam.api.client.uml#_pScREbePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pWiuA7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pWiuBLePEeyn9oFzaDcctQ" name="List">
+          <modelElement href="glycam.api.client.uml#_pSTHILePEeyn9oFzaDcctQ"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_pXM1SbePEeyn9oFzaDcctQ" name="FrontEndNotice" associationsIn="_pXJK4LePEeyn9oFzaDcctQ" associationsOut="_pXM1QLePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pROJELePEeyn9oFzaDcctQ"/>
+    <visualProperties xmi:id="_pXM1SrePEeyn9oFzaDcctQ" position="889.0,665.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_pXM1S7ePEeyn9oFzaDcctQ" name="LegacyStyledElement">
+      <modelElement href="glycam.api.client.uml#_pROwILePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <stereotypes xmi:id="_pXM1TLePEeyn9oFzaDcctQ" name="Annotations">
+      <modelElement href="glycam.api.client.uml#_pRRzcLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <visibility xmi:id="_pXNcULePEeyn9oFzaDcctQ" label="+"/>
+    <attributes xmi:id="_pXNcUbePEeyn9oFzaDcctQ" defaultValue="null" name="m_type">
+      <modelElement href="glycam.api.client.uml#_pSjl0LePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pXNcUrePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pXNcU7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pXNcVLePEeyn9oFzaDcctQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pXNcVbePEeyn9oFzaDcctQ" defaultValue="null" name="m_notice">
+      <modelElement href="glycam.api.client.uml#_pSkM4LePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pXNcVrePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pXNcV7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pXNcWLePEeyn9oFzaDcctQ" name="Notice">
+        <modelElement href="glycam.api.client.uml#_pRTooLePEeyn9oFzaDcctQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_pXNcWbePEeyn9oFzaDcctQ" name="getType">
+      <modelElement href="glycam.api.client.uml#_pRPXMLePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXNcWrePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRP-QLePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXNcW7ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXNcXLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pXNcXbePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRPXMbePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pXNcXrePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pXNcX7ePEeyn9oFzaDcctQ" name="setType">
+      <modelElement href="glycam.api.client.uml#_pRP-Q7ePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXNcYLePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pRQlULePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXNcYbePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXNcYrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pXNcY7ePEeyn9oFzaDcctQ" name="a_type">
+        <modelElement href="glycam.api.client.uml#_pRP-RLePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pXNcZLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pXNcZbePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_pXNcZrePEeyn9oFzaDcctQ" name="getNotice">
+      <modelElement href="glycam.api.client.uml#_pRQlUbePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXNcZ7ePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRRMYLePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXNcaLePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXNcabePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pXNcarePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pSWxgLePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pXNca7ePEeyn9oFzaDcctQ" name="Notice">
+          <modelElement href="glycam.api.client.uml#_pRTooLePEeyn9oFzaDcctQ"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pXNcbLePEeyn9oFzaDcctQ" name="setNotice">
+      <modelElement href="glycam.api.client.uml#_pSXYkLePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXNcbbePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pSXYkrePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXNcbrePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXNcb7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pXNccLePEeyn9oFzaDcctQ" name="a_t_notice">
+        <modelElement href="glycam.api.client.uml#_pSXYkbePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pXNccbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pXNccrePEeyn9oFzaDcctQ" name="Notice">
+          <modelElement href="glycam.api.client.uml#_pRTooLePEeyn9oFzaDcctQ"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_pXUxELePEeyn9oFzaDcctQ" name="Notice" associationsIn="_pXM1QLePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pRTooLePEeyn9oFzaDcctQ"/>
+    <visualProperties xmi:id="_pXUxEbePEeyn9oFzaDcctQ" position="880.0,225.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_pXUxErePEeyn9oFzaDcctQ" name="LegacyStyledElement">
+      <modelElement href="glycam.api.client.uml#_pRU2wLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <stereotypes xmi:id="_pXUxE7ePEeyn9oFzaDcctQ" name="Annotations">
+      <modelElement href="glycam.api.client.uml#_pRX6EbePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <visibility xmi:id="_pXUxFLePEeyn9oFzaDcctQ" label="+"/>
+    <attributes xmi:id="_pXUxFbePEeyn9oFzaDcctQ" defaultValue="null" name="m_code">
+      <modelElement href="glycam.api.client.uml#_pSkM4rePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pXUxFrePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pXUxF7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pXUxGLePEeyn9oFzaDcctQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pXUxGbePEeyn9oFzaDcctQ" defaultValue="null" name="m_message">
+      <modelElement href="glycam.api.client.uml#_pSkz8bePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pXUxGrePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pXUxG7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pXUxHLePEeyn9oFzaDcctQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_pXUxHbePEeyn9oFzaDcctQ" name="getCode">
+      <modelElement href="glycam.api.client.uml#_pRVd0LePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXUxHrePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRWE4LePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXUxH7ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXUxILePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pXUxIbePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRVd0bePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pXUxIrePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pXUxI7ePEeyn9oFzaDcctQ" name="setCode">
+      <modelElement href="glycam.api.client.uml#_pRWE47ePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXUxJLePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pRWr8LePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXUxJbePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXUxJrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pXUxJ7ePEeyn9oFzaDcctQ" name="a_code">
+        <modelElement href="glycam.api.client.uml#_pRWE5LePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pXUxKLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pXUxKbePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_pXUxKrePEeyn9oFzaDcctQ" name="getMessage">
+      <modelElement href="glycam.api.client.uml#_pRWr8bePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXUxK7ePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRXTALePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXUxLLePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXUxLbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pXUxLrePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRWr8rePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pXUxL7ePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pXUxMLePEeyn9oFzaDcctQ" name="setMessage">
+      <modelElement href="glycam.api.client.uml#_pRXTA7ePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXUxMbePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pRX6ELePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXUxMrePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXUxM7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pXUxNLePEeyn9oFzaDcctQ" name="a_message">
+        <modelElement href="glycam.api.client.uml#_pRXTBLePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pXUxNbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pXUxNrePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_pXnE8LePEeyn9oFzaDcctQ" name="Project" associationsIn="_pX2VgLePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pRYhILePEeyn9oFzaDcctQ"/>
+    <visualProperties xmi:id="_pXnE8bePEeyn9oFzaDcctQ" position="11.0,31.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_pXnE8rePEeyn9oFzaDcctQ" name="LegacyStyledElement">
+      <modelElement href="glycam.api.client.uml#_pRZvQLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <stereotypes xmi:id="_pXnE87ePEeyn9oFzaDcctQ" name="Annotations">
+      <modelElement href="glycam.api.client.uml#_pRcykLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <visibility xmi:id="_pXnE9LePEeyn9oFzaDcctQ" label="+"/>
+    <attributes xmi:id="_pXnE9bePEeyn9oFzaDcctQ" defaultValue="null" name="m_id">
+      <modelElement href="glycam.api.client.uml#_pSlbALePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pXnE9rePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pXnE97ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pXnE-LePEeyn9oFzaDcctQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pXnE-bePEeyn9oFzaDcctQ" defaultValue="null" name="m_downloadUrl">
+      <modelElement href="glycam.api.client.uml#_pSlbArePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pXnE-rePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pXnE-7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pXnsALePEeyn9oFzaDcctQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_pXnsAbePEeyn9oFzaDcctQ" name="getId">
+      <modelElement href="glycam.api.client.uml#_pRaWULePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXnsArePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRa9YLePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXnsA7ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXnsBLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pXnsBbePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRaWUbePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pXnsBrePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pXnsB7ePEeyn9oFzaDcctQ" name="setId">
+      <modelElement href="glycam.api.client.uml#_pRa9Y7ePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXnsCLePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pRbkcLePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXnsCbePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXnsCrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pXnsC7ePEeyn9oFzaDcctQ" name="a_id">
+        <modelElement href="glycam.api.client.uml#_pRa9ZLePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pXnsDLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pXnsDbePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_pXnsDrePEeyn9oFzaDcctQ" name="getDownloadUrl">
+      <modelElement href="glycam.api.client.uml#_pRbkcbePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXnsD7ePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRbkc7ePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXnsELePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXnsEbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pXnsErePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRbkcrePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pXnsE7ePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pXnsFLePEeyn9oFzaDcctQ" name="setDownloadUrl">
+      <modelElement href="glycam.api.client.uml#_pRcLgbePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXnsFbePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pRcLg7ePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXnsFrePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXnsF7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pXnsGLePEeyn9oFzaDcctQ" name="a_downloadUrl">
+        <modelElement href="glycam.api.client.uml#_pRcLgrePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pXnsGbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pXnsGrePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_pXtyoLePEeyn9oFzaDcctQ" name="Responses" associationsIn="_pWhf0LePEeyn9oFzaDcctQ" associationsOut="_pXJK4LePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pRcyk7ePEeyn9oFzaDcctQ"/>
+    <visualProperties xmi:id="_pXtyobePEeyn9oFzaDcctQ" position="1408.0,702.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_pXtyorePEeyn9oFzaDcctQ" name="LegacyStyledElement">
+      <modelElement href="glycam.api.client.uml#_pReAsLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <stereotypes xmi:id="_pXtyo7ePEeyn9oFzaDcctQ" name="Annotations">
+      <modelElement href="glycam.api.client.uml#_pRfO0LePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <visibility xmi:id="_pXtypLePEeyn9oFzaDcctQ" label="+"/>
+    <attributes xmi:id="_pXtypbePEeyn9oFzaDcctQ" defaultValue="null" name="m_frontendNotice">
+      <modelElement href="glycam.api.client.uml#_pSmCELePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pXtyprePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pXtyp7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pXtyqLePEeyn9oFzaDcctQ" name="FrontEndNotice">
+        <modelElement href="glycam.api.client.uml#_pROJELePEeyn9oFzaDcctQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_pXtyqbePEeyn9oFzaDcctQ" name="getFrontendNotice">
+      <modelElement href="glycam.api.client.uml#_pReAsbePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXtyqrePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRenwLePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXtyq7ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXtyrLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pXtyrbePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pSYmsLePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pXtyrrePEeyn9oFzaDcctQ" name="FrontEndNotice">
+          <modelElement href="glycam.api.client.uml#_pROJELePEeyn9oFzaDcctQ"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pXtyr7ePEeyn9oFzaDcctQ" name="setFrontendNotice">
+      <modelElement href="glycam.api.client.uml#_pSYmsbePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pXtysLePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pSYms7ePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pXtysbePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pXtysrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pXtys7ePEeyn9oFzaDcctQ" name="a_frontendNotice">
+        <modelElement href="glycam.api.client.uml#_pSYmsrePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pXtytLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pXtytbePEeyn9oFzaDcctQ" name="FrontEndNotice">
+          <modelElement href="glycam.api.client.uml#_pROJELePEeyn9oFzaDcctQ"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_pX6m-bePEeyn9oFzaDcctQ" name="SubmitInformation" associationsOut="_pXz5QLePEeyn9oFzaDcctQ _pX2VgLePEeyn9oFzaDcctQ _pX6m8LePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pRgc8LePEeyn9oFzaDcctQ"/>
+    <visualProperties xmi:id="_pX6m-rePEeyn9oFzaDcctQ" position="550.0,34.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_pX6m-7ePEeyn9oFzaDcctQ" name="LegacyStyledElement">
+      <modelElement href="glycam.api.client.uml#_pRhEALePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <stereotypes xmi:id="_pX6m_LePEeyn9oFzaDcctQ" name="Annotations">
+      <modelElement href="glycam.api.client.uml#_pRkuYLePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <visibility xmi:id="_pX7OALePEeyn9oFzaDcctQ" label="+"/>
+    <attributes xmi:id="_pX7OAbePEeyn9oFzaDcctQ" defaultValue="null" name="m_entiry">
+      <modelElement href="glycam.api.client.uml#_pSmpILePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pX7OArePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pX7OA7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pX7OBLePEeyn9oFzaDcctQ" name="Entity">
+        <modelElement href="glycam.api.client.uml#_pRDJ8LePEeyn9oFzaDcctQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pX7OBbePEeyn9oFzaDcctQ" defaultValue="null" name="m_project">
+      <modelElement href="glycam.api.client.uml#_pSmpIrePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pX7OBrePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pX7OB7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pX7OCLePEeyn9oFzaDcctQ" name="Project">
+        <modelElement href="glycam.api.client.uml#_pRYhILePEeyn9oFzaDcctQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pX7OCbePEeyn9oFzaDcctQ" defaultValue="new ArrayList&lt;>()" name="m_notices">
+      <modelElement href="glycam.api.client.uml#_pSnQMLePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pX7OCrePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pX7OC7ePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_pX7ODLePEeyn9oFzaDcctQ" name="TopLevelNotice">
+        <modelElement href="glycam.api.client.uml#_pRo_0LePEeyn9oFzaDcctQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_pX7ODbePEeyn9oFzaDcctQ" name="getEntiry">
+      <modelElement href="glycam.api.client.uml#_pRhEAbePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pX7ODrePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRhrELePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pX7OD7ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pX7OELePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pX7OEbePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pSZNwLePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pX7OErePEeyn9oFzaDcctQ" name="Entity">
+          <modelElement href="glycam.api.client.uml#_pRDJ8LePEeyn9oFzaDcctQ"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pX7OE7ePEeyn9oFzaDcctQ" name="getProject">
+      <modelElement href="glycam.api.client.uml#_pRiSILePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pX7OFLePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRi5MLePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pX7OFbePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pX7OFrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pX7OF7ePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pSZ00rePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pX7OGLePEeyn9oFzaDcctQ" name="Project">
+          <modelElement href="glycam.api.client.uml#_pRYhILePEeyn9oFzaDcctQ"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pX7OGbePEeyn9oFzaDcctQ" name="getNotices">
+      <modelElement href="glycam.api.client.uml#_pRjgQLePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pX7OGrePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRkHULePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pX7OG7ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pX7OHLePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_pX7OHbePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRjgQbePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pX7OHrePEeyn9oFzaDcctQ" name="TopLevelNotice">
+          <modelElement href="glycam.api.client.uml#_pRo_0LePEeyn9oFzaDcctQ"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pX7OH7ePEeyn9oFzaDcctQ" name="setEntiry">
+      <modelElement href="glycam.api.client.uml#_pSZNwbePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pX7OILePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pSZ00bePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pX7OIbePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pX7OIrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pX7OI7ePEeyn9oFzaDcctQ" name="a_entiry">
+        <modelElement href="glycam.api.client.uml#_pSZ00LePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pX7OJLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pX7OJbePEeyn9oFzaDcctQ" name="Entity">
+          <modelElement href="glycam.api.client.uml#_pRDJ8LePEeyn9oFzaDcctQ"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_pX7OJrePEeyn9oFzaDcctQ" name="setProject">
+      <modelElement href="glycam.api.client.uml#_pSZ007ePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pX7OJ7ePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pSZ01bePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pX7OKLePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pX7OKbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pX7OKrePEeyn9oFzaDcctQ" name="a_project">
+        <modelElement href="glycam.api.client.uml#_pSZ01LePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pX7OK7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pX7OLLePEeyn9oFzaDcctQ" name="Project">
+          <modelElement href="glycam.api.client.uml#_pRYhILePEeyn9oFzaDcctQ"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_pX7OLbePEeyn9oFzaDcctQ" name="setNotices">
+      <modelElement href="glycam.api.client.uml#_pSeGQLePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pX7OLrePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pSeGQrePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pX7OL7ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pX7OMLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pX7OMbePEeyn9oFzaDcctQ" name="a_notices">
+        <modelElement href="glycam.api.client.uml#_pSeGQbePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pX7OMrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pX7OM7ePEeyn9oFzaDcctQ" name="List">
+          <modelElement href="glycam.api.client.uml#_pSTHILePEeyn9oFzaDcctQ"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_pYDw4LePEeyn9oFzaDcctQ" name="TopLevelNotice" associationsIn="_pX6m8LePEeyn9oFzaDcctQ">
+    <modelElement href="glycam.api.client.uml#_pRo_0LePEeyn9oFzaDcctQ"/>
+    <visualProperties xmi:id="_pYDw4bePEeyn9oFzaDcctQ" position="549.0,471.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_pYDw4rePEeyn9oFzaDcctQ" name="LegacyStyledElement">
+      <modelElement href="glycam.api.client.uml#_pRqN8LePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <stereotypes xmi:id="_pYDw47ePEeyn9oFzaDcctQ" name="Annotations">
+      <modelElement href="glycam.api.client.uml#_pRvGc7ePEeyn9oFzaDcctQ"/>
+    </stereotypes>
+    <visibility xmi:id="_pYDw5LePEeyn9oFzaDcctQ" label="+"/>
+    <attributes xmi:id="_pYDw5bePEeyn9oFzaDcctQ" defaultValue="new ArrayList&lt;>()" name="m_types">
+      <modelElement href="glycam.api.client.uml#_pSn3QLePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pYDw5rePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pYDw57ePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_pYDw6LePEeyn9oFzaDcctQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pYDw6bePEeyn9oFzaDcctQ" defaultValue="new ArrayList&lt;>()" name="m_codes">
+      <modelElement href="glycam.api.client.uml#_pSn3Q7ePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pYDw6rePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pYDw67ePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_pYDw7LePEeyn9oFzaDcctQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pYDw7bePEeyn9oFzaDcctQ" defaultValue="null" name="m_brief">
+      <modelElement href="glycam.api.client.uml#_pSoeUrePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pYDw7rePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pYDw77ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pYDw8LePEeyn9oFzaDcctQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pYEX8LePEeyn9oFzaDcctQ" defaultValue="null" name="m_message">
+      <modelElement href="glycam.api.client.uml#_pSoeVLePEeyn9oFzaDcctQ"/>
+      <visibility xmi:id="_pYEX8bePEeyn9oFzaDcctQ" label="-"/>
+      <cardinality xmi:id="_pYEX8rePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <type xmi:id="_pYEX87ePEeyn9oFzaDcctQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_pYEX9LePEeyn9oFzaDcctQ" name="getTypes">
+      <modelElement href="glycam.api.client.uml#_pRq1ALePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pYEX9bePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRsDILePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pYEX9rePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pYEX97ePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_pYEX-LePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRrcELePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pYEX-bePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pYEX-rePEeyn9oFzaDcctQ" name="getCodes">
+      <modelElement href="glycam.api.client.uml#_pRsDI7ePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pYEX-7ePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRsqMrePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pYEX_LePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pYEX_bePEeyn9oFzaDcctQ" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_pYEX_rePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRsqMLePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pYEX_7ePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pYEYALePEeyn9oFzaDcctQ" name="getBrief">
+      <modelElement href="glycam.api.client.uml#_pRtRQLePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pYEYAbePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRtRQrePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pYEYArePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pYEYA7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pYEYBLePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRtRQbePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pYEYBbePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pYEYBrePEeyn9oFzaDcctQ" name="setBrief">
+      <modelElement href="glycam.api.client.uml#_pRtRRbePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pYEYB7ePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pRt4UbePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pYEYCLePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pYEYCbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pYEYCrePEeyn9oFzaDcctQ" name="a_brief">
+        <modelElement href="glycam.api.client.uml#_pRt4ULePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pYEYC7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pYEYDLePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_pYEYDbePEeyn9oFzaDcctQ" name="getMessage">
+      <modelElement href="glycam.api.client.uml#_pRt4UrePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pYEYDrePEeyn9oFzaDcctQ" name="Annotations">
+        <modelElement href="glycam.api.client.uml#_pRufYbePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pYEYD7ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pYEYELePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pYEYEbePEeyn9oFzaDcctQ">
+        <modelElement href="glycam.api.client.uml#_pRufYLePEeyn9oFzaDcctQ"/>
+        <type xmi:id="_pYEYErePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pYEYE7ePEeyn9oFzaDcctQ" name="setMessage">
+      <modelElement href="glycam.api.client.uml#_pRvGcLePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pYEYFLePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pRvGcrePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pYEYFbePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pYEYFrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pYEYF7ePEeyn9oFzaDcctQ" name="a_message">
+        <modelElement href="glycam.api.client.uml#_pRvGcbePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pYEYGLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pYEYGbePEeyn9oFzaDcctQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_pYEYGrePEeyn9oFzaDcctQ" name="setTypes">
+      <modelElement href="glycam.api.client.uml#_pSfUYLePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pYEYG7ePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pSfUYrePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pYEYHLePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pYEYHbePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pYEYHrePEeyn9oFzaDcctQ" name="a_types">
+        <modelElement href="glycam.api.client.uml#_pSfUYbePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pYEYH7ePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pYEYILePEeyn9oFzaDcctQ" name="List">
+          <modelElement href="glycam.api.client.uml#_pSTHILePEeyn9oFzaDcctQ"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_pYEYIbePEeyn9oFzaDcctQ" name="setCodes">
+      <modelElement href="glycam.api.client.uml#_pSf7cbePEeyn9oFzaDcctQ"/>
+      <stereotypes xmi:id="_pYEYIrePEeyn9oFzaDcctQ" name="StyledElement">
+        <modelElement href="glycam.api.client.uml#_pSgigbePEeyn9oFzaDcctQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pYEYI7ePEeyn9oFzaDcctQ" label="+"/>
+      <cardinality xmi:id="_pYEYJLePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pYEYJbePEeyn9oFzaDcctQ" name="a_codes">
+        <modelElement href="glycam.api.client.uml#_pSgigLePEeyn9oFzaDcctQ"/>
+        <cardinality xmi:id="_pYEYJrePEeyn9oFzaDcctQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pYEYJ7ePEeyn9oFzaDcctQ" name="List">
+          <modelElement href="glycam.api.client.uml#_pSTHILePEeyn9oFzaDcctQ"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>

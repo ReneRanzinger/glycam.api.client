@@ -1,4 +1,4 @@
-package org.glycam.api.client.json.submit;
+package org.glycam.api.client.json.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

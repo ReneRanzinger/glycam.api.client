@@ -1,0 +1,16 @@
+{
+   "entity": {
+      "inputs": {
+         "sequence": {
+            "payload": "DGlcpNAcb1-OH"
+         }
+      },
+      "resources": [],
+      "services": {
+         "build": {
+            "type": "Build3DStructure"
+         }
+      },
+      "type": "Sequence"
+   }
+}

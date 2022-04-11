@@ -1,113 +1,168 @@
 package org.glycam.api.client.util;
 
-import java.io.IOException;
+import java.util.List;
 
-import org.glycam.api.client.om.SubmitResponse;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.glycam.api.client.json.response.Entity;
+import org.glycam.api.client.json.response.FrontEndNotice;
+import org.glycam.api.client.json.response.Notice;
+import org.glycam.api.client.json.response.Project;
+import org.glycam.api.client.json.response.Responses;
+import org.glycam.api.client.json.response.SubmitInformation;
+import org.glycam.api.client.json.response.TopLevelNotice;
+import org.glycam.api.client.om.GlycamJob;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ResponseUtil
 {
-    private SubmitResponse m_result = null;
-
-    private ResponseUtil(SubmitResponse a_result)
+    public void processGlycanResponse(GlycamJob a_job)
+            throws JsonMappingException, JsonProcessingException
     {
-        this.m_result = a_result;
-    }
-
-    public static void processGlycanResponse(String a_json, SubmitResponse a_result)
-    {
-        ResponseUtil t_util = new ResponseUtil(a_result);
-        // parse the JSON string
-        JSONParser t_parser = new JSONParser();
-        JSONObject t_jsonObject = (JSONObject) t_parser.parse(a_json);
-        t_util.parseJSON(t_jsonObject);
-    }
-
-    private void parseJSON(JSONObject a_json)
-    {
-        JSONObject t_entity = ResponseUtil.getObject(a_json, "entity");
-        if (t_entity == null)
+        ObjectMapper t_mapper = new ObjectMapper();
+        SubmitInformation t_responseInfo = t_mapper.readValue(a_job.getResponse(),
+                SubmitInformation.class);
+        if (!this.checkEntity(a_job, t_responseInfo))
         {
-            this.m_result.setSuccessful(false);
-            this.m_result.setErrorMessage("Unable to find entity property in JSON response.");
+            return;
         }
-        else
+        if (!this.checkProject(a_job, t_responseInfo))
         {
-            if (this.errorInResponse(t_entity))
-            {
-                this.m_result.setSuccessful(false);
-                return;
-            }
-            if (this.invalidSequence(t_entity))
-            {
-                this.m_result.setSuccessful(false);
-                this.m_result.setErrorMessage("Invalid Glycam sequence.");
-                return;
-            }
-            this.fillProcessInformation();
+            return;
+        }
+        if (!this.checkNotice(a_job, t_responseInfo))
+        {
+            return;
         }
     }
 
-    private boolean errorInResponse(JSONObject a_entity)
+    private boolean checkProject(GlycamJob a_job, SubmitInformation a_responseInfo)
     {
-        JSONArray t_responses = ResponseUtil.getArray(a_entity, "responses");
-        if (t_responses == null)
+        Project t_project = a_responseInfo.getProject();
+        if (t_project == null)
         {
+            a_job.setErrorType("Response JSON error");
+            a_job.setErrorType("Missing project property");
             return false;
         }
-        for (Object t_object : t_responses)
+        String t_id = t_project.getId();
+        if (t_id == null)
         {
-            JSONObject t_response = (JSONObject) t_object;
-            // check for error
-            JSONObject t_errorObject = ResponseUtil.getObject(t_response, "Error");
-            if (t_errorObject != null)
+            a_job.setErrorType("Response JSON error");
+            a_job.setErrorType("Missing pUUID property in project");
+            return false;
+        }
+        a_job.setJobId(t_id);
+        String t_downloadPath = t_project.getDownloadUrl();
+        if (t_downloadPath == null)
+        {
+            a_job.setErrorType("Response JSON error");
+            a_job.setErrorType("Missing download_url_path property in project");
+            return false;
+        }
+        a_job.setDownloadURL(t_downloadPath);
+        return true;
+    }
+
+    private boolean checkNotice(GlycamJob a_job, SubmitInformation a_responseInfo)
+    {
+        List<TopLevelNotice> t_notices = a_responseInfo.getNotices();
+        if (t_notices == null)
+        {
+            return true;
+        }
+        if (t_notices.size() == 0)
+        {
+            return true;
+        }
+        for (TopLevelNotice t_topLevelNotice : t_notices)
+        {
+            List<String> t_types = t_topLevelNotice.getTypes();
+            if (t_types == null || t_types.size() == 0)
             {
-                this.handleError(t_errorObject);
-                return true;
+                a_job.setErrorType("Response JSON error");
+                a_job.setErrorType("Missing noticeType property in notices");
+                return false;
             }
-            // check for FrontEndNotice
-            t_errorObject = ResponseUtil.getObject(t_response, "FrontEndNotice");
-            if (t_errorObject != null)
+            List<String> t_codes = t_topLevelNotice.getCodes();
+            if (t_codes == null || t_codes.size() == 0)
             {
-                this.handleFrontEndNotice(t_errorObject);
-                return true;
+                a_job.setErrorType("Response JSON error");
+                a_job.setErrorType("Missing noticeCode property in notices");
+                return false;
+            }
+            String t_brief = t_topLevelNotice.getBrief();
+            if (t_brief == null)
+            {
+                a_job.setErrorType("Response JSON error");
+                a_job.setErrorType("Missing noticeBrief property in notices");
+                return false;
+            }
+            a_job.setErrorType(this.listToString(t_types) + " (Codes " + this.listToString(t_codes)
+                    + "): " + t_brief);
+            a_job.setErrorType(t_topLevelNotice.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    private String listToString(List<String> a_list)
+    {
+        StringBuffer t_result = new StringBuffer();
+        boolean t_first = true;
+        for (String t_string : a_list)
+        {
+            if (t_first)
+            {
+                t_result.append(t_string);
+            }
+            else
+            {
+                t_result.append(", " + t_string);
             }
         }
-        return false;
+        return t_result.toString();
     }
 
-    private void handleError(JSONObject a_errorObject)
+    private boolean checkEntity(GlycamJob a_job, SubmitInformation a_responseInfo)
     {
-
-    }
-
-    private static JSONObject getObject(JSONObject a_jsonObject, String a_key)
-    {
-        return (JSONObject) a_jsonObject.get(a_key);
-    }
-
-    private static JSONArray getArray(JSONObject a_jsonObject, String a_key)
-    {
-        return (JSONArray) a_jsonObject.get(a_key);
-    }
-
-    private static String getString(JSONObject a_jsonObject, String a_key) throws IOException
-    {
-        Object t_stringObject = a_jsonObject.get(a_key);
-        if (t_stringObject == null)
+        Entity t_entity = a_responseInfo.getEntity();
+        if (t_entity == null)
         {
-            return null;
+            a_job.setErrorType("Response JSON error");
+            a_job.setErrorType("Missing entity property");
+            return false;
         }
-        if (t_stringObject instanceof String)
+        List<Responses> t_responses = t_entity.getResponses();
+        if (t_responses == null)
         {
-            return (String) t_stringObject;
+            return true;
         }
-        else
+        if (t_responses.size() == 0)
         {
-            throw new IOException("JSON format error: Value for " + a_key + " is not a string.");
+            return true;
         }
+        for (Responses t_response : t_responses)
+        {
+            FrontEndNotice t_noticeFrontEnd = t_response.getFrontendNotice();
+            if (t_noticeFrontEnd == null)
+            {
+                a_job.setErrorType("Response JSON error");
+                a_job.setErrorType("Missing FrontEndNotice property in responses array (entity)");
+                return false;
+            }
+            Notice t_notice = t_noticeFrontEnd.getNotice();
+            if (t_notice == null)
+            {
+                a_job.setErrorType("Response JSON error");
+                a_job.setErrorType("Missing FrontEndNotice property in responses array (entity)");
+                return false;
+            }
+            a_job.setErrorType("Request JSON error");
+            a_job.setErrorMessage("Code " + t_notice.getCode() + ": " + t_notice.getMessage());
+            return false;
+        }
+        return true;
     }
-
 }

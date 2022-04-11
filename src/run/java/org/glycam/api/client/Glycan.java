@@ -2,11 +2,9 @@ package org.glycam.api.client;
 
 import java.io.IOException;
 
-import org.glycam.api.client.http.ClientResponse;
 import org.glycam.api.client.http.GlycamClient;
-import org.glycam.api.client.json.submit.SubmitInformation;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.glycam.api.client.om.GlycamJob;
+import org.glycam.api.client.util.ResponseUtil;
 
 /**
  *
@@ -24,14 +22,13 @@ public class Glycan
         // DGlpNAcb1-OH
         String t_sequence = "DGlcpNAcb1-3DGalpNAca1-3[LFucpa1-2]DGalpb1-3[DGlcpNAcb1-3DGlcpNAcb1-6]DGalpNAca1-OH";
         t_sequence = "DGlcpNAcb1-OH";
-        ClientResponse t_response = t_client.submitGlycan(t_sequence);
+        GlycamJob t_response = t_client.submitGlycan(t_sequence);
 
-        System.out.println(t_response.getStatusCode() + " " + t_response.getStatusPhrase());
-        System.out.println(t_response.getResponseBody());
+        System.out.println(t_response.getHttpCode());
+        System.out.println(t_response.getResponse());
 
-        ObjectMapper t_mapper = new ObjectMapper();
-        SubmitInformation t_responseInfo = t_mapper.readValue(t_response.getResponseBody(),
-                SubmitInformation.class);
+        ResponseUtil t_util = new ResponseUtil();
+        t_util.processGlycanResponse(t_response);
 
         // close the client connection and cleanup
         t_client.close();

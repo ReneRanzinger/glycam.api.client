@@ -19,7 +19,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
-import org.glycam.api.client.util.SequenceBuildInputUtil;
+import org.glycam.api.client.json.RequestBuilder;
+import org.glycam.api.client.om.GlycamJob;
 
 public class GlycamClient
 {
@@ -86,11 +87,11 @@ public class GlycamClient
         return t_writer.toString();
     }
 
-    public ClientResponse submitGlycan(String a_sequence) throws IOException
+    public GlycamJob submitGlycan(String a_sequence) throws IOException
     {
-        ClientResponse t_submitReport = new ClientResponse();
-        String t_json = SequenceBuildInputUtil.glycanSequenceToJSON(a_sequence);
-        t_submitReport.setPayLoad(t_json);
+        GlycamJob t_submitReport = new GlycamJob();
+        String t_json = RequestBuilder.buildGlycanRequest(a_sequence);
+        t_submitReport.setRequest(t_json);
         try
         {
             // build post request
@@ -104,12 +105,11 @@ public class GlycamClient
             t_httpPost.setHeader("X-CSRFToken", this.m_csrfToken);
             // execute request
             CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpPost);
-            t_submitReport.setStatusCode(t_response.getStatusLine().getStatusCode());
-            t_submitReport.setStatusPhrase(t_response.getStatusLine().getReasonPhrase());
+            t_submitReport.setHttpCode(t_response.getStatusLine().getStatusCode());
             HttpEntity t_entity = t_response.getEntity();
             // extract response
             String t_responseContent = this.entityToString(t_entity);
-            t_submitReport.setResponseBody(t_responseContent);
+            t_submitReport.setResponse(t_responseContent);
             // close response
             EntityUtils.consume(t_entity);
             t_response.close();

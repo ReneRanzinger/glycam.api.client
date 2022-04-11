@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_pCXNsLePEeyn9oFzaDcctQ" name="glycam_api_client">
+    <eAnnotations xmi:id="_pKhEILePEeyn9oFzaDcctQ" source="http://ns.yatta.de/umllab">
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_pKhEIbePEeyn9oFzaDcctQ" source="codegen">
+        <details xmi:id="_pKhEIrePEeyn9oFzaDcctQ" key="codegenDirectory" value="/glycam.api.client/src/main/java"/>
+        <details xmi:id="_pWRBILePEeyn9oFzaDcctQ" key="AssociatedSourceCode" value="/glycam.api.client/src/main/java/org/glycam/api/client/json/submit/Entity.java;2038730565/1;/glycam.api.client/src/main/java/org/glycam/api/client/json/submit/FrontEndNotice.java;2427962947/1;/glycam.api.client/src/main/java/org/glycam/api/client/json/submit/Notice.java;1645094838/1;/glycam.api.client/src/main/java/org/glycam/api/client/json/submit/Project.java;365552972/1;/glycam.api.client/src/main/java/org/glycam/api/client/json/submit/Responses.java;710971177/1;/glycam.api.client/src/main/java/org/glycam/api/client/json/submit/SubmitInformation.java;3882620994/1;/glycam.api.client/src/main/java/org/glycam/api/client/json/submit/TopLevelNotice.java;1403796517/1;"/>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:id="_pRGNQLePEeyn9oFzaDcctQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_pRG0ULePEeyn9oFzaDcctQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+    </elementImport>
+    <elementImport xmi:id="_pRG0UbePEeyn9oFzaDcctQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </elementImport>
+    <elementImport xmi:id="_pRG0UrePEeyn9oFzaDcctQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </elementImport>
+    <elementImport xmi:id="_pRG0U7ePEeyn9oFzaDcctQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </elementImport>
+    <elementImport xmi:id="_pRG0VLePEeyn9oFzaDcctQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </elementImport>
+    <elementImport xmi:id="_pRG0VbePEeyn9oFzaDcctQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </elementImport>
+    <elementImport xmi:id="_pRG0VrePEeyn9oFzaDcctQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+    </elementImport>
+    <elementImport xmi:id="_pRHbYLePEeyn9oFzaDcctQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_pQfwULePEeyn9oFzaDcctQ" name="org">
+      <packagedElement xmi:type="uml:Package" xmi:id="_pQgXYLePEeyn9oFzaDcctQ" name="glycam">
+        <packagedElement xmi:type="uml:Package" xmi:id="_pQgXYbePEeyn9oFzaDcctQ" name="api">
+          <packagedElement xmi:type="uml:Package" xmi:id="_pQgXYrePEeyn9oFzaDcctQ" name="client">
+            <packagedElement xmi:type="uml:Package" xmi:id="_pQgXY7ePEeyn9oFzaDcctQ" name="json">
+              <packagedElement xmi:type="uml:Package" xmi:id="_pQoTMLePEeyn9oFzaDcctQ" name="submit">
+                <packagedElement xmi:type="uml:Class" xmi:id="_pRDJ8LePEeyn9oFzaDcctQ" name="Entity">
+                  <ownedAttribute xmi:id="_pSi-wLePEeyn9oFzaDcctQ" name="m_responses" visibility="private" type="_pRcyk7ePEeyn9oFzaDcctQ" isOrdered="true" association="_pS-ckLePEeyn9oFzaDcctQ">
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pSi-wbePEeyn9oFzaDcctQ" value="*"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSi-wrePEeyn9oFzaDcctQ" value="new ArrayList&lt;>()"/>
+                  </ownedAttribute>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pSvMALePEeyn9oFzaDcctQ" name="getResponses" specification="_pRICcLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSvzELePEeyn9oFzaDcctQ" type="_pRcyk7ePEeyn9oFzaDcctQ" isOrdered="true" direction="return">
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pSvzEbePEeyn9oFzaDcctQ" value="*"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_responses;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pSzdcLePEeyn9oFzaDcctQ" name="setResponses" specification="_pScRELePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSzdcbePEeyn9oFzaDcctQ" name="a_responses" type="_pSTHILePEeyn9oFzaDcctQ"/>
+                    <language>java</language>
+                    <body>this.m_responses = a_responses;
+ </body>
+                  </ownedBehavior>
+                  <ownedOperation xmi:id="_pRICcLePEeyn9oFzaDcctQ" name="getResponses" method="_pSvMALePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRIpgLePEeyn9oFzaDcctQ" type="_pRcyk7ePEeyn9oFzaDcctQ" isOrdered="true" direction="return">
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pRJQkLePEeyn9oFzaDcctQ" value="*"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pScRELePEeyn9oFzaDcctQ" name="setResponses" method="_pSzdcLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pScREbePEeyn9oFzaDcctQ" name="a_responses" type="_pSTHILePEeyn9oFzaDcctQ"/>
+                  </ownedOperation>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_pROJELePEeyn9oFzaDcctQ" name="FrontEndNotice">
+                  <ownedAttribute xmi:id="_pSjl0LePEeyn9oFzaDcctQ" name="m_type" visibility="private">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSjl0bePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedAttribute xmi:id="_pSkM4LePEeyn9oFzaDcctQ" name="m_notice" visibility="private" type="_pRTooLePEeyn9oFzaDcctQ" association="_pS_DobePEeyn9oFzaDcctQ">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSkM4bePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS0EgLePEeyn9oFzaDcctQ" name="getType" specification="_pRPXMLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS0EgbePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_type;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS0EgrePEeyn9oFzaDcctQ" name="setType" specification="_pRP-Q7ePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS0Eg7ePEeyn9oFzaDcctQ" name="a_type">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>this.m_type = a_type;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS0EhLePEeyn9oFzaDcctQ" name="getNotice" specification="_pRQlUbePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS0EhbePEeyn9oFzaDcctQ" type="_pRTooLePEeyn9oFzaDcctQ" direction="return"/>
+                    <language>java</language>
+                    <body>return this.m_notice;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS0rkLePEeyn9oFzaDcctQ" name="setNotice" specification="_pSXYkLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS0rkbePEeyn9oFzaDcctQ" name="a_t_notice" type="_pRTooLePEeyn9oFzaDcctQ"/>
+                    <language>java</language>
+                    <body>this.m_notice = a_t_notice;
+ </body>
+                  </ownedBehavior>
+                  <ownedOperation xmi:id="_pRPXMLePEeyn9oFzaDcctQ" name="getType" method="_pS0EgLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRPXMbePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRP-Q7ePEeyn9oFzaDcctQ" name="setType" method="_pS0EgrePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRP-RLePEeyn9oFzaDcctQ" name="a_type">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRQlUbePEeyn9oFzaDcctQ" name="getNotice" method="_pS0EhLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSWxgLePEeyn9oFzaDcctQ" type="_pRTooLePEeyn9oFzaDcctQ" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pSXYkLePEeyn9oFzaDcctQ" name="setNotice" method="_pS0rkLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSXYkbePEeyn9oFzaDcctQ" name="a_t_notice" type="_pRTooLePEeyn9oFzaDcctQ"/>
+                  </ownedOperation>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_pRTooLePEeyn9oFzaDcctQ" name="Notice">
+                  <ownedAttribute xmi:id="_pSkM4rePEeyn9oFzaDcctQ" name="m_code" visibility="private">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSkz8LePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedAttribute xmi:id="_pSkz8bePEeyn9oFzaDcctQ" name="m_message" visibility="private">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSkz8rePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS0rkrePEeyn9oFzaDcctQ" name="getCode" specification="_pRVd0LePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS0rk7ePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_code;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS0rlLePEeyn9oFzaDcctQ" name="setCode" specification="_pRWE47ePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS0rlbePEeyn9oFzaDcctQ" name="a_code">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>this.m_code = a_code;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS1SoLePEeyn9oFzaDcctQ" name="getMessage" specification="_pRWr8bePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS1SobePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_message;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS1SorePEeyn9oFzaDcctQ" name="setMessage" specification="_pRXTA7ePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS1So7ePEeyn9oFzaDcctQ" name="a_message">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>this.m_message = a_message;
+ </body>
+                  </ownedBehavior>
+                  <ownedOperation xmi:id="_pRVd0LePEeyn9oFzaDcctQ" name="getCode" method="_pS0rkrePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRVd0bePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRWE47ePEeyn9oFzaDcctQ" name="setCode" method="_pS0rlLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRWE5LePEeyn9oFzaDcctQ" name="a_code">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRWr8bePEeyn9oFzaDcctQ" name="getMessage" method="_pS1SoLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRWr8rePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRXTA7ePEeyn9oFzaDcctQ" name="setMessage" method="_pS1SorePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRXTBLePEeyn9oFzaDcctQ" name="a_message">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_pRYhILePEeyn9oFzaDcctQ" name="Project">
+                  <ownedAttribute xmi:id="_pSlbALePEeyn9oFzaDcctQ" name="m_id" visibility="private">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSlbAbePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedAttribute xmi:id="_pSlbArePEeyn9oFzaDcctQ" name="m_downloadUrl" visibility="private">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSlbA7ePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS1SpLePEeyn9oFzaDcctQ" name="getId" specification="_pRaWULePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS1SpbePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_id;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS1SprePEeyn9oFzaDcctQ" name="setId" specification="_pRa9Y7ePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS1Sp7ePEeyn9oFzaDcctQ" name="a_id">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>this.m_id = a_id;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS15sLePEeyn9oFzaDcctQ" name="getDownloadUrl" specification="_pRbkcbePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS15sbePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_downloadUrl;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS15srePEeyn9oFzaDcctQ" name="setDownloadUrl" specification="_pRcLgbePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS15s7ePEeyn9oFzaDcctQ" name="a_downloadUrl">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>this.m_downloadUrl = a_downloadUrl;
+ </body>
+                  </ownedBehavior>
+                  <ownedOperation xmi:id="_pRaWULePEeyn9oFzaDcctQ" name="getId" method="_pS1SpLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRaWUbePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRa9Y7ePEeyn9oFzaDcctQ" name="setId" method="_pS1SprePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRa9ZLePEeyn9oFzaDcctQ" name="a_id">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRbkcbePEeyn9oFzaDcctQ" name="getDownloadUrl" method="_pS15sLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRbkcrePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRcLgbePEeyn9oFzaDcctQ" name="setDownloadUrl" method="_pS15srePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRcLgrePEeyn9oFzaDcctQ" name="a_downloadUrl">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_pRcyk7ePEeyn9oFzaDcctQ" name="Responses">
+                  <ownedAttribute xmi:id="_pSmCELePEeyn9oFzaDcctQ" name="m_frontendNotice" visibility="private" type="_pROJELePEeyn9oFzaDcctQ" association="_pS_qsbePEeyn9oFzaDcctQ">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSmCEbePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS15tLePEeyn9oFzaDcctQ" name="getFrontendNotice" specification="_pReAsbePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS15tbePEeyn9oFzaDcctQ" type="_pROJELePEeyn9oFzaDcctQ" direction="return"/>
+                    <language>java</language>
+                    <body>return this.m_frontendNotice;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS2gwLePEeyn9oFzaDcctQ" name="setFrontendNotice" specification="_pSYmsbePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS2gwbePEeyn9oFzaDcctQ" name="a_frontendNotice" type="_pROJELePEeyn9oFzaDcctQ"/>
+                    <language>java</language>
+                    <body>this.m_frontendNotice = a_frontendNotice;
+ </body>
+                  </ownedBehavior>
+                  <ownedOperation xmi:id="_pReAsbePEeyn9oFzaDcctQ" name="getFrontendNotice" method="_pS15tLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSYmsLePEeyn9oFzaDcctQ" type="_pROJELePEeyn9oFzaDcctQ" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pSYmsbePEeyn9oFzaDcctQ" name="setFrontendNotice" method="_pS2gwLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSYmsrePEeyn9oFzaDcctQ" name="a_frontendNotice" type="_pROJELePEeyn9oFzaDcctQ"/>
+                  </ownedOperation>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_pRgc8LePEeyn9oFzaDcctQ" name="SubmitInformation">
+                  <ownedAttribute xmi:id="_pSmpILePEeyn9oFzaDcctQ" name="m_entiry" visibility="private" type="_pRDJ8LePEeyn9oFzaDcctQ" association="_pTA40LePEeyn9oFzaDcctQ">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSmpIbePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedAttribute xmi:id="_pSmpIrePEeyn9oFzaDcctQ" name="m_project" visibility="private" type="_pRYhILePEeyn9oFzaDcctQ" association="_pTBf4LePEeyn9oFzaDcctQ">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSmpI7ePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedAttribute xmi:id="_pSnQMLePEeyn9oFzaDcctQ" name="m_notices" visibility="private" type="_pRo_0LePEeyn9oFzaDcctQ" isOrdered="true" association="_pTBf47ePEeyn9oFzaDcctQ">
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pSnQMbePEeyn9oFzaDcctQ" value="*"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSnQMrePEeyn9oFzaDcctQ" value="new ArrayList&lt;>()"/>
+                  </ownedAttribute>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS2gwrePEeyn9oFzaDcctQ" name="getEntiry" specification="_pRhEAbePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS2gw7ePEeyn9oFzaDcctQ" type="_pRDJ8LePEeyn9oFzaDcctQ" direction="return"/>
+                    <language>java</language>
+                    <body>return this.m_entiry;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS2gxLePEeyn9oFzaDcctQ" name="setEntiry" specification="_pSZNwbePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS2gxbePEeyn9oFzaDcctQ" name="a_entiry" type="_pRDJ8LePEeyn9oFzaDcctQ"/>
+                    <language>java</language>
+                    <body>this.m_entiry = a_entiry;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS3H0LePEeyn9oFzaDcctQ" name="getProject" specification="_pRiSILePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS3H0bePEeyn9oFzaDcctQ" type="_pRYhILePEeyn9oFzaDcctQ" direction="return"/>
+                    <language>java</language>
+                    <body>return this.m_project;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS3H0rePEeyn9oFzaDcctQ" name="setProject" specification="_pSZ007ePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS3H07ePEeyn9oFzaDcctQ" name="a_project" type="_pRYhILePEeyn9oFzaDcctQ"/>
+                    <language>java</language>
+                    <body>this.m_project = a_project;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS3H1LePEeyn9oFzaDcctQ" name="getNotices" specification="_pRjgQLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS3H1bePEeyn9oFzaDcctQ" type="_pRo_0LePEeyn9oFzaDcctQ" isOrdered="true" direction="return">
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pS3H1rePEeyn9oFzaDcctQ" value="*"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_notices;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS3H17ePEeyn9oFzaDcctQ" name="setNotices" specification="_pSeGQLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS3H2LePEeyn9oFzaDcctQ" name="a_notices" type="_pSTHILePEeyn9oFzaDcctQ"/>
+                    <language>java</language>
+                    <body>this.m_notices = a_notices;
+ </body>
+                  </ownedBehavior>
+                  <ownedOperation xmi:id="_pRhEAbePEeyn9oFzaDcctQ" name="getEntiry" method="_pS2gwrePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSZNwLePEeyn9oFzaDcctQ" type="_pRDJ8LePEeyn9oFzaDcctQ" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRiSILePEeyn9oFzaDcctQ" name="getProject" method="_pS3H0LePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSZ00rePEeyn9oFzaDcctQ" type="_pRYhILePEeyn9oFzaDcctQ" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRjgQLePEeyn9oFzaDcctQ" name="getNotices" method="_pS3H1LePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRjgQbePEeyn9oFzaDcctQ" type="_pRo_0LePEeyn9oFzaDcctQ" isOrdered="true" direction="return">
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pRjgQrePEeyn9oFzaDcctQ" value="*"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pSZNwbePEeyn9oFzaDcctQ" name="setEntiry" method="_pS2gxLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSZ00LePEeyn9oFzaDcctQ" name="a_entiry" type="_pRDJ8LePEeyn9oFzaDcctQ"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pSZ007ePEeyn9oFzaDcctQ" name="setProject" method="_pS3H0rePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSZ01LePEeyn9oFzaDcctQ" name="a_project" type="_pRYhILePEeyn9oFzaDcctQ"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pSeGQLePEeyn9oFzaDcctQ" name="setNotices" method="_pS3H17ePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSeGQbePEeyn9oFzaDcctQ" name="a_notices" type="_pSTHILePEeyn9oFzaDcctQ"/>
+                  </ownedOperation>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_pRo_0LePEeyn9oFzaDcctQ" name="TopLevelNotice">
+                  <ownedAttribute xmi:id="_pSn3QLePEeyn9oFzaDcctQ" name="m_types" visibility="private" isOrdered="true">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pSn3QbePEeyn9oFzaDcctQ" value="*"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSn3QrePEeyn9oFzaDcctQ" value="new ArrayList&lt;>()"/>
+                  </ownedAttribute>
+                  <ownedAttribute xmi:id="_pSn3Q7ePEeyn9oFzaDcctQ" name="m_codes" visibility="private" isOrdered="true">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pSoeULePEeyn9oFzaDcctQ" value="*"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSoeUbePEeyn9oFzaDcctQ" value="new ArrayList&lt;>()"/>
+                  </ownedAttribute>
+                  <ownedAttribute xmi:id="_pSoeUrePEeyn9oFzaDcctQ" name="m_brief" visibility="private">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSoeU7ePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedAttribute xmi:id="_pSoeVLePEeyn9oFzaDcctQ" name="m_message" visibility="private">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_pSpFYLePEeyn9oFzaDcctQ" value="null"/>
+                  </ownedAttribute>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS3u4LePEeyn9oFzaDcctQ" name="getTypes" specification="_pRq1ALePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS3u4bePEeyn9oFzaDcctQ" isOrdered="true" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pS3u4rePEeyn9oFzaDcctQ" value="*"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_types;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS3u47ePEeyn9oFzaDcctQ" name="setTypes" specification="_pSfUYLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS3u5LePEeyn9oFzaDcctQ" name="a_types" type="_pSTHILePEeyn9oFzaDcctQ"/>
+                    <language>java</language>
+                    <body>this.m_types = a_types;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS3u5bePEeyn9oFzaDcctQ" name="getCodes" specification="_pRsDI7ePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS3u5rePEeyn9oFzaDcctQ" isOrdered="true" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pS3u57ePEeyn9oFzaDcctQ" value="*"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_codes;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS4V8LePEeyn9oFzaDcctQ" name="setCodes" specification="_pSf7cbePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS4V8bePEeyn9oFzaDcctQ" name="a_codes" type="_pSTHILePEeyn9oFzaDcctQ"/>
+                    <language>java</language>
+                    <body>this.m_codes = a_codes;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS4V8rePEeyn9oFzaDcctQ" name="getBrief" specification="_pRtRQLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS4V87ePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_brief;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS4V9LePEeyn9oFzaDcctQ" name="setBrief" specification="_pRtRRbePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS4V9bePEeyn9oFzaDcctQ" name="a_brief">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>this.m_brief = a_brief;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS4V9rePEeyn9oFzaDcctQ" name="getMessage" specification="_pRt4UrePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS4V97ePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>return this.m_message;
+ </body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pS49ALePEeyn9oFzaDcctQ" name="setMessage" specification="_pRvGcLePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pS49AbePEeyn9oFzaDcctQ" name="a_message">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                    <language>java</language>
+                    <body>this.m_message = a_message;
+ </body>
+                  </ownedBehavior>
+                  <ownedOperation xmi:id="_pRq1ALePEeyn9oFzaDcctQ" name="getTypes" method="_pS3u4LePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRrcELePEeyn9oFzaDcctQ" isOrdered="true" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pRrcEbePEeyn9oFzaDcctQ" value="*"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRsDI7ePEeyn9oFzaDcctQ" name="getCodes" method="_pS3u5bePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRsqMLePEeyn9oFzaDcctQ" isOrdered="true" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pRsqMbePEeyn9oFzaDcctQ" value="*"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRtRQLePEeyn9oFzaDcctQ" name="getBrief" method="_pS4V8rePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRtRQbePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRtRRbePEeyn9oFzaDcctQ" name="setBrief" method="_pS4V9LePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRt4ULePEeyn9oFzaDcctQ" name="a_brief">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRt4UrePEeyn9oFzaDcctQ" name="getMessage" method="_pS4V9rePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRufYLePEeyn9oFzaDcctQ" direction="return">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pRvGcLePEeyn9oFzaDcctQ" name="setMessage" method="_pS49ALePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pRvGcbePEeyn9oFzaDcctQ" name="a_message">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pSfUYLePEeyn9oFzaDcctQ" name="setTypes" method="_pS3u47ePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSfUYbePEeyn9oFzaDcctQ" name="a_types" type="_pSTHILePEeyn9oFzaDcctQ"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_pSf7cbePEeyn9oFzaDcctQ" name="setCodes" method="_pS4V8LePEeyn9oFzaDcctQ">
+                    <ownedParameter xmi:id="_pSgigLePEeyn9oFzaDcctQ" name="a_codes" type="_pSTHILePEeyn9oFzaDcctQ"/>
+                  </ownedOperation>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_pS-ckLePEeyn9oFzaDcctQ" name="" memberEnd="_pS-ckbePEeyn9oFzaDcctQ _pSi-wLePEeyn9oFzaDcctQ">
+                  <ownedEnd xmi:id="_pS-ckbePEeyn9oFzaDcctQ" name="" type="_pRDJ8LePEeyn9oFzaDcctQ" association="_pS-ckLePEeyn9oFzaDcctQ"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_pS_DobePEeyn9oFzaDcctQ" name="" memberEnd="_pS_DorePEeyn9oFzaDcctQ _pSkM4LePEeyn9oFzaDcctQ">
+                  <ownedEnd xmi:id="_pS_DorePEeyn9oFzaDcctQ" name="" type="_pROJELePEeyn9oFzaDcctQ" association="_pS_DobePEeyn9oFzaDcctQ"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_pS_qsbePEeyn9oFzaDcctQ" name="" memberEnd="_pS_qsrePEeyn9oFzaDcctQ _pSmCELePEeyn9oFzaDcctQ">
+                  <ownedEnd xmi:id="_pS_qsrePEeyn9oFzaDcctQ" name="" type="_pRcyk7ePEeyn9oFzaDcctQ" association="_pS_qsbePEeyn9oFzaDcctQ"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_pTA40LePEeyn9oFzaDcctQ" name="" memberEnd="_pTA40bePEeyn9oFzaDcctQ _pSmpILePEeyn9oFzaDcctQ">
+                  <ownedEnd xmi:id="_pTA40bePEeyn9oFzaDcctQ" name="" type="_pRgc8LePEeyn9oFzaDcctQ" association="_pTA40LePEeyn9oFzaDcctQ"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_pTBf4LePEeyn9oFzaDcctQ" name="" memberEnd="_pTBf4bePEeyn9oFzaDcctQ _pSmpIrePEeyn9oFzaDcctQ">
+                  <ownedEnd xmi:id="_pTBf4bePEeyn9oFzaDcctQ" name="" type="_pRgc8LePEeyn9oFzaDcctQ" association="_pTBf4LePEeyn9oFzaDcctQ"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_pTBf47ePEeyn9oFzaDcctQ" name="" memberEnd="_pTBf5LePEeyn9oFzaDcctQ _pSnQMLePEeyn9oFzaDcctQ">
+                  <ownedEnd xmi:id="_pTBf5LePEeyn9oFzaDcctQ" name="" type="_pRgc8LePEeyn9oFzaDcctQ" association="_pTBf47ePEeyn9oFzaDcctQ"/>
+                </packagedElement>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_pQiMkLePEeyn9oFzaDcctQ" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_pQiMkbePEeyn9oFzaDcctQ" name="util">
+        <packagedElement xmi:type="uml:Class" xmi:id="_pSRR8LePEeyn9oFzaDcctQ" name="ArrayList"/>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_pSTHILePEeyn9oFzaDcctQ" name="List"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_pQizoLePEeyn9oFzaDcctQ" name="com">
+      <packagedElement xmi:type="uml:Package" xmi:id="_pQizobePEeyn9oFzaDcctQ" name="fasterxml">
+        <packagedElement xmi:type="uml:Package" xmi:id="_pQizorePEeyn9oFzaDcctQ" name="jackson">
+          <packagedElement xmi:type="uml:Package" xmi:id="_pQizo7ePEeyn9oFzaDcctQ" name="annotation">
+            <packagedElement xmi:type="uml:Interface" xmi:id="_pSTuMbePEeyn9oFzaDcctQ" name="JsonIgnoreProperties"/>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_pSUVQbePEeyn9oFzaDcctQ" name="JsonProperty"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_pKiSQLePEeyn9oFzaDcctQ">
+      <eAnnotations xmi:id="_pKlVkLePEeyn9oFzaDcctQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_pKnx0LePEeyn9oFzaDcctQ" base_Package="_pCXNsLePEeyn9oFzaDcctQ">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_pRFmMLePEeyn9oFzaDcctQ" base_Element="_pRDJ8LePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRKesLePEeyn9oFzaDcctQ" base_Element="_pRICcLePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRLFwLePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRLFwbePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS5kEbePEeyn9oFzaDcctQ" value="&quot;responses&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_pRLs0LePEeyn9oFzaDcctQ" base_Element="_pRDJ8LePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRMT4LePEeyn9oFzaDcctQ" name="JsonIgnoreProperties">
+      <annotationParameters xmi:id="_pRMT4bePEeyn9oFzaDcctQ" name="ignoreUnknown" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS5kELePEeyn9oFzaDcctQ" value="true"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_pROwILePEeyn9oFzaDcctQ" base_Element="_pROJELePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRP-QLePEeyn9oFzaDcctQ" base_Element="_pRPXMLePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRP-QbePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRP-QrePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS5kE7ePEeyn9oFzaDcctQ" value="&quot;type&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:StyledElement xmi:id="_pRQlULePEeyn9oFzaDcctQ" base_Element="_pRP-Q7ePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRRMYLePEeyn9oFzaDcctQ" base_Element="_pRQlUbePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRRMYbePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRRMYrePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6LILePEeyn9oFzaDcctQ" value="&quot;notice&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_pRRzcLePEeyn9oFzaDcctQ" base_Element="_pROJELePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRRzcbePEeyn9oFzaDcctQ" name="JsonIgnoreProperties">
+      <annotationParameters xmi:id="_pRRzcrePEeyn9oFzaDcctQ" name="ignoreUnknown" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS5kErePEeyn9oFzaDcctQ" value="true"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_pRU2wLePEeyn9oFzaDcctQ" base_Element="_pRTooLePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRWE4LePEeyn9oFzaDcctQ" base_Element="_pRVd0LePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRWE4bePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRWE4rePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6LIrePEeyn9oFzaDcctQ" value="&quot;code&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:StyledElement xmi:id="_pRWr8LePEeyn9oFzaDcctQ" base_Element="_pRWE47ePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRXTALePEeyn9oFzaDcctQ" base_Element="_pRWr8bePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRXTAbePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRXTArePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6LI7ePEeyn9oFzaDcctQ" value="&quot;message&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:StyledElement xmi:id="_pRX6ELePEeyn9oFzaDcctQ" base_Element="_pRXTA7ePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRX6EbePEeyn9oFzaDcctQ" base_Element="_pRTooLePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRX6ErePEeyn9oFzaDcctQ" name="JsonIgnoreProperties">
+      <annotationParameters xmi:id="_pRX6E7ePEeyn9oFzaDcctQ" name="ignoreUnknown" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6LIbePEeyn9oFzaDcctQ" value="true"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_pRZvQLePEeyn9oFzaDcctQ" base_Element="_pRYhILePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRa9YLePEeyn9oFzaDcctQ" base_Element="_pRaWULePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRa9YbePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRa9YrePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6LJbePEeyn9oFzaDcctQ" value="&quot;pUUID&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:StyledElement xmi:id="_pRbkcLePEeyn9oFzaDcctQ" base_Element="_pRa9Y7ePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRbkc7ePEeyn9oFzaDcctQ" base_Element="_pRbkcbePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRbkdLePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRcLgLePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6LJrePEeyn9oFzaDcctQ" value="&quot;download_url_path&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:StyledElement xmi:id="_pRcLg7ePEeyn9oFzaDcctQ" base_Element="_pRcLgbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRcykLePEeyn9oFzaDcctQ" base_Element="_pRYhILePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRcykbePEeyn9oFzaDcctQ" name="JsonIgnoreProperties">
+      <annotationParameters xmi:id="_pRcykrePEeyn9oFzaDcctQ" name="ignoreUnknown" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6LJLePEeyn9oFzaDcctQ" value="true"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_pReAsLePEeyn9oFzaDcctQ" base_Element="_pRcyk7ePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRenwLePEeyn9oFzaDcctQ" base_Element="_pReAsbePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRenwbePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRenwrePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6LKLePEeyn9oFzaDcctQ" value="&quot;FrontEndNotice&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_pRfO0LePEeyn9oFzaDcctQ" base_Element="_pRcyk7ePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRfO0bePEeyn9oFzaDcctQ" name="JsonIgnoreProperties">
+      <annotationParameters xmi:id="_pRfO0rePEeyn9oFzaDcctQ" name="ignoreUnknown" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6LJ7ePEeyn9oFzaDcctQ" value="true"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_pRhEALePEeyn9oFzaDcctQ" base_Element="_pRgc8LePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRhrELePEeyn9oFzaDcctQ" base_Element="_pRhEAbePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRhrEbePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRhrErePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6yMbePEeyn9oFzaDcctQ" value="&quot;entity&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_pRi5MLePEeyn9oFzaDcctQ" base_Element="_pRiSILePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRi5MbePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRi5MrePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6yMrePEeyn9oFzaDcctQ" value="&quot;project&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_pRkHULePEeyn9oFzaDcctQ" base_Element="_pRjgQLePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRkHUbePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRkHUrePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6yM7ePEeyn9oFzaDcctQ" value="&quot;notices&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_pRkuYLePEeyn9oFzaDcctQ" base_Element="_pRgc8LePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRkuYbePEeyn9oFzaDcctQ" name="JsonIgnoreProperties">
+      <annotationParameters xmi:id="_pRkuYrePEeyn9oFzaDcctQ" name="ignoreUnknown" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6yMLePEeyn9oFzaDcctQ" value="true"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_pRqN8LePEeyn9oFzaDcctQ" base_Element="_pRo_0LePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRsDILePEeyn9oFzaDcctQ" base_Element="_pRq1ALePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRsDIbePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRsDIrePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6yNbePEeyn9oFzaDcctQ" value="&quot;noticeType&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_pRsqMrePEeyn9oFzaDcctQ" base_Element="_pRsDI7ePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRsqM7ePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRsqNLePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6yNrePEeyn9oFzaDcctQ" value="&quot;noticeCode&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_pRtRQrePEeyn9oFzaDcctQ" base_Element="_pRtRQLePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRtRQ7ePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRtRRLePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6yN7ePEeyn9oFzaDcctQ" value="&quot;noticeBrief&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:StyledElement xmi:id="_pRt4UbePEeyn9oFzaDcctQ" base_Element="_pRtRRbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRufYbePEeyn9oFzaDcctQ" base_Element="_pRt4UrePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRufYrePEeyn9oFzaDcctQ" name="JsonProperty">
+      <annotationParameters xmi:id="_pRufY7ePEeyn9oFzaDcctQ" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS7ZQLePEeyn9oFzaDcctQ" value="&quot;noticeMessage&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:StyledElement xmi:id="_pRvGcrePEeyn9oFzaDcctQ" base_Element="_pRvGcLePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Annotations xmi:id="_pRvGc7ePEeyn9oFzaDcctQ" base_Element="_pRo_0LePEeyn9oFzaDcctQ">
+    <annotations xmi:id="_pRvGdLePEeyn9oFzaDcctQ" name="JsonIgnoreProperties">
+      <annotationParameters xmi:id="_pRvGdbePEeyn9oFzaDcctQ" name="ignoreUnknown" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_pS6yNLePEeyn9oFzaDcctQ" value="true"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Reference xmi:id="_pSSgELePEeyn9oFzaDcctQ" base_Element="_pSRR8LePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Reference xmi:id="_pSTuMLePEeyn9oFzaDcctQ" base_Element="_pSTHILePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Reference xmi:id="_pSUVQLePEeyn9oFzaDcctQ" base_Element="_pSTuMbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Reference xmi:id="_pSVjYLePEeyn9oFzaDcctQ" base_Element="_pSUVQbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_pSXYkrePEeyn9oFzaDcctQ" base_Element="_pSXYkLePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_pSYms7ePEeyn9oFzaDcctQ" base_Element="_pSYmsbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_pSZ00bePEeyn9oFzaDcctQ" base_Element="_pSZNwbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_pSZ01bePEeyn9oFzaDcctQ" base_Element="_pSZ007ePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_pSc4ILePEeyn9oFzaDcctQ" base_Element="_pScRELePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Generics xmi:id="_pSc4IbePEeyn9oFzaDcctQ" genericsValue="Responses" base_Element="_pScREbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_pSeGQrePEeyn9oFzaDcctQ" base_Element="_pSeGQLePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Generics xmi:id="_pSetULePEeyn9oFzaDcctQ" genericsValue="TopLevelNotice" base_Element="_pSeGQbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_pSfUYrePEeyn9oFzaDcctQ" base_Element="_pSfUYLePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Generics xmi:id="_pSf7cLePEeyn9oFzaDcctQ" genericsValue="String" base_Element="_pSfUYbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_pSgigbePEeyn9oFzaDcctQ" base_Element="_pSf7cbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Generics xmi:id="_pShJkLePEeyn9oFzaDcctQ" genericsValue="String" base_Element="_pSgigLePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Reference xmi:id="_pS_DoLePEeyn9oFzaDcctQ" base_Element="_pS-ckLePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Reference xmi:id="_pS_qsLePEeyn9oFzaDcctQ" base_Element="_pS_DobePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Reference xmi:id="_pTARwLePEeyn9oFzaDcctQ" base_Element="_pS_qsbePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Reference xmi:id="_pTA40rePEeyn9oFzaDcctQ" base_Element="_pTA40LePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Reference xmi:id="_pTBf4rePEeyn9oFzaDcctQ" base_Element="_pTBf4LePEeyn9oFzaDcctQ"/>
+  <UMLLabProfile:Reference xmi:id="_pTCG8LePEeyn9oFzaDcctQ" base_Element="_pTBf47ePEeyn9oFzaDcctQ"/>
+</xmi:XMI>
