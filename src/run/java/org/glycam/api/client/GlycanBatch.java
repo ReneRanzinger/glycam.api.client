@@ -5,14 +5,20 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
-import org.glycam.api.client.util.GlycamClient;
+import org.glycam.api.client.http.GlycamClient;
+import org.glycam.api.client.om.GlycamJob;
 
 public class GlycanBatch
 {
 
     public static void main(String[] args) throws IOException
     {
+        // load the glycam sequence
+        GlyGenGlycamUtil t_util = new GlyGenGlycamUtil();
+        List<GlycamJob> t_jobs = t_util.readJobs("./data/2022.04.10.glycan.csv");
+
         Integer t_countError = 0;
         Integer t_countSuccess = 0;
         PrintWriter t_writerError = new PrintWriter(new File("./input/error.txt"));

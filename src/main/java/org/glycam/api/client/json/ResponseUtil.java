@@ -1,7 +1,9 @@
-package org.glycam.api.client.util;
+package org.glycam.api.client.json;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.glycam.api.client.json.polling.PollingStatus;
 import org.glycam.api.client.json.response.Entity;
 import org.glycam.api.client.json.response.FrontEndNotice;
 import org.glycam.api.client.json.response.Notice;
@@ -43,22 +45,30 @@ public class ResponseUtil
         if (t_project == null)
         {
             a_job.setErrorType("Response JSON error");
-            a_job.setErrorType("Missing project property");
+            a_job.setErrorMessage("Missing project property");
             return false;
         }
         String t_id = t_project.getId();
         if (t_id == null)
         {
             a_job.setErrorType("Response JSON error");
-            a_job.setErrorType("Missing pUUID property in project");
+            a_job.setErrorMessage("Missing pUUID property in project");
             return false;
         }
         a_job.setJobId(t_id);
+        String t_timestamp = t_project.getTimestamp();
+        if (t_timestamp == null)
+        {
+            a_job.setErrorType("Response JSON error");
+            a_job.setErrorMessage("Missing timestamp property in project");
+            return false;
+        }
+        a_job.setTimestamp(t_timestamp);
         String t_downloadPath = t_project.getDownloadUrl();
         if (t_downloadPath == null)
         {
             a_job.setErrorType("Response JSON error");
-            a_job.setErrorType("Missing download_url_path property in project");
+            a_job.setErrorMessage("Missing download_url_path property in project");
             return false;
         }
         a_job.setDownloadURL(t_downloadPath);
@@ -82,26 +92,26 @@ public class ResponseUtil
             if (t_types == null || t_types.size() == 0)
             {
                 a_job.setErrorType("Response JSON error");
-                a_job.setErrorType("Missing noticeType property in notices");
+                a_job.setErrorMessage("Missing noticeType property in notices");
                 return false;
             }
             List<String> t_codes = t_topLevelNotice.getCodes();
             if (t_codes == null || t_codes.size() == 0)
             {
                 a_job.setErrorType("Response JSON error");
-                a_job.setErrorType("Missing noticeCode property in notices");
+                a_job.setErrorMessage("Missing noticeCode property in notices");
                 return false;
             }
             String t_brief = t_topLevelNotice.getBrief();
             if (t_brief == null)
             {
                 a_job.setErrorType("Response JSON error");
-                a_job.setErrorType("Missing noticeBrief property in notices");
+                a_job.setErrorMessage("Missing noticeBrief property in notices");
                 return false;
             }
             a_job.setErrorType(this.listToString(t_types) + " (Codes " + this.listToString(t_codes)
                     + "): " + t_brief);
-            a_job.setErrorType(t_topLevelNotice.getMessage());
+            a_job.setErrorMessage(t_topLevelNotice.getMessage());
             return false;
         }
         return true;
@@ -131,7 +141,7 @@ public class ResponseUtil
         if (t_entity == null)
         {
             a_job.setErrorType("Response JSON error");
-            a_job.setErrorType("Missing entity property");
+            a_job.setErrorMessage("Missing entity property");
             return false;
         }
         List<Responses> t_responses = t_entity.getResponses();
@@ -149,14 +159,16 @@ public class ResponseUtil
             if (t_noticeFrontEnd == null)
             {
                 a_job.setErrorType("Response JSON error");
-                a_job.setErrorType("Missing FrontEndNotice property in responses array (entity)");
+                a_job.setErrorMessage(
+                        "Missing FrontEndNotice property in responses array (entity)");
                 return false;
             }
             Notice t_notice = t_noticeFrontEnd.getNotice();
             if (t_notice == null)
             {
                 a_job.setErrorType("Response JSON error");
-                a_job.setErrorType("Missing FrontEndNotice property in responses array (entity)");
+                a_job.setErrorMessage(
+                        "Missing FrontEndNotice property in responses array (entity)");
                 return false;
             }
             a_job.setErrorType("Request JSON error");
@@ -164,5 +176,16 @@ public class ResponseUtil
             return false;
         }
         return true;
+    }
+
+    public String processPollingResponse(String a_statusJson) throws IOException
+    {
+        ObjectMapper t_mapper = new ObjectMapper();
+        PollingStatus t_responseInfo = t_mapper.readValue(a_statusJson, PollingStatus.class);
+        if (t_responseInfo.getStatus() == null)
+        {
+            throw new IOException("Missing status property in polling response.");
+        }
+        return t_responseInfo.getStatus();
     }
 }

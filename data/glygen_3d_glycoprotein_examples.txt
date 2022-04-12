@@ -1,0 +1,126 @@
+			{ "pdb_ID" : "5EQX" },
+			{ "attachments" : [
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",	
+						"residue_number" : "427"
+					},
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "429"
+					},
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "431"
+					}
+				]
+			}
+		]
+		
+			{ "pdb_ID" : "5U73" },
+			{ "attachments" : [
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "1067"
+					}
+									]
+			}
+		]
+		
+
+			{ "pdb_ID" : "1A7C" },
+			{ "attachments" : [
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "209"
+					},
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "265"
+					}
+					
+				]
+			}
+		]
+		
+
+			{ "pdb_ID" : "" },
+			{ "attachments" : [
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "66"
+					},
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "194"
+					},
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "230"
+					}
+				]
+			}
+		]
+		
+		"inputs" :
+		[
+			{ "pdb_ID" : "1APY" },
+			{ "attachments" : [
+					{
+						"glycan" : "Man9",
+						"chain" : "A",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "15"
+					},
+					{
+						"glycan" : "Man9",
+						"chain" : "C",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "15"
+					}
+				]
+			}
+		]
+		
+
+			{ "pdb_ID" : "1AZX" },
+			{ "attachments" : [
+					{
+						"glycan" : "Man9",
+						"chain" : "I",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "155"
+					},
+					{
+						"glycan" : "Man9",
+						"chain" : "L",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "155"
+					},
+					{
+						"glycan" : "Man9",
+						"chain" : "L",
+						"glytoucan_ac": "G56202TA",
+						"residue_number" : "192"
+					}
+				]
+			}
+		]
+		

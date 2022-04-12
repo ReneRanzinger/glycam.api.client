@@ -1,9 +1,12 @@
 package org.glycam.api.client.om;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GlycamJob
 {
+    private String m_glycam = null;
+    private String m_glyTouCanId = null;
     private String m_request = null;
     private String m_response = null;
     private String m_jobId = null;
@@ -12,6 +15,7 @@ public class GlycamJob
     private String m_errorType = null;
     private String m_errorMessage = null;
     private String m_status = null;
+    private String m_timestamp = null;
 
     @JsonProperty("request")
     public String getRequest()
@@ -99,5 +103,48 @@ public class GlycamJob
     public void setStatus(String a_status)
     {
         this.m_status = a_status;
+    }
+
+    @JsonProperty("glycam")
+    public String getGlycam()
+    {
+        return this.m_glycam;
+    }
+
+    public void setGlycam(String a_glycam)
+    {
+        this.m_glycam = a_glycam;
+    }
+
+    @JsonProperty("glytoucan")
+    public String getGlyTouCanId()
+    {
+        return this.m_glyTouCanId;
+    }
+
+    public void setGlyTouCanId(String a_glyTouCanId)
+    {
+        this.m_glyTouCanId = a_glyTouCanId;
+    }
+
+    @JsonProperty("timestamp")
+    public String getTimestamp()
+    {
+        return this.m_timestamp;
+    }
+
+    public void setTimestamp(String a_timestamp)
+    {
+        this.m_timestamp = a_timestamp;
+    }
+
+    @JsonIgnore
+    public boolean hasError()
+    {
+        if (this.m_errorType == null)
+        {
+            return false;
+        }
+        return true;
     }
 }

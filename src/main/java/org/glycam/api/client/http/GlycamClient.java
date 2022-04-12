@@ -1,5 +1,7 @@
 package org.glycam.api.client.http;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
@@ -87,11 +89,10 @@ public class GlycamClient
         return t_writer.toString();
     }
 
-    public GlycamJob submitGlycan(String a_sequence) throws IOException
+    public void submitGlycan(GlycamJob a_job) throws IOException
     {
-        GlycamJob t_submitReport = new GlycamJob();
-        String t_json = RequestBuilder.buildGlycanRequest(a_sequence);
-        t_submitReport.setRequest(t_json);
+        String t_json = RequestBuilder.buildGlycanRequest(a_job.getGlycam());
+        a_job.setRequest(t_json);
         try
         {
             // build post request
@@ -105,15 +106,14 @@ public class GlycamClient
             t_httpPost.setHeader("X-CSRFToken", this.m_csrfToken);
             // execute request
             CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpPost);
-            t_submitReport.setHttpCode(t_response.getStatusLine().getStatusCode());
+            a_job.setHttpCode(t_response.getStatusLine().getStatusCode());
             HttpEntity t_entity = t_response.getEntity();
             // extract response
             String t_responseContent = this.entityToString(t_entity);
-            t_submitReport.setResponse(t_responseContent);
+            a_job.setResponse(t_responseContent);
             // close response
             EntityUtils.consume(t_entity);
             t_response.close();
-            return t_submitReport;
         }
         catch (Exception e)
         {
@@ -121,25 +121,58 @@ public class GlycamClient
         }
     }
 
-    // public String downloadPDB(String a_jobId) throws ClientProtocolException,
-    // IOException
-    // {
-    // HttpGet t_httpGet = new HttpGet(this.m_pdbStore + a_jobId +
-    // "/structure.pdb");
-    // CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpGet);
-    // HttpEntity t_entity = t_response.getEntity();
-    // if (t_response.getStatusLine().getStatusCode() >= 400)
-    // {
-    // throw new IOException("Requesting PDB results in HTTP code: "
-    // + Integer.toString(t_response.getStatusLine().getStatusCode()));
-    // }
-    // // now we read the response to get the token
-    // StringWriter t_writer = new StringWriter();
-    // IOUtils.copy(t_entity.getContent(), t_writer, StandardCharsets.UTF_8);
-    // // consume and close the response
-    // EntityUtils.consume(t_entity);
-    // t_response.close();
-    // return t_writer.toString();
-    // }
+    public String getStatus(GlycamJob a_job) throws IOException
+    {
+        try
+        {
+            // build post request
+            HttpGet t_httpGet = new HttpGet(
+                    this.m_baseUrl + "project_status/sequence/" + a_job.getJobId() + "/");
+            // add content type and token
+            t_httpGet.setHeader("Accept", "application/json");
+            t_httpGet.setHeader("Content-type", "application/json");
+            t_httpGet.setHeader("X-CSRFToken", this.m_csrfToken);
+            // execute request
+            CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpGet);
+            if (t_response.getStatusLine().getStatusCode() >= 400)
+            {
+                throw new IOException(
+                        "Unable to perform polling. Service responded with HTTP code: "
+                                + Integer.toString(t_response.getStatusLine().getStatusCode()));
+            }
+            HttpEntity t_entity = t_response.getEntity();
+            // extract response
+            String t_responseContent = this.entityToString(t_entity);
+            // close response
+            EntityUtils.consume(t_entity);
+            t_response.close();
+            return t_responseContent;
+        }
+        catch (Exception e)
+        {
+            throw new IOException(e.getMessage(), e);
+        }
+
+    }
+
+    public void downloadPDB(String a_downloadURL, String a_fileNamePath)
+            throws ClientProtocolException, IOException
+    {
+        HttpGet t_httpGet = new HttpGet(a_downloadURL);
+        CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpGet);
+        HttpEntity t_entity = t_response.getEntity();
+        if (t_response.getStatusLine().getStatusCode() >= 400)
+        {
+            throw new IOException("Requesting PDB results in HTTP code: "
+                    + Integer.toString(t_response.getStatusLine().getStatusCode()));
+        }
+        FileWriter t_writer = new FileWriter(new File(a_fileNamePath));
+        IOUtils.copy(t_entity.getContent(), t_writer, StandardCharsets.UTF_8);
+        // consume and close the response
+        EntityUtils.consume(t_entity);
+        t_response.close();
+        t_writer.flush();
+        t_writer.close();
+    }
 
 }
