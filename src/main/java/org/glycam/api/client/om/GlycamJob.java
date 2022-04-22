@@ -15,7 +15,9 @@ public class GlycamJob
     private String m_errorType = null;
     private String m_errorMessage = null;
     private String m_status = null;
-    private String m_timestamp = null;
+    private String m_timestampGlycam = null;
+    private Long m_timestampSubmission = null;
+    private Long m_timestampLastCheck = null;
 
     @JsonProperty("request")
     public String getRequest()
@@ -127,15 +129,37 @@ public class GlycamJob
         this.m_glyTouCanId = a_glyTouCanId;
     }
 
-    @JsonProperty("timestamp")
-    public String getTimestamp()
+    @JsonProperty("time_glycam")
+    public String getTimestampGlycam()
     {
-        return this.m_timestamp;
+        return this.m_timestampGlycam;
     }
 
-    public void setTimestamp(String a_timestamp)
+    public void setTimestampGlycam(String a_timestampGlycam)
     {
-        this.m_timestamp = a_timestamp;
+        this.m_timestampGlycam = a_timestampGlycam;
+    }
+
+    @JsonProperty("time_submission")
+    public Long getTimestampSubmission()
+    {
+        return this.m_timestampSubmission;
+    }
+
+    public void setTimestampSubmission(Long a_timestampSubmission)
+    {
+        this.m_timestampSubmission = a_timestampSubmission;
+    }
+
+    @JsonProperty("time_check")
+    public Long getTimestampLastCheck()
+    {
+        return this.m_timestampLastCheck;
+    }
+
+    public void setTimestampLastCheck(Long a_timestampLastCheck)
+    {
+        this.m_timestampLastCheck = a_timestampLastCheck;
     }
 
     @JsonIgnore

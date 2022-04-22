@@ -63,7 +63,7 @@ public class ResponseUtil
             a_job.setErrorMessage("Missing timestamp property in project");
             return false;
         }
-        a_job.setTimestamp(t_timestamp);
+        a_job.setTimestampGlycam(t_timestamp);
         String t_downloadPath = t_project.getDownloadUrl();
         if (t_downloadPath == null)
         {
