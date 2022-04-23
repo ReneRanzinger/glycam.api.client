@@ -14,6 +14,7 @@ public class GlycanBatch
 
     public static void main(String[] args) throws IOException, InterruptedException
     {
+    	long t_startTime = System.currentTimeMillis();
         // load the glycam sequence
         SequenceFileParser t_csvParser = new SequenceFileParser();
         List<GlycamJob> t_jobs = t_csvParser.loadFile("./data/2022.04.10.glycan.csv");
@@ -36,10 +37,8 @@ public class GlycanBatch
             }
         }
         t_errorLog.closeFile();
+        Long t_durationMinutes = (System.currentTimeMillis() - t_startTime) / 60000; 
+        System.out.println("Finished after " + t_durationMinutes.toString() + " minutes");
     }
 
 }
-
-timer
-
-command line
