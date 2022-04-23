@@ -5,6 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GlycamJob
 {
+    public final static String STATUS_INIT = "initialized";
+    public final static String STATUS_SUBMITTED = "submitted";
+    public final static String STATUS_ERROR = "error";
+    public final static String STATUS_TIMEOUT = "timeout";
+    public final static String STATUS_PDB_ERROR = "pdb problem";
+    public final static String STATUS_SUCCESS = "success";
+
     private String m_glycam = null;
     private String m_glyTouCanId = null;
     private String m_request = null;
@@ -14,7 +21,7 @@ public class GlycamJob
     private Integer m_httpCode = null;
     private String m_errorType = null;
     private String m_errorMessage = null;
-    private String m_status = null;
+    private String m_status = GlycamJob.STATUS_INIT;
     private String m_timestampGlycam = null;
     private Long m_timestampSubmission = null;
     private Long m_timestampLastCheck = null;
@@ -165,10 +172,10 @@ public class GlycamJob
     @JsonIgnore
     public boolean hasError()
     {
-        if (this.m_errorType == null)
+        if (this.m_status.equals(STATUS_ERROR))
         {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 }

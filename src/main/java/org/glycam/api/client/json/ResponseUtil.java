@@ -27,14 +27,17 @@ public class ResponseUtil
                 SubmitInformation.class);
         if (!this.checkEntity(a_job, t_responseInfo))
         {
+            a_job.setStatus(GlycamJob.STATUS_ERROR);
             return;
         }
         if (!this.checkProject(a_job, t_responseInfo))
         {
+            a_job.setStatus(GlycamJob.STATUS_ERROR);
             return;
         }
         if (!this.checkNotice(a_job, t_responseInfo))
         {
+            a_job.setStatus(GlycamJob.STATUS_ERROR);
             return;
         }
     }

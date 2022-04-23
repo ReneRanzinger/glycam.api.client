@@ -63,6 +63,7 @@ public class SequenceFileParser
             throw new IOException("Missing sequence in row " + a_rowCounter.toString());
         }
         t_glycamJob.setGlycam(t_cellValue);
+        t_glycamJob.setStatus(GlycamJob.STATUS_INIT);
         return t_glycamJob;
     }
 

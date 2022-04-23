@@ -111,6 +111,7 @@ public class GlycamClient
             // extract response
             String t_responseContent = this.entityToString(t_entity);
             a_job.setResponse(t_responseContent);
+            a_job.setStatus(GlycamJob.STATUS_SUBMITTED);
             // close response
             EntityUtils.consume(t_entity);
             t_response.close();
