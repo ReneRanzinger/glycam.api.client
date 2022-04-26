@@ -2,8 +2,6 @@ package org.glycam.api.client;
 
 import java.io.IOException;
 
-import org.biojava.nbio.structure.Structure;
-import org.biojava.nbio.structure.io.PDBFileReader;
 import org.glycam.api.client.http.GlycamClient;
 import org.glycam.api.client.json.ResponseUtil;
 import org.glycam.api.client.om.GlycamJob;
@@ -23,8 +21,7 @@ public class Glycan
 
         // DGlpNAcb1-OH
         String t_sequence = "DGlcpNAcb1-3DGalpNAca1-3[LFucpa1-2]DGalpb1-3[DGlcpNAcb1-3DGlcpNAcb1-6]DGalpNAca1-OH";
-        t_sequence = "DGlcpNAcb1-OH";
-
+        t_sequence = "DGalpa1-3DGalpb1-OH";
         GlycamJob t_job = new GlycamJob();
         t_job.setGlycam(t_sequence);
         t_client.submitGlycan(t_job);
@@ -40,14 +37,14 @@ public class Glycan
 
         System.out.println(t_status);
         System.out.println(t_job.getDownloadURL());
-        t_client.downloadPDB(t_job.getDownloadURL(), "./data/test.pdb");
+        // t_client.downloadPDB(t_job.getDownloadURL(), "./data/test.pdb");
 
         // close the client connection and cleanup
         t_client.close();
 
-        PDBFileReader t_reader = new PDBFileReader();
-        Structure struc = t_reader.getStructure("./data/test.pdb");
-        System.out.println(struc);
+        // PDBFileReader t_reader = new PDBFileReader();
+        // Structure struc = t_reader.getStructure("./data/test.pdb");
+        // System.out.println(struc);
     }
 
 }
