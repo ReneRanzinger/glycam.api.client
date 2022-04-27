@@ -16,9 +16,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class GlycamUtil
 {
-    public static final Long DEFAULT_MAX_WAITING_TIME = 600000L;
-    private static final Long POLLING_SLEEP_MILLIS = 3000L;
-    private static final Integer MAX_QUEUE_LENGTH = 5;
     private static final Integer MAX_PROCESSING_COUNT = Integer.MAX_VALUE;
 
     private String m_pdbFolder = null;

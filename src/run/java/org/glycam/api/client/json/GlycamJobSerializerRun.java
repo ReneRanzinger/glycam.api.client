@@ -1,16 +1,15 @@
-package org.glycam.api.client;
+package org.glycam.api.client.json;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import org.glycam.api.client.json.GlycamJobSerializer;
 import org.glycam.api.client.om.GlycamJob;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
-public class DumpReader
+public class GlycamJobSerializerRun
 {
 
     public static void main(String[] args)

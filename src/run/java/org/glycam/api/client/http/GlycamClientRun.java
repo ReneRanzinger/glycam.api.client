@@ -1,8 +1,7 @@
-package org.glycam.api.client;
+package org.glycam.api.client.http;
 
 import java.io.IOException;
 
-import org.glycam.api.client.http.GlycamClient;
 import org.glycam.api.client.json.ResponseUtil;
 import org.glycam.api.client.om.GlycamJob;
 
@@ -11,7 +10,7 @@ import org.glycam.api.client.om.GlycamJob;
  * @author Rene Ranzinger
  *
  */
-public class Glycan
+public class GlycamClientRun
 {
     // https://github.com/GLYCAM-Web/website/issues/25
     public static void main(String[] args) throws IOException
@@ -37,14 +36,10 @@ public class Glycan
 
         System.out.println(t_status);
         System.out.println(t_job.getDownloadURL());
-        // t_client.downloadPDB(t_job.getDownloadURL(), "./data/test.pdb");
 
         // close the client connection and cleanup
         t_client.close();
 
-        // PDBFileReader t_reader = new PDBFileReader();
-        // Structure struc = t_reader.getStructure("./data/test.pdb");
-        // System.out.println(struc);
     }
 
 }
