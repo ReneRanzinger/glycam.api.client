@@ -1,7 +1,7 @@
 package org.glycam.api.client;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
@@ -19,13 +19,33 @@ import org.glycam.api.client.util.GlycamUtil;
 
 public class App
 {
+    timestamp CSV 404 new
+    error
+    second chance
 
-    public static void main(String[] args) throws IOException, InterruptedException
+    public static void main(String[] a_args)
     {
+        // parse the command line arguments and store them
+        Options t_options = App.buildComandLineOptions();
+        AppArguments t_arguments = App.processCommandlineArguments(a_args, t_options);
+        if (t_arguments == null)
+        {
+            // error messages and been printed already
+            App.printComandParameter(t_options);
+            return;
+        }
         long t_startTime = System.currentTimeMillis();
-        // load the glycam sequence
-        SequenceFileParser t_csvParser = new SequenceFileParser();
-        List<GlycamJob> t_jobs = t_csvParser.loadFile("./data/2022.04.10.glycan.csv");
+        // load the jobs
+        List<GlycamJob> t_jobs = new ArrayList<>();
+        if (t_arguments.getGlycanFileNamePath() != null)
+        {
+            SequenceFileParser t_csvParser = new SequenceFileParser();
+            t_jobs = t_csvParser.loadFile(t_arguments.getGlycanFileNamePath());
+        }
+        else
+        {
+            t_jobs = GlycamJobSerializer.deserialize(t_arguments.getGlycanDumpFileNamePath());
+        }
 
         GlycamUtil t_util = new GlycamUtil("./data/output/pdb/",
                 GlycamUtil.DEFAULT_MAX_WAITING_TIME);
@@ -73,21 +93,18 @@ public class App
             if (t_arguments == null)
             {
                 // failed, message was printed, time to go
-                App.printComandParameter(a_options);
                 return null;
             }
         }
         catch (ParseException e)
         {
             System.out.println("Invalid commandline arguments: " + e.getMessage());
-            App.printComandParameter(a_options);
             return null;
         }
         catch (Exception e)
         {
             System.out.println(
                     "There was an error processing the command line arguments: " + e.getMessage());
-            App.printComandParameter(a_options);
             return null;
         }
         return t_arguments;
@@ -115,7 +132,7 @@ public class App
         // set from arguments
         t_arguments.setGlycanFileNamePath(t_commandLine.getOptionValue("g"));
         t_arguments.setGlycanDumpFileNamePath(t_commandLine.getOptionValue("j"));
-        t_arguments.setOutputPath(t_commandLine.getOptionValue("o"));
+        t_arguments.setOutputFolder(t_commandLine.getOptionValue("o"));
         String t_value = t_commandLine.getOptionValue("w");
         if (t_value != null)
         {
@@ -126,14 +143,38 @@ public class App
             }
             catch (Exception e)
             {
-                System.out.println("Waiting time (-w) is expectinga number.");
+                System.out.println("Waiting time (-w) is expecting a number. But got: " + t_value);
                 return null;
             }
         }
         t_value = t_commandLine.getOptionValue("s");
-
+        if (t_value != null)
+        {
+            try
+            {
+                Long t_time = Long.parseLong(t_value);
+                t_arguments.setPollingSleepTime(t_time);
+            }
+            catch (Exception e)
+            {
+                System.out.println("Polling time (-s) is expecting a number. But got: " + t_value);
+                return null;
+            }
+        }
         t_value = t_commandLine.getOptionValue("q");
-        t_arguments.setMappingFolder();
+        if (t_value != null)
+        {
+            try
+            {
+                Integer t_length = Integer.parseInt(t_value);
+                t_arguments.setMaxQueueLength(t_length);
+            }
+            catch (Exception e)
+            {
+                System.out.println("Queue length (-q) is expecting a number. But got: " + t_value);
+                return null;
+            }
+        }
         // check settings
         if (!App.checkArguments(t_arguments))
         {
@@ -153,52 +194,56 @@ public class App
     private static boolean checkArguments(AppArguments a_arguments)
     {
         boolean t_valid = true;
-        // config file
-        if (a_arguments.getConfigFile() != null)
+        // input file
+        if (a_arguments.getGlycanDumpFileNamePath() != null)
         {
-            // config file must exist
-            File t_file = new File(a_arguments.getConfigFile());
+            if (a_arguments.getGlycanFileNamePath() != null)
+            {
+                System.out.println("Only one input file option (-g or -j) can be used at a time.");
+                t_valid = false;
+            }
+            else
+            {
+                File t_file = new File(a_arguments.getGlycanDumpFileNamePath());
+                if (t_file.exists())
+                {
+                    if (!t_file.isFile())
+                    {
+                        System.out.println("Job file (-j) is not a file: "
+                                + a_arguments.getGlycanDumpFileNamePath());
+                        t_valid = false;
+                    }
+                }
+                else
+                {
+                    System.out.println("Job file (-j) does not exist: "
+                            + a_arguments.getGlycanDumpFileNamePath());
+                    t_valid = false;
+                }
+            }
+        }
+        else if (a_arguments.getGlycanFileNamePath() != null)
+        {
+            File t_file = new File(a_arguments.getGlycanFileNamePath());
             if (t_file.exists())
             {
-                if (t_file.isDirectory())
+                if (!t_file.isFile())
                 {
-                    System.out.println("Config file (-c) can not be a directory.");
+                    System.out.println("Glycan file (-g) is not a file: "
+                            + a_arguments.getGlycanFileNamePath());
                     t_valid = false;
                 }
             }
             else
             {
-                System.out.println("Config file (-c) does not exist.");
+                System.out.println(
+                        "glycan file (-g) does not exist: " + a_arguments.getGlycanFileNamePath());
                 t_valid = false;
             }
         }
         else
         {
-            System.out.println("Config file (-c) is missing.");
-            t_valid = false;
-        }
-        // properties file
-        if (a_arguments.getConfigFile() != null)
-        {
-            // file must exist
-            File t_file = new File(a_arguments.getPropertiesFile());
-            if (t_file.exists())
-            {
-                if (t_file.isDirectory())
-                {
-                    System.out.println("Properties file (-p) can not be a directory.");
-                    t_valid = false;
-                }
-            }
-            else
-            {
-                System.out.println("Properties file (-p) does not exist.");
-                t_valid = false;
-            }
-        }
-        else
-        {
-            System.out.println("Properties file (-p) is missing.");
+            System.out.println("An input file option (-g or -j) needs to be provided.");
             t_valid = false;
         }
         // output folder
@@ -209,7 +254,8 @@ public class App
             {
                 if (!t_file.mkdirs())
                 {
-                    System.out.println("Unable to create output folder.");
+                    System.out.println(
+                            "Unable to create output folder: " + a_arguments.getOutputFolder());
                     t_valid = false;
                 }
             }
@@ -219,23 +265,26 @@ public class App
             System.out.println("Output folder (-o) is missing.");
             t_valid = false;
         }
-        // mapping folder
-        if (a_arguments.getMappingFolder() != null)
+        // waiting time
+        if (a_arguments.getMaxWaitingTime() <= 0)
         {
-            File t_file = new File(a_arguments.getMappingFolder());
-            if (t_file.exists())
-            {
-                if (!t_file.isDirectory())
-                {
-                    System.out.println("Mapping folder (-m) has to be a directory.");
-                    t_valid = false;
-                }
-            }
-            else
-            {
-                System.out.println("Mapping folder (-m) does not exist.");
-                t_valid = false;
-            }
+            System.out.println(
+                    "Waiting time (-w) has to be a number greater than 0. Default 600000 milliseconds.");
+            t_valid = false;
+        }
+        // polling sleep time
+        if (a_arguments.getPollingSleepTime() <= 2000)
+        {
+            System.out.println(
+                    "Polling sleep time (-s) has to be a number greater than 2000 milliseconds. Default 3000 milliseconds");
+            t_valid = false;
+        }
+        // queue length
+        if (a_arguments.getMaxQueueLength() <= 0)
+        {
+            System.out.println(
+                    "Maximum queue length (-q) has to be a number greater than 0. Default 5.");
+            t_valid = false;
         }
         return t_valid;
     }

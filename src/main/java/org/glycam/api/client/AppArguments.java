@@ -4,7 +4,7 @@ public class AppArguments
 {
     private String m_glycanFileNamePath = null;
     private String m_glycanDumpFileNamePath = null;
-    private String m_outputPath = null;
+    private String m_outputFolder = null;
     private Long m_maxWaitingTime = 600000L;
     private Integer m_maxQueueLength = 5;
     private Long m_pollingSleepTime = 3000L;
@@ -27,16 +27,6 @@ public class AppArguments
     public void setGlycanDumpFileNamePath(String a_glycanDumpFileNamePath)
     {
         this.m_glycanDumpFileNamePath = a_glycanDumpFileNamePath;
-    }
-
-    public String getOutputPath()
-    {
-        return this.m_outputPath;
-    }
-
-    public void setOutputPath(String a_outputPath)
-    {
-        this.m_outputPath = a_outputPath;
     }
 
     public Long getMaxWaitingTime()
@@ -67,5 +57,15 @@ public class AppArguments
     public void setPollingSleepTime(Long a_pollingSleepTime)
     {
         this.m_pollingSleepTime = a_pollingSleepTime;
+    }
+
+    public String getOutputFolder()
+    {
+        return m_outputFolder;
+    }
+
+    public void setOutputFolder(String a_outputFolder)
+    {
+        this.m_outputFolder = a_outputFolder;
     }
 }
