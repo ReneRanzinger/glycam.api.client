@@ -1,5 +1,8 @@
 package org.glycam.api.client.om;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -25,6 +28,8 @@ public class GlycamJob
     private String m_timestampGlycam = null;
     private Long m_timestampSubmission = null;
     private Long m_timestampLastCheck = null;
+    private List<Warning> m_warnings = new ArrayList<>();
+    private Integer m_secondChances = 3;
 
     @JsonProperty("request")
     public String getRequest()
@@ -177,5 +182,27 @@ public class GlycamJob
             return true;
         }
         return false;
+    }
+
+    @JsonProperty("warnings")
+    public List<Warning> getWarnings()
+    {
+        return this.m_warnings;
+    }
+
+    public void setWarnings(List<Warning> a_warnings)
+    {
+        this.m_warnings = a_warnings;
+    }
+
+    @JsonProperty("second_chances")
+    public Integer getSecondChances()
+    {
+        return this.m_secondChances;
+    }
+
+    public void setSecondChances(Integer a_secondChances)
+    {
+        this.m_secondChances = a_secondChances;
     }
 }

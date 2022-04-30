@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.glycam.api.client.json.ResponseUtil;
 import org.glycam.api.client.om.GlycamJob;
+import org.glycam.api.client.om.WebResponse;
 
 /**
  *
@@ -31,8 +32,8 @@ public class GlycamClientRun
         ResponseUtil t_util = new ResponseUtil();
         t_util.processGlycanResponse(t_job);
 
-        String t_statusJson = t_client.getStatus(t_job);
-        String t_status = t_util.processPollingResponse(t_statusJson);
+        WebResponse t_statusJson = t_client.getStatus(t_job);
+        String t_status = t_util.processPollingResponse(t_statusJson.getContent());
 
         System.out.println(t_status);
         System.out.println(t_job.getDownloadURL());

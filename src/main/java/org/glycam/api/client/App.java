@@ -15,13 +15,12 @@ import org.glycam.api.client.csv.CSVError;
 import org.glycam.api.client.csv.SequenceFileParser;
 import org.glycam.api.client.json.GlycamJobSerializer;
 import org.glycam.api.client.om.GlycamJob;
+import org.glycam.api.client.om.Warning;
 import org.glycam.api.client.util.GlycamUtil;
 
 public class App
 {
-    timestamp CSV 404 new
-    error
-    second chance
+    private static final String PDB_FOLDER_NAME = "pdb";
 
     public static void main(String[] a_args)
     {
@@ -37,36 +36,105 @@ public class App
         long t_startTime = System.currentTimeMillis();
         // load the jobs
         List<GlycamJob> t_jobs = new ArrayList<>();
-        if (t_arguments.getGlycanFileNamePath() != null)
+        try
         {
-            SequenceFileParser t_csvParser = new SequenceFileParser();
-            t_jobs = t_csvParser.loadFile(t_arguments.getGlycanFileNamePath());
-        }
-        else
-        {
-            t_jobs = GlycamJobSerializer.deserialize(t_arguments.getGlycanDumpFileNamePath());
-        }
-
-        GlycamUtil t_util = new GlycamUtil("./data/output/pdb/",
-                GlycamUtil.DEFAULT_MAX_WAITING_TIME);
-        t_util.process(t_jobs);
-
-        GlycamJobSerializer.serialize(t_jobs, "./data/output/jobs.json");
-
-        CSVError t_errorLog = new CSVError("./data/output/");
-
-        for (GlycamJob t_glycamJob : t_jobs)
-        {
-            String t_status = t_glycamJob.getStatus();
-            if (!t_status.equals(GlycamJob.STATUS_SUCCESS)
-                    && !t_status.equals(GlycamJob.STATUS_INIT))
+            if (t_arguments.getGlycanFileNamePath() != null)
             {
-                t_errorLog.writeError(t_glycamJob);
+                SequenceFileParser t_csvParser = new SequenceFileParser();
+                t_jobs = t_csvParser.loadFile(t_arguments.getGlycanFileNamePath());
+            }
+            else
+            {
+                t_jobs = GlycamJobSerializer.deserialize(t_arguments.getGlycanDumpFileNamePath());
+                GlycamJobSerializer.prepForRerun(t_jobs);
             }
         }
-        t_errorLog.closeFile();
+        catch (Exception e)
+        {
+            System.out.println("Critical error while loading input files: " + e.getMessage());
+            e.printStackTrace(System.out);
+            return;
+        }
+        // create the folders
+        try
+        {
+            App.createFolders(t_arguments.getOutputFolder());
+        }
+        catch (Exception e)
+        {
+            System.out.println("Failed to create output folders: " + e.getMessage());
+            return;
+        }
+        // process the jobs
+        try
+        {
+            GlycamUtil t_util = new GlycamUtil(
+                    t_arguments.getOutputFolder() + File.separator + PDB_FOLDER_NAME,
+                    t_arguments.getMaxWaitingTime(), t_arguments.getPollingSleepTime(),
+                    t_arguments.getMaxQueueLength(), t_arguments.isVerbose());
+            t_util.process(t_jobs);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Critical error while processing Glycam Jobs: " + e.getMessage());
+            e.printStackTrace(System.out);
+            return;
+        }
+        // store the jobs
+        try
+        {
+            GlycamJobSerializer.serialize(t_jobs,
+                    t_arguments.getOutputFolder() + File.separator + "jobs.json");
+        }
+        catch (Exception e)
+        {
+            System.out.println(
+                    "Processing finished! However, there was a critical error while sericalizing the jobs: "
+                            + e.getMessage());
+            e.printStackTrace(System.out);
+        }
+        // save the errors
+        try
+        {
+            CSVError t_errorLog = new CSVError(
+                    t_arguments.getOutputFolder() + File.separator + "errors-log.csv");
+            for (GlycamJob t_glycamJob : t_jobs)
+            {
+                String t_status = t_glycamJob.getStatus();
+                if (!t_status.equals(GlycamJob.STATUS_SUCCESS)
+                        && !t_status.equals(GlycamJob.STATUS_INIT))
+                {
+                    t_errorLog.writeError(t_glycamJob);
+                }
+            }
+            t_errorLog.closeFile();
+            // write warning
+            t_errorLog = new CSVError(
+                    t_arguments.getOutputFolder() + File.separator + "warnings-log.csv");
+            for (GlycamJob t_glycamJob : t_jobs)
+            {
+                for (Warning t_warning : t_glycamJob.getWarnings())
+                {
+                    t_errorLog.writeWarning(t_glycamJob, t_warning);
+                }
+            }
+            t_errorLog.closeFile();
+        }
+        catch (Exception e)
+        {
+            System.out.println(
+                    "Processing finished! However, there was a critical error while writing errors and warnings: "
+                            + e.getMessage());
+            e.printStackTrace(System.out);
+        }
         Long t_durationMinutes = (System.currentTimeMillis() - t_startTime) / 60000;
         System.out.println("Finished after " + t_durationMinutes.toString() + " minutes");
+    }
+
+    private static void createFolders(String a_outputFolder)
+    {
+        File t_file = new File(a_outputFolder + File.separator + PDB_FOLDER_NAME);
+        t_file.mkdirs();
     }
 
     /**
@@ -175,6 +243,7 @@ public class App
                 return null;
             }
         }
+        t_arguments.setVerbose(t_commandLine.hasOption("v"));
         // check settings
         if (!App.checkArguments(t_arguments))
         {
@@ -341,6 +410,12 @@ public class App
         t_option = new Option("q", "queue", true,
                 "Maximum number of jobs that be queue up. If this number is reached submission will stop till one job finished or times out. Default: 5");
         t_option.setArgs(1);
+        t_option.setRequired(false);
+        t_options.addOption(t_option);
+        // verbose
+        t_option = new Option("v", "verbose", false,
+                "Prints current job number to report progress.");
+        t_option.setArgs(0);
         t_option.setRequired(false);
         t_options.addOption(t_option);
 

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,5 +34,21 @@ public class GlycamJobSerializer
         List<GlycamJob> t_result = Arrays.asList(t_responseList);
         return t_result;
 
+    }
+
+    public static void prepForRerun(List<GlycamJob> a_jobs)
+    {
+        for (GlycamJob t_glycamJob : a_jobs)
+        {
+            if (!t_glycamJob.getStatus().equals(GlycamJob.STATUS_SUCCESS))
+            {
+                t_glycamJob.setErrorMessage(null);
+                t_glycamJob.setErrorType(null);
+                t_glycamJob.setStatus(GlycamJob.STATUS_INIT);
+                t_glycamJob.setHttpCode(null);
+                t_glycamJob.setSecondChances(3);
+                t_glycamJob.setWarnings(new ArrayList<>());
+            }
+        }
     }
 }

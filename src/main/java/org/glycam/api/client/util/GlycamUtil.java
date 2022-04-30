@@ -11,6 +11,8 @@ import org.apache.http.client.ClientProtocolException;
 import org.glycam.api.client.http.GlycamClient;
 import org.glycam.api.client.json.ResponseUtil;
 import org.glycam.api.client.om.GlycamJob;
+import org.glycam.api.client.om.Warning;
+import org.glycam.api.client.om.WebResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -19,17 +21,23 @@ public class GlycamUtil
     private static final Integer MAX_PROCESSING_COUNT = Integer.MAX_VALUE;
 
     private String m_pdbFolder = null;
-    private Long m_maxWaitingTimeInMillis = DEFAULT_MAX_WAITING_TIME;
+    private Long m_maxWaitingTimeInMillis = null;
+    private Long m_pollingSleepTimeInMillis = null;
+    private Integer m_maxQueueLength = null;
     private GlycamClient m_client = null;
     private ResponseUtil m_utilResponse = null;
+    private boolean m_verbose = false;
 
-    public GlycamUtil(String a_pdbFolder, Long a_maxWaitingTime)
-            throws ClientProtocolException, IOException
+    public GlycamUtil(String a_pdbFolder, Long a_maxWaitingTime, Long a_pollingSleepTime,
+            Integer a_queueLength, boolean a_verbose) throws ClientProtocolException, IOException
     {
         super();
         this.m_client = new GlycamClient("https://glycam.org/json/");
         this.m_utilResponse = new ResponseUtil();
         this.m_maxWaitingTimeInMillis = a_maxWaitingTime;
+        this.m_pollingSleepTimeInMillis = a_pollingSleepTime;
+        this.m_maxQueueLength = a_queueLength;
+        this.m_verbose = a_verbose;
         File t_file = new File(a_pdbFolder);
         t_file.mkdirs();
         this.m_pdbFolder = a_pdbFolder;
@@ -46,16 +54,25 @@ public class GlycamUtil
             t_counter++;
             if (t_counter < MAX_PROCESSING_COUNT)
             {
-                System.out.println("Submitting Job " + t_counter.toString() + ": "
-                        + t_glycamJob.getGlyTouCanId());
                 // submit the job and add to the queue
                 if (this.isSubmit(t_glycamJob))
                 {
+                    this.printMessage("Submitting Job " + t_counter.toString() + ": "
+                            + t_glycamJob.getGlyTouCanId());
                     t_glycamJob.setTimestampSubmission(System.currentTimeMillis());
                     try
                     {
-                        this.m_client.submitGlycan(t_glycamJob);
-                        this.m_utilResponse.processGlycanResponse(t_glycamJob);
+                        if (this.trySubmission(t_glycamJob))
+                        {
+                            this.m_utilResponse.processGlycanResponse(t_glycamJob);
+                        }
+                        else
+                        {
+                            t_glycamJob.setStatus(GlycamJob.STATUS_ERROR);
+                            t_glycamJob.setErrorType("Submission error");
+                            t_glycamJob.setErrorMessage("Submission failed due to HTTP Code: "
+                                    + t_glycamJob.getHttpCode().toString());
+                        }
                     }
                     catch (JsonProcessingException e)
                     {
@@ -75,7 +92,7 @@ public class GlycamUtil
                     t_jobQueue.add(t_glycamJob);
                 }
                 // check if the queue is full
-                while (t_jobQueue.size() >= GlycamUtil.MAX_QUEUE_LENGTH)
+                while (t_jobQueue.size() >= this.m_maxQueueLength)
                 {
                     // queue is full, need to check and wait till time is up or
                     // at least 1 job is finished
@@ -87,6 +104,83 @@ public class GlycamUtil
         while (t_jobQueue.size() > 0)
         {
             this.waitOnQueue(t_jobQueue);
+        }
+    }
+
+    private boolean trySubmission(GlycamJob a_glycamJob) throws InterruptedException, IOException
+    {
+        this.m_client.submitGlycan(a_glycamJob);
+        if (a_glycamJob.getHttpCode() < 400)
+        {
+            return true;
+        }
+        this.addWarning(a_glycamJob, a_glycamJob.getHttpCode(), "Submission error",
+                "Failed submission with HTTP Code: " + a_glycamJob.getHttpCode().toString());
+        this.waitBecauseOfFailedRequest();
+        int t_chances = a_glycamJob.getSecondChances();
+        for (int i = t_chances; i > 0; i--)
+        {
+            this.m_client.submitGlycan(a_glycamJob);
+            if (a_glycamJob.getHttpCode() < 400)
+            {
+                a_glycamJob.setSecondChances(i);
+                return true;
+            }
+            this.addWarning(a_glycamJob, a_glycamJob.getHttpCode(), "Submission error",
+                    "Failed submission with HTTP Code: " + a_glycamJob.getHttpCode().toString());
+            this.waitBecauseOfFailedRequest();
+        }
+        return false;
+    }
+
+    private String tryStatus(GlycamJob a_glycamJob) throws InterruptedException, IOException
+    {
+        WebResponse t_response = this.m_client.getStatus(a_glycamJob);
+        if (t_response.getHttpCode() < 400)
+        {
+            return t_response.getContent();
+        }
+        this.addWarning(a_glycamJob, t_response.getHttpCode(), "Polling error",
+                "Failed polling with HTTP Code: " + t_response.getHttpCode().toString());
+        this.waitBecauseOfFailedRequest();
+        int t_chances = a_glycamJob.getSecondChances();
+        for (int i = t_chances; i > 0; i--)
+        {
+            t_response = this.m_client.getStatus(a_glycamJob);
+            if (t_response.getHttpCode() < 400)
+            {
+                a_glycamJob.setSecondChances(i);
+                return t_response.getContent();
+            }
+            this.addWarning(a_glycamJob, t_response.getHttpCode(), "Submission error",
+                    "Failed polling with HTTP Code: " + t_response.getHttpCode().toString());
+            this.waitBecauseOfFailedRequest();
+        }
+        return null;
+    }
+
+    private void addWarning(GlycamJob a_glycamJob, Integer a_httpCode, String a_type,
+            String a_message)
+    {
+        Warning t_warning = new Warning();
+        t_warning.setHttpCode(a_httpCode);
+        t_warning.setMessage(a_message);
+        t_warning.setType(a_type);
+        t_warning.setTimestamp(System.currentTimeMillis());
+        a_glycamJob.getWarnings().add(t_warning);
+    }
+
+    private void waitBecauseOfFailedRequest() throws InterruptedException
+    {
+        this.printMessage("Waiting due to failed request");
+        Thread.sleep(5000);
+    }
+
+    private void printMessage(String a_message)
+    {
+        if (this.m_verbose)
+        {
+            System.out.println(a_message);
         }
     }
 
@@ -125,7 +219,7 @@ public class GlycamUtil
      */
     private void waitOnQueue(List<GlycamJob> a_jobQueue) throws InterruptedException
     {
-        System.out.println("Waiting on queue");
+        this.printMessage("Waiting on queue");
         List<GlycamJob> t_finished = this.checkQueue(a_jobQueue);
         if (t_finished.size() > 0)
         {
@@ -137,7 +231,7 @@ public class GlycamUtil
         }
         else
         {
-            Thread.sleep(POLLING_SLEEP_MILLIS);
+            Thread.sleep(this.m_pollingSleepTimeInMillis);
         }
     }
 
@@ -149,45 +243,56 @@ public class GlycamUtil
             // check the status from the web
             try
             {
-                String t_statusResponse = this.m_client.getStatus(t_glycamJob);
-                String t_status = this.m_utilResponse.processPollingResponse(t_statusResponse);
-                if (t_status.equals("All complete"))
+                String t_statusResponse = this.tryStatus(t_glycamJob);
+                if (t_statusResponse == null)
                 {
-                    t_glycamJob.setTimestampLastCheck(System.currentTimeMillis());
-                    String t_fileNamePath = this.m_pdbFolder + File.separator
-                            + t_glycamJob.getGlyTouCanId() + ".pdb";
-                    try
-                    {
-                        this.m_client.downloadPDB(t_glycamJob.getDownloadURL(), t_fileNamePath);
-                        t_glycamJob.setStatus(GlycamJob.STATUS_SUCCESS);
-                        try
-                        {
-                            this.testPDB(t_fileNamePath);
-                        }
-                        catch (Exception e)
-                        {
-                            t_glycamJob.setStatus(GlycamJob.STATUS_PDB_ERROR);
-                            t_glycamJob.setErrorType("PDB failed test");
-                            t_glycamJob.setErrorMessage(e.getMessage());
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        t_glycamJob.setStatus(GlycamJob.STATUS_PDB_ERROR);
-                        t_glycamJob.setErrorType("Error downloading PDB");
-                        t_glycamJob.setErrorMessage(e.getMessage());
-                    }
+                    t_glycamJob.setStatus(GlycamJob.STATUS_ERROR);
+                    t_glycamJob.setErrorType("Polling error");
+                    t_glycamJob.setErrorMessage(
+                            "Unable to retrieve polling response due to HTTP code >400");
                     t_finishedJobs.add(t_glycamJob);
                 }
                 else
                 {
-                    // is the time up
-                    if ((System.currentTimeMillis()
-                            - t_glycamJob.getTimestampSubmission()) > this.m_maxWaitingTimeInMillis)
+                    String t_status = this.m_utilResponse.processPollingResponse(t_statusResponse);
+                    if (t_status.equals("All complete"))
                     {
                         t_glycamJob.setTimestampLastCheck(System.currentTimeMillis());
-                        t_glycamJob.setStatus(GlycamJob.STATUS_TIMEOUT);
+                        String t_fileNamePath = this.m_pdbFolder + File.separator
+                                + t_glycamJob.getGlyTouCanId() + ".pdb";
+                        try
+                        {
+                            this.m_client.downloadPDB(t_glycamJob.getDownloadURL(), t_fileNamePath);
+                            t_glycamJob.setStatus(GlycamJob.STATUS_SUCCESS);
+                            try
+                            {
+                                this.testPDB(t_fileNamePath);
+                            }
+                            catch (Exception e)
+                            {
+                                t_glycamJob.setStatus(GlycamJob.STATUS_PDB_ERROR);
+                                t_glycamJob.setErrorType("PDB failed test");
+                                t_glycamJob.setErrorMessage(e.getMessage());
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            t_glycamJob.setStatus(GlycamJob.STATUS_PDB_ERROR);
+                            t_glycamJob.setErrorType("Error downloading PDB");
+                            t_glycamJob.setErrorMessage(e.getMessage());
+                        }
                         t_finishedJobs.add(t_glycamJob);
+                    }
+                    else
+                    {
+                        // is the time up
+                        if ((System.currentTimeMillis() - t_glycamJob
+                                .getTimestampSubmission()) > this.m_maxWaitingTimeInMillis)
+                        {
+                            t_glycamJob.setTimestampLastCheck(System.currentTimeMillis());
+                            t_glycamJob.setStatus(GlycamJob.STATUS_TIMEOUT);
+                            t_finishedJobs.add(t_glycamJob);
+                        }
                     }
                 }
             }

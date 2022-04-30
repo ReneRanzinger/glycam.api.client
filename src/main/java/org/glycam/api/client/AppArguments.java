@@ -8,6 +8,7 @@ public class AppArguments
     private Long m_maxWaitingTime = 600000L;
     private Integer m_maxQueueLength = 5;
     private Long m_pollingSleepTime = 3000L;
+    private boolean m_verbose = false;
 
     public String getGlycanFileNamePath()
     {
@@ -61,11 +62,21 @@ public class AppArguments
 
     public String getOutputFolder()
     {
-        return m_outputFolder;
+        return this.m_outputFolder;
     }
 
     public void setOutputFolder(String a_outputFolder)
     {
         this.m_outputFolder = a_outputFolder;
+    }
+
+    public boolean isVerbose()
+    {
+        return m_verbose;
+    }
+
+    public void setVerbose(boolean a_verbose)
+    {
+        this.m_verbose = a_verbose;
     }
 }

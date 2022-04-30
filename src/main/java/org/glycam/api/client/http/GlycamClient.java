@@ -23,6 +23,7 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
 import org.glycam.api.client.json.RequestBuilder;
 import org.glycam.api.client.om.GlycamJob;
+import org.glycam.api.client.om.WebResponse;
 
 public class GlycamClient
 {
@@ -122,7 +123,7 @@ public class GlycamClient
         }
     }
 
-    public String getStatus(GlycamJob a_job) throws IOException
+    public WebResponse getStatus(GlycamJob a_job) throws IOException
     {
         try
         {
@@ -135,19 +136,15 @@ public class GlycamClient
             t_httpGet.setHeader("X-CSRFToken", this.m_csrfToken);
             // execute request
             CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpGet);
-            if (t_response.getStatusLine().getStatusCode() >= 400)
-            {
-                throw new IOException(
-                        "Unable to perform polling. Service responded with HTTP code: "
-                                + Integer.toString(t_response.getStatusLine().getStatusCode()));
-            }
             HttpEntity t_entity = t_response.getEntity();
             // extract response
             String t_responseContent = this.entityToString(t_entity);
+            WebResponse t_result = new WebResponse(t_responseContent,
+                    t_response.getStatusLine().getStatusCode());
             // close response
             EntityUtils.consume(t_entity);
             t_response.close();
-            return t_responseContent;
+            return t_result;
         }
         catch (Exception e)
         {
