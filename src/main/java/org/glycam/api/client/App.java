@@ -1,7 +1,9 @@
 package org.glycam.api.client;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
@@ -81,10 +83,11 @@ public class App
             return;
         }
         // store the jobs
+        String t_filePrefix = App.getFilePrefix();
         try
         {
             GlycamJobSerializer.serialize(t_jobs,
-                    t_arguments.getOutputFolder() + File.separator + "jobs.json");
+                    t_arguments.getOutputFolder() + File.separator + t_filePrefix + ".jobs.json");
         }
         catch (Exception e)
         {
@@ -97,7 +100,7 @@ public class App
         try
         {
             CSVError t_errorLog = new CSVError(
-                    t_arguments.getOutputFolder() + File.separator + "errors-log.csv");
+                    t_arguments.getOutputFolder() + File.separator + t_filePrefix + ".error-log.csv");
             for (GlycamJob t_glycamJob : t_jobs)
             {
                 String t_status = t_glycamJob.getStatus();
@@ -110,7 +113,7 @@ public class App
             t_errorLog.closeFile();
             // write warning
             t_errorLog = new CSVError(
-                    t_arguments.getOutputFolder() + File.separator + "warnings-log.csv");
+                    t_arguments.getOutputFolder() + File.separator + t_filePrefix + ".warning-log.csv");
             for (GlycamJob t_glycamJob : t_jobs)
             {
                 for (Warning t_warning : t_glycamJob.getWarnings())
@@ -131,7 +134,14 @@ public class App
         System.out.println("Finished after " + t_durationMinutes.toString() + " minutes");
     }
 
-    private static void createFolders(String a_outputFolder)
+    private static String getFilePrefix() 
+    {
+    	Date t_date = new Date(System.currentTimeMillis());
+        SimpleDateFormat t_formatter = new SimpleDateFormat("yyyy.MM.dd");
+        return t_formatter.format(t_date);
+	}
+
+	private static void createFolders(String a_outputFolder)
     {
         File t_file = new File(a_outputFolder + File.separator + PDB_FOLDER_NAME);
         t_file.mkdirs();

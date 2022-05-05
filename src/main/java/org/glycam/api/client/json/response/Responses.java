@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Responses
 {
     private FrontEndNotice m_frontendNotice = null;
+    private ResponseError m_error = null;
 
     @JsonProperty("FrontEndNotice")
     public FrontEndNotice getFrontendNotice()
@@ -18,4 +19,13 @@ public class Responses
     {
         this.m_frontendNotice = a_frontendNotice;
     }
+
+    @JsonProperty("Error")
+	public ResponseError getError() {
+		return m_error;
+	}
+
+	public void setError(ResponseError a_error) {
+		this.m_error = a_error;
+	}
 }

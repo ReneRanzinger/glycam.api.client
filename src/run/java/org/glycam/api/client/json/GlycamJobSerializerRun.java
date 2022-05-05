@@ -16,7 +16,7 @@ public class GlycamJobSerializerRun
             throws StreamReadException, DatabindException, FileNotFoundException, IOException
     {
 
-        List<GlycamJob> t_jobs = GlycamJobSerializer.deserialize("./data/output/jobs.json");
+        List<GlycamJob> t_jobs = GlycamJobSerializer.deserialize("./data/output/2022.04.30.jobs.json");
 
         for (GlycamJob t_glycamJob : t_jobs)
         {

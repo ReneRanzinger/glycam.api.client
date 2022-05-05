@@ -158,6 +158,7 @@ public class ResponseUtil
         }
         for (Responses t_response : t_responses)
         {
+        	handle errors here
             FrontEndNotice t_noticeFrontEnd = t_response.getFrontendNotice();
             if (t_noticeFrontEnd == null)
             {
