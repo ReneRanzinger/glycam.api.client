@@ -75,6 +75,8 @@ public class App
                     t_arguments.getMaxWaitingTime(), t_arguments.getPollingSleepTime(),
                     t_arguments.getMaxQueueLength(), t_arguments.isVerbose());
             t_util.process(t_jobs);
+            // try the timeouts one more time
+            t_util.reTestTimeout(t_jobs);
         }
         catch (Exception e)
         {
@@ -99,8 +101,8 @@ public class App
         // save the errors
         try
         {
-            CSVError t_errorLog = new CSVError(
-                    t_arguments.getOutputFolder() + File.separator + t_filePrefix + ".error-log.csv");
+            CSVError t_errorLog = new CSVError(t_arguments.getOutputFolder() + File.separator
+                    + t_filePrefix + ".error-log.csv");
             for (GlycamJob t_glycamJob : t_jobs)
             {
                 String t_status = t_glycamJob.getStatus();
@@ -112,8 +114,8 @@ public class App
             }
             t_errorLog.closeFile();
             // write warning
-            t_errorLog = new CSVError(
-                    t_arguments.getOutputFolder() + File.separator + t_filePrefix + ".warning-log.csv");
+            t_errorLog = new CSVError(t_arguments.getOutputFolder() + File.separator + t_filePrefix
+                    + ".warning-log.csv");
             for (GlycamJob t_glycamJob : t_jobs)
             {
                 for (Warning t_warning : t_glycamJob.getWarnings())
@@ -134,14 +136,14 @@ public class App
         System.out.println("Finished after " + t_durationMinutes.toString() + " minutes");
     }
 
-    private static String getFilePrefix() 
+    private static String getFilePrefix()
     {
-    	Date t_date = new Date(System.currentTimeMillis());
+        Date t_date = new Date(System.currentTimeMillis());
         SimpleDateFormat t_formatter = new SimpleDateFormat("yyyy.MM.dd");
         return t_formatter.format(t_date);
-	}
+    }
 
-	private static void createFolders(String a_outputFolder)
+    private static void createFolders(String a_outputFolder)
     {
         File t_file = new File(a_outputFolder + File.separator + PDB_FOLDER_NAME);
         t_file.mkdirs();

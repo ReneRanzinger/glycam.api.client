@@ -54,6 +54,8 @@ public class GlycamUtil
             t_counter++;
             if (t_counter < MAX_PROCESSING_COUNT)
             {
+                // wait 1 second between the individual submits
+                Thread.sleep(1000);
                 // submit the job and add to the queue
                 if (this.isSubmit(t_glycamJob))
                 {
@@ -339,6 +341,29 @@ public class GlycamUtil
         if (t_counterAtom < 10)
         {
             throw new IOException("Less than 10 atoms found.");
+        }
+    }
+
+    public void reTestTimeout(List<GlycamJob> a_jobs) throws InterruptedException
+    {
+        Integer t_counter = 0;
+        List<GlycamJob> t_jobQueue = new ArrayList<>();
+        for (GlycamJob t_glycamJob : a_jobs)
+        {
+            if (t_glycamJob.getStatus().equals(GlycamJob.STATUS_TIMEOUT))
+            {
+                t_counter++;
+                this.printMessage("Re-test timeouts " + t_counter.toString() + ": "
+                        + t_glycamJob.getGlyTouCanId());
+                t_jobQueue.add(t_glycamJob);
+                // check if the queue is full
+                while (t_jobQueue.size() >= this.m_maxQueueLength)
+                {
+                    // queue is full, need to check and wait till time is up or
+                    // at least 1 job is finished
+                    this.waitOnQueue(t_jobQueue);
+                }
+            }
         }
     }
 

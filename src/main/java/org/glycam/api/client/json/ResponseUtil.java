@@ -8,6 +8,8 @@ import org.glycam.api.client.json.response.Entity;
 import org.glycam.api.client.json.response.FrontEndNotice;
 import org.glycam.api.client.json.response.Notice;
 import org.glycam.api.client.json.response.Project;
+import org.glycam.api.client.json.response.ResponseError;
+import org.glycam.api.client.json.response.ResponseNotice;
 import org.glycam.api.client.json.response.Responses;
 import org.glycam.api.client.json.response.SubmitInformation;
 import org.glycam.api.client.json.response.TopLevelNotice;
@@ -158,26 +160,46 @@ public class ResponseUtil
         }
         for (Responses t_response : t_responses)
         {
-        	handle errors here
             FrontEndNotice t_noticeFrontEnd = t_response.getFrontendNotice();
-            if (t_noticeFrontEnd == null)
+            ResponseError t_error = t_response.getError();
+            if (t_noticeFrontEnd != null)
+            {
+                Notice t_notice = t_noticeFrontEnd.getNotice();
+                if (t_notice == null)
+                {
+                    a_job.setErrorType("Response JSON error");
+                    a_job.setErrorMessage(
+                            "Missing FrontEndNotice/notice property in responses array (entity)");
+                    return false;
+                }
+                a_job.setErrorType("Request JSON error");
+                a_job.setErrorMessage("Code " + t_notice.getCode() + ": " + t_notice.getMessage());
+                return false;
+            }
+            else if (t_error != null)
+            {
+                ResponseNotice t_notice = t_error.getNotice();
+                if (t_notice == null)
+                {
+                    a_job.setErrorType("Response JSON error");
+                    a_job.setErrorMessage(
+                            "Missing Error/Notice property in responses array (entity)");
+                    return false;
+                }
+                a_job.setErrorType("Glycam internal error");
+                a_job.setErrorMessage(t_error.getRespondingService() + ": Code "
+                        + t_notice.getCode() + " (Type: " + t_notice.getType() + "): "
+                        + t_notice.getBrief() + " - " + t_notice.getMessage());
+                return false;
+            }
+            else
             {
                 a_job.setErrorType("Response JSON error");
                 a_job.setErrorMessage(
-                        "Missing FrontEndNotice property in responses array (entity)");
+                        "Missing FrontEndNotice or Error property in responses array (entity)");
                 return false;
             }
-            Notice t_notice = t_noticeFrontEnd.getNotice();
-            if (t_notice == null)
-            {
-                a_job.setErrorType("Response JSON error");
-                a_job.setErrorMessage(
-                        "Missing FrontEndNotice property in responses array (entity)");
-                return false;
-            }
-            a_job.setErrorType("Request JSON error");
-            a_job.setErrorMessage("Code " + t_notice.getCode() + ": " + t_notice.getMessage());
-            return false;
+
         }
         return true;
     }
