@@ -54,11 +54,11 @@ public class GlycamUtil
             t_counter++;
             if (t_counter < MAX_PROCESSING_COUNT)
             {
-                // wait 1 second between the individual submits
-                Thread.sleep(1000);
                 // submit the job and add to the queue
                 if (this.isSubmit(t_glycamJob))
                 {
+                    // wait 1 second between the individual submits
+                    Thread.sleep(1000);
                     this.printMessage("Submitting Job " + t_counter.toString() + ": "
                             + t_glycamJob.getGlyTouCanId());
                     t_glycamJob.setTimestampSubmission(System.currentTimeMillis());
