@@ -9,6 +9,7 @@ public class AppArguments
     private Integer m_maxQueueLength = 5;
     private Long m_pollingSleepTime = 3000L;
     private boolean m_verbose = false;
+    private String m_glycamBaseUrl = "https://glycam.org";
 
     public String getGlycanFileNamePath()
     {
@@ -78,5 +79,15 @@ public class AppArguments
     public void setVerbose(boolean a_verbose)
     {
         this.m_verbose = a_verbose;
+    }
+
+    public String getGlycamBaseUrl()
+    {
+        return m_glycamBaseUrl;
+    }
+
+    public void setGlycamBaseUrl(String a_glycamBaseUrl)
+    {
+        this.m_glycamBaseUrl = a_glycamBaseUrl;
     }
 }

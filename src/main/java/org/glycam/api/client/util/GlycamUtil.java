@@ -29,10 +29,11 @@ public class GlycamUtil
     private boolean m_verbose = false;
 
     public GlycamUtil(String a_pdbFolder, Long a_maxWaitingTime, Long a_pollingSleepTime,
-            Integer a_queueLength, boolean a_verbose) throws ClientProtocolException, IOException
+            Integer a_queueLength, boolean a_verbose, String a_glycamBaseURL)
+            throws ClientProtocolException, IOException
     {
         super();
-        this.m_client = new GlycamClient("https://glycam.org/json/");
+        this.m_client = new GlycamClient(a_glycamBaseURL + "/json/");
         this.m_utilResponse = new ResponseUtil();
         this.m_maxWaitingTimeInMillis = a_maxWaitingTime;
         this.m_pollingSleepTimeInMillis = a_pollingSleepTime;

@@ -73,7 +73,8 @@ public class App
             GlycamUtil t_util = new GlycamUtil(
                     t_arguments.getOutputFolder() + File.separator + PDB_FOLDER_NAME,
                     t_arguments.getMaxWaitingTime(), t_arguments.getPollingSleepTime(),
-                    t_arguments.getMaxQueueLength(), t_arguments.isVerbose());
+                    t_arguments.getMaxQueueLength(), t_arguments.isVerbose(),
+                    t_arguments.getGlycamBaseUrl());
             t_util.process(t_jobs);
             // try the timeouts one more time
             t_util.reTestTimeout(t_jobs);
@@ -255,6 +256,11 @@ public class App
                 return null;
             }
         }
+        t_value = t_commandLine.getOptionValue("b");
+        if (t_value != null)
+        {
+            t_arguments.setGlycamBaseUrl(t_value);
+        }
         t_arguments.setVerbose(t_commandLine.hasOption("v"));
         // check settings
         if (!App.checkArguments(t_arguments))
@@ -367,6 +373,23 @@ public class App
                     "Maximum queue length (-q) has to be a number greater than 0. Default 5.");
             t_valid = false;
         }
+        // base URL
+        String t_url = a_arguments.getGlycamBaseUrl();
+        if (t_url.startsWith("http://") || t_url.startsWith("https://"))
+        {
+            if (t_url.endsWith("/"))
+            {
+                System.out.println(
+                        "Base URL (-b) should not end with '/'. Default https://glycam.org.");
+                t_valid = false;
+            }
+        }
+        else
+        {
+            System.out.println(
+                    "Base URL (-b) needs to start with 'http://' or 'https://'. Default https://glycam.org.");
+            t_valid = false;
+        }
         return t_valid;
     }
 
@@ -430,7 +453,12 @@ public class App
         t_option.setArgs(0);
         t_option.setRequired(false);
         t_options.addOption(t_option);
-
+        // base url
+        t_option = new Option("b", "base-url", true,
+                "Base URL of glycam. e.g., https://glycam.org or https://test.glycam.org");
+        t_option.setArgs(1);
+        t_option.setRequired(false);
+        t_options.addOption(t_option);
         return t_options;
     }
 
