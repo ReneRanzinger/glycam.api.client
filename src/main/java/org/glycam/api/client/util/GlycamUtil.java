@@ -232,10 +232,7 @@ public class GlycamUtil
                 a_jobQueue.remove(t_finishedJob);
             }
         }
-        else
-        {
-            Thread.sleep(this.m_pollingSleepTimeInMillis);
-        }
+        Thread.sleep(this.m_pollingSleepTimeInMillis);
     }
 
     private List<GlycamJob> checkQueue(List<GlycamJob> a_jobQueue)
