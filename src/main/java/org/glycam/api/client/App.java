@@ -68,13 +68,14 @@ public class App
             return;
         }
         // process the jobs
+        String t_filePrefix = App.getFilePrefix();
         try
         {
             GlycamUtil t_util = new GlycamUtil(
                     t_arguments.getOutputFolder() + File.separator + PDB_FOLDER_NAME,
                     t_arguments.getMaxWaitingTime(), t_arguments.getPollingSleepTime(),
                     t_arguments.getMaxQueueLength(), t_arguments.isVerbose(),
-                    t_arguments.getGlycamBaseUrl());
+                    t_arguments.getGlycamBaseUrl(), t_arguments.getOutputFolder(), t_filePrefix);
             t_util.process(t_jobs);
             // try the timeouts one more time
             t_util.reTestTimeout(t_jobs);
@@ -86,11 +87,10 @@ public class App
             return;
         }
         // store the jobs
-        String t_filePrefix = App.getFilePrefix();
         try
         {
-            GlycamJobSerializer.serialize(t_jobs,
-                    t_arguments.getOutputFolder() + File.separator + t_filePrefix + ".jobs.json");
+            GlycamJobSerializer.serialize(t_jobs, t_arguments.getOutputFolder() + File.separator
+                    + t_filePrefix + "-final.jobs.json");
         }
         catch (Exception e)
         {
@@ -103,7 +103,7 @@ public class App
         try
         {
             CSVError t_errorLog = new CSVError(t_arguments.getOutputFolder() + File.separator
-                    + t_filePrefix + ".error-log.csv");
+                    + t_filePrefix + "-final.error-log.csv");
             for (GlycamJob t_glycamJob : t_jobs)
             {
                 String t_status = t_glycamJob.getStatus();
@@ -116,7 +116,7 @@ public class App
             t_errorLog.closeFile();
             // write warning
             t_errorLog = new CSVError(t_arguments.getOutputFolder() + File.separator + t_filePrefix
-                    + ".warning-log.csv");
+                    + "-final.warning-log.csv");
             for (GlycamJob t_glycamJob : t_jobs)
             {
                 for (Warning t_warning : t_glycamJob.getWarnings())

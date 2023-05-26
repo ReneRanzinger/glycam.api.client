@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
+import org.glycam.api.client.csv.CSVError;
 import org.glycam.api.client.http.GlycamClient;
+import org.glycam.api.client.json.GlycamJobSerializer;
 import org.glycam.api.client.json.ResponseUtil;
 import org.glycam.api.client.om.GlycamJob;
 import org.glycam.api.client.om.Warning;
@@ -19,6 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class GlycamUtil
 {
     private static final Integer MAX_PROCESSING_COUNT = Integer.MAX_VALUE;
+    private static final Integer AUTOSAVE_INTERVAL_JOB_COUNT = 100;
 
     private String m_pdbFolder = null;
     private Long m_maxWaitingTimeInMillis = null;
@@ -27,10 +30,12 @@ public class GlycamUtil
     private GlycamClient m_client = null;
     private ResponseUtil m_utilResponse = null;
     private boolean m_verbose = false;
+    private String m_outputFolder = null;
+    private String m_filePrefix = null;
 
     public GlycamUtil(String a_pdbFolder, Long a_maxWaitingTime, Long a_pollingSleepTime,
-            Integer a_queueLength, boolean a_verbose, String a_glycamBaseURL)
-            throws ClientProtocolException, IOException
+            Integer a_queueLength, boolean a_verbose, String a_glycamBaseURL, String a_outputFolder,
+            String a_filePrefix) throws ClientProtocolException, IOException
     {
         super();
         this.m_client = new GlycamClient(a_glycamBaseURL + "/json/");
@@ -39,6 +44,8 @@ public class GlycamUtil
         this.m_pollingSleepTimeInMillis = a_pollingSleepTime;
         this.m_maxQueueLength = a_queueLength;
         this.m_verbose = a_verbose;
+        this.m_outputFolder = a_outputFolder;
+        this.m_filePrefix = a_filePrefix;
         File t_file = new File(a_pdbFolder);
         t_file.mkdirs();
         this.m_pdbFolder = a_pdbFolder;
@@ -46,21 +53,23 @@ public class GlycamUtil
 
     public void process(List<GlycamJob> a_jobs) throws InterruptedException
     {
-        Integer t_counter = 0;
+        Integer t_counterTotalJobs = 0;
+        Integer t_counterJobsSinceAutosave = 0;
         // queue
         List<GlycamJob> t_jobQueue = new ArrayList<>();
 
         for (GlycamJob t_glycamJob : a_jobs)
         {
-            t_counter++;
-            if (t_counter < MAX_PROCESSING_COUNT)
+            t_counterTotalJobs++;
+            t_counterJobsSinceAutosave++;
+            if (t_counterTotalJobs < MAX_PROCESSING_COUNT)
             {
                 // submit the job and add to the queue
                 if (this.isSubmit(t_glycamJob))
                 {
                     // wait 1 second between the individual submits
                     Thread.sleep(1000);
-                    this.printMessage("Submitting Job " + t_counter.toString() + ": "
+                    this.printMessage("Submitting Job " + t_counterTotalJobs.toString() + ": "
                             + t_glycamJob.getGlyTouCanId());
                     t_glycamJob.setTimestampSubmission(System.currentTimeMillis());
                     try
@@ -101,12 +110,69 @@ public class GlycamUtil
                     // at least 1 job is finished
                     this.waitOnQueue(t_jobQueue);
                 }
+                // time for autosave?
+                if (t_counterJobsSinceAutosave >= AUTOSAVE_INTERVAL_JOB_COUNT)
+                {
+                    t_counterJobsSinceAutosave = 0;
+                    this.autoSave(a_jobs, t_counterTotalJobs);
+                }
             }
         }
         // all glycans are submitted, wait for the rest in the queue
         while (t_jobQueue.size() > 0)
         {
             this.waitOnQueue(t_jobQueue);
+        }
+    }
+
+    private void autoSave(List<GlycamJob> a_jobs, Integer a_counterTotalJobs)
+    {
+        // store the jobs
+        System.out.println("Autosave after " + a_counterTotalJobs.toString() + " jobs.");
+        try
+        {
+            GlycamJobSerializer.serialize(a_jobs, this.m_outputFolder + File.separator
+                    + this.m_filePrefix + "-" + a_counterTotalJobs.toString() + ".jobs.json");
+        }
+        catch (Exception e)
+        {
+            System.out.println(
+                    "Job list autosave failed. There was a critical error while sericalizing the jobs: "
+                            + e.getMessage());
+            e.printStackTrace(System.out);
+        }
+        // save the errors
+        try
+        {
+            CSVError t_errorLog = new CSVError(this.m_outputFolder + File.separator
+                    + this.m_filePrefix + "-" + a_counterTotalJobs.toString() + ".error-log.csv");
+            for (GlycamJob t_glycamJob : a_jobs)
+            {
+                String t_status = t_glycamJob.getStatus();
+                if (!t_status.equals(GlycamJob.STATUS_SUCCESS)
+                        && !t_status.equals(GlycamJob.STATUS_INIT))
+                {
+                    t_errorLog.writeError(t_glycamJob);
+                }
+            }
+            t_errorLog.closeFile();
+            // write warning
+            t_errorLog = new CSVError(this.m_outputFolder + File.separator + this.m_filePrefix + "-"
+                    + a_counterTotalJobs.toString() + ".warning-log.csv");
+            for (GlycamJob t_glycamJob : a_jobs)
+            {
+                for (Warning t_warning : t_glycamJob.getWarnings())
+                {
+                    t_errorLog.writeWarning(t_glycamJob, t_warning);
+                }
+            }
+            t_errorLog.closeFile();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error and warning autosave failed. There was a critical error: "
+                    + e.getMessage());
+            e.printStackTrace(System.out);
         }
     }
 
@@ -362,6 +428,11 @@ public class GlycamUtil
                     this.waitOnQueue(t_jobQueue);
                 }
             }
+        }
+        // all glycans are submitted, wait for the rest in the queue
+        while (t_jobQueue.size() > 0)
+        {
+            this.waitOnQueue(t_jobQueue);
         }
     }
 
