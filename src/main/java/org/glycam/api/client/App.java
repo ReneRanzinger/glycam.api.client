@@ -13,7 +13,9 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.glycam.api.client.csv.CSVError;
+import org.glycam.api.client.csv.CSVFileWriterError;
+import org.glycam.api.client.csv.CSVFileWriterStatus;
+import org.glycam.api.client.csv.CSVFileWriterWarning;
 import org.glycam.api.client.csv.SequenceFileParser;
 import org.glycam.api.client.json.GlycamJobSerializer;
 import org.glycam.api.client.om.GlycamJob;
@@ -102,29 +104,39 @@ public class App
         // save the errors
         try
         {
-            CSVError t_errorLog = new CSVError(t_arguments.getOutputFolder() + File.separator
-                    + t_filePrefix + "-final.error-log.csv");
+            CSVFileWriterError t_errorLog = new CSVFileWriterError(t_arguments.getOutputFolder()
+                    + File.separator + t_filePrefix + "-final.error-log.csv");
             for (GlycamJob t_glycamJob : t_jobs)
             {
                 String t_status = t_glycamJob.getStatus();
                 if (!t_status.equals(GlycamJob.STATUS_SUCCESS)
-                        && !t_status.equals(GlycamJob.STATUS_INIT))
+                        && !t_status.equals(GlycamJob.STATUS_INIT)
+                        && !t_status.equals(GlycamJob.STATUS_PDB_EXIST))
                 {
                     t_errorLog.writeError(t_glycamJob);
                 }
             }
             t_errorLog.closeFile();
             // write warning
-            t_errorLog = new CSVError(t_arguments.getOutputFolder() + File.separator + t_filePrefix
-                    + "-final.warning-log.csv");
+            CSVFileWriterWarning t_warningLog = new CSVFileWriterWarning(
+                    t_arguments.getOutputFolder() + File.separator + t_filePrefix
+                            + "-final.warning-log.csv");
             for (GlycamJob t_glycamJob : t_jobs)
             {
                 for (Warning t_warning : t_glycamJob.getWarnings())
                 {
-                    t_errorLog.writeWarning(t_glycamJob, t_warning);
+                    t_warningLog.writeWarning(t_glycamJob, t_warning);
                 }
             }
-            t_errorLog.closeFile();
+            t_warningLog.closeFile();
+            // write status
+            CSVFileWriterStatus t_statusLog = new CSVFileWriterStatus(t_arguments.getOutputFolder()
+                    + File.separator + t_filePrefix + "-final.status-log.csv");
+            for (GlycamJob t_glycamJob : t_jobs)
+            {
+                t_statusLog.writeStatus(t_glycamJob);
+            }
+            t_statusLog.closeFile();
         }
         catch (Exception e)
         {

@@ -14,6 +14,7 @@ public class GlycamJob
     public final static String STATUS_TIMEOUT = "timeout";
     public final static String STATUS_PDB_ERROR = "pdb problem";
     public final static String STATUS_SUCCESS = "success";
+    public final static String STATUS_PDB_EXIST = "pdb exists";
 
     private String m_glycam = null;
     private String m_glyTouCanId = null;

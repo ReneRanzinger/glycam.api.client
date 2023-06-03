@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
-import org.glycam.api.client.csv.CSVError;
+import org.glycam.api.client.csv.CSVFileWriterError;
+import org.glycam.api.client.csv.CSVFileWriterWarning;
 import org.glycam.api.client.http.GlycamClient;
 import org.glycam.api.client.json.GlycamJobSerializer;
 import org.glycam.api.client.json.ResponseUtil;
@@ -144,29 +145,32 @@ public class GlycamUtil
         // save the errors
         try
         {
-            CSVError t_errorLog = new CSVError(this.m_outputFolder + File.separator
-                    + this.m_filePrefix + "-" + a_counterTotalJobs.toString() + ".error-log.csv");
+            CSVFileWriterError t_errorLog = new CSVFileWriterError(
+                    this.m_outputFolder + File.separator + this.m_filePrefix + "-"
+                            + a_counterTotalJobs.toString() + ".error-log.csv");
             for (GlycamJob t_glycamJob : a_jobs)
             {
                 String t_status = t_glycamJob.getStatus();
                 if (!t_status.equals(GlycamJob.STATUS_SUCCESS)
-                        && !t_status.equals(GlycamJob.STATUS_INIT))
+                        && !t_status.equals(GlycamJob.STATUS_INIT)
+                        && !t_status.equals(GlycamJob.STATUS_PDB_EXIST))
                 {
                     t_errorLog.writeError(t_glycamJob);
                 }
             }
             t_errorLog.closeFile();
             // write warning
-            t_errorLog = new CSVError(this.m_outputFolder + File.separator + this.m_filePrefix + "-"
-                    + a_counterTotalJobs.toString() + ".warning-log.csv");
+            CSVFileWriterWarning t_warningLog = new CSVFileWriterWarning(
+                    this.m_outputFolder + File.separator + this.m_filePrefix + "-"
+                            + a_counterTotalJobs.toString() + ".warning-log.csv");
             for (GlycamJob t_glycamJob : a_jobs)
             {
                 for (Warning t_warning : t_glycamJob.getWarnings())
                 {
-                    t_errorLog.writeWarning(t_glycamJob, t_warning);
+                    t_warningLog.writeWarning(t_glycamJob, t_warning);
                 }
             }
-            t_errorLog.closeFile();
+            t_warningLog.closeFile();
         }
         catch (Exception e)
         {
@@ -270,6 +274,15 @@ public class GlycamUtil
     {
         if (a_glycamJob.getStatus().equals(GlycamJob.STATUS_INIT))
         {
+            // check if the PDF file exists
+            String t_fileNamePath = this.m_pdbFolder + File.separator + a_glycamJob.getGlyTouCanId()
+                    + ".pdb";
+            File t_file = new File(t_fileNamePath);
+            if (t_file.exists())
+            {
+                a_glycamJob.setStatus(GlycamJob.STATUS_PDB_EXIST);
+                return false;
+            }
             return true;
         }
         return false;
