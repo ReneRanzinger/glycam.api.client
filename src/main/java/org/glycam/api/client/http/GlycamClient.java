@@ -90,9 +90,42 @@ public class GlycamClient
         return t_writer.toString();
     }
 
-    public void submitGlycan(GlycamJob a_job) throws IOException
+    public void submitGlycanForBuild(GlycamJob a_job) throws IOException
     {
-        String t_json = RequestBuilder.buildGlycanRequest(a_job.getGlycam());
+        String t_json = RequestBuilder.buildGlycanBuildRequest(a_job.getGlycam());
+        a_job.setRequest(t_json);
+        try
+        {
+            // build post request
+            HttpPost t_httpPost = new HttpPost(this.m_baseUrl);
+            // set the json as payload
+            StringEntity t_entityJson = new StringEntity(t_json);
+            t_httpPost.setEntity(t_entityJson);
+            // add content type and token
+            t_httpPost.setHeader("Accept", "application/json");
+            t_httpPost.setHeader("Content-type", "application/json");
+            t_httpPost.setHeader("X-CSRFToken", this.m_csrfToken);
+            // execute request
+            CloseableHttpResponse t_response = this.m_httpclient.execute(t_httpPost);
+            a_job.setHttpCode(t_response.getStatusLine().getStatusCode());
+            HttpEntity t_entity = t_response.getEntity();
+            // extract response
+            String t_responseContent = this.entityToString(t_entity);
+            a_job.setResponse(t_responseContent);
+            a_job.setStatus(GlycamJob.STATUS_SUBMITTED);
+            // close response
+            EntityUtils.consume(t_entity);
+            t_response.close();
+        }
+        catch (Exception e)
+        {
+            throw new IOException(e.getMessage(), e);
+        }
+    }
+
+    public void submitGlycanForEvaluate(GlycamJob a_job) throws IOException
+    {
+        String t_json = RequestBuilder.buildGlycanEvaluateRequest(a_job.getGlycam());
         a_job.setRequest(t_json);
         try
         {

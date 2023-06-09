@@ -52,7 +52,7 @@ public class GlycamUtil
         this.m_pdbFolder = a_pdbFolder;
     }
 
-    public void process(List<GlycamJob> a_jobs) throws InterruptedException
+    public void processBuildRequests(List<GlycamJob> a_jobs) throws InterruptedException
     {
         Integer t_counterTotalJobs = 0;
         Integer t_counterJobsSinceAutosave = 0;
@@ -75,7 +75,7 @@ public class GlycamUtil
                     t_glycamJob.setTimestampSubmission(System.currentTimeMillis());
                     try
                     {
-                        if (this.trySubmission(t_glycamJob))
+                        if (this.tryBuildSubmission(t_glycamJob))
                         {
                             this.m_utilResponse.processGlycanResponse(t_glycamJob);
                         }
@@ -123,6 +123,65 @@ public class GlycamUtil
         while (t_jobQueue.size() > 0)
         {
             this.waitOnQueue(t_jobQueue);
+        }
+    }
+
+    public void processEvaluationRequests(List<GlycamJob> a_jobs) throws InterruptedException
+    {
+        Integer t_counterTotalJobs = 0;
+        Integer t_counterJobsSinceAutosave = 0;
+        for (GlycamJob t_glycamJob : a_jobs)
+        {
+            t_counterTotalJobs++;
+            t_counterJobsSinceAutosave++;
+            if (t_counterTotalJobs < MAX_PROCESSING_COUNT)
+            {
+                // submit the job and add to the queue
+                if (this.isSubmit(t_glycamJob))
+                {
+                    // wait 0.1 second between the individual submits
+                    Thread.sleep(100);
+                    this.printMessage("Submitting Job " + t_counterTotalJobs.toString() + ": "
+                            + t_glycamJob.getGlyTouCanId());
+                    t_glycamJob.setTimestampSubmission(System.currentTimeMillis());
+                    try
+                    {
+                        if (this.tryEvaluateSubmission(t_glycamJob))
+                        {
+                            this.m_utilResponse.processGlycanResponse(t_glycamJob);
+                            if (t_glycamJob.getStatus().equals(GlycamJob.STATUS_SUBMITTED))
+                            {
+                                t_glycamJob.setStatus(GlycamJob.STATUS_SUCCESS);
+                            }
+                        }
+                        else
+                        {
+                            t_glycamJob.setStatus(GlycamJob.STATUS_ERROR);
+                            t_glycamJob.setErrorType("Submission error");
+                            t_glycamJob.setErrorMessage("Submission failed due to HTTP Code: "
+                                    + t_glycamJob.getHttpCode().toString());
+                        }
+                    }
+                    catch (JsonProcessingException e)
+                    {
+                        t_glycamJob.setStatus(GlycamJob.STATUS_ERROR);
+                        t_glycamJob.setErrorType("Response JSON error");
+                        t_glycamJob.setErrorMessage(e.getMessage());
+                    }
+                    catch (IOException e)
+                    {
+                        t_glycamJob.setStatus(GlycamJob.STATUS_ERROR);
+                        t_glycamJob.setErrorType("Request submission error");
+                        t_glycamJob.setErrorMessage(e.getMessage());
+                    }
+                }
+                // time for autosave?
+                if (t_counterJobsSinceAutosave >= AUTOSAVE_INTERVAL_JOB_COUNT)
+                {
+                    t_counterJobsSinceAutosave = 0;
+                    this.autoSave(a_jobs, t_counterTotalJobs);
+                }
+            }
         }
     }
 
@@ -180,9 +239,10 @@ public class GlycamUtil
         }
     }
 
-    private boolean trySubmission(GlycamJob a_glycamJob) throws InterruptedException, IOException
+    private boolean tryEvaluateSubmission(GlycamJob a_glycamJob)
+            throws InterruptedException, IOException
     {
-        this.m_client.submitGlycan(a_glycamJob);
+        this.m_client.submitGlycanForEvaluate(a_glycamJob);
         if (a_glycamJob.getHttpCode() < 400)
         {
             return true;
@@ -193,7 +253,34 @@ public class GlycamUtil
         int t_chances = a_glycamJob.getSecondChances();
         for (int i = t_chances; i > 0; i--)
         {
-            this.m_client.submitGlycan(a_glycamJob);
+            this.m_client.submitGlycanForEvaluate(a_glycamJob);
+            if (a_glycamJob.getHttpCode() < 400)
+            {
+                a_glycamJob.setSecondChances(i);
+                return true;
+            }
+            this.addWarning(a_glycamJob, a_glycamJob.getHttpCode(), "Submission error",
+                    "Failed submission with HTTP Code: " + a_glycamJob.getHttpCode().toString());
+            this.waitBecauseOfFailedRequest();
+        }
+        return false;
+    }
+
+    private boolean tryBuildSubmission(GlycamJob a_glycamJob)
+            throws InterruptedException, IOException
+    {
+        this.m_client.submitGlycanForBuild(a_glycamJob);
+        if (a_glycamJob.getHttpCode() < 400)
+        {
+            return true;
+        }
+        this.addWarning(a_glycamJob, a_glycamJob.getHttpCode(), "Submission error",
+                "Failed submission with HTTP Code: " + a_glycamJob.getHttpCode().toString());
+        this.waitBecauseOfFailedRequest();
+        int t_chances = a_glycamJob.getSecondChances();
+        for (int i = t_chances; i > 0; i--)
+        {
+            this.m_client.submitGlycanForBuild(a_glycamJob);
             if (a_glycamJob.getHttpCode() < 400)
             {
                 a_glycamJob.setSecondChances(i);

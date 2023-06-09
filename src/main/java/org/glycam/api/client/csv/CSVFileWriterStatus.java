@@ -36,8 +36,8 @@ public class CSVFileWriterStatus extends CSVFileWriter
         t_line[0] = a_job.getGlyTouCanId();
         t_line[1] = a_job.getGlycam();
         t_line[2] = this.addDate(a_job.getTimestampSubmission());
-        t_line[4] = this.writeString(a_job.getJobId());
-        t_line[5] = this.writeString(a_job.getStatus());
+        t_line[3] = this.writeString(a_job.getJobId());
+        t_line[4] = this.writeString(a_job.getStatus());
         this.m_csvFile.writeNext(t_line);
     }
 

@@ -78,9 +78,16 @@ public class App
                     t_arguments.getMaxWaitingTime(), t_arguments.getPollingSleepTime(),
                     t_arguments.getMaxQueueLength(), t_arguments.isVerbose(),
                     t_arguments.getGlycamBaseUrl(), t_arguments.getOutputFolder(), t_filePrefix);
-            t_util.process(t_jobs);
-            // try the timeouts one more time
-            t_util.reTestTimeout(t_jobs);
+            if (t_arguments.isEvaluateOnly())
+            {
+                t_util.processEvaluationRequests(t_jobs);
+            }
+            else
+            {
+                t_util.processBuildRequests(t_jobs);
+                // try the timeouts one more time
+                t_util.reTestTimeout(t_jobs);
+            }
         }
         catch (Exception e)
         {
@@ -274,6 +281,7 @@ public class App
             t_arguments.setGlycamBaseUrl(t_value);
         }
         t_arguments.setVerbose(t_commandLine.hasOption("v"));
+        t_arguments.setEvaluateOnly(t_commandLine.hasOption("e"));
         // check settings
         if (!App.checkArguments(t_arguments))
         {
@@ -411,7 +419,7 @@ public class App
     private static void printComandParameter(Options a_options)
     {
         HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("<command> -g <glycanFile> -o <OutputFolder>", a_options);
+        formatter.printHelp("<command> [OPTIONS] -g <glycanFile> -o <OutputFolder>", a_options);
     }
 
     /**
@@ -469,6 +477,12 @@ public class App
         t_option = new Option("b", "base-url", true,
                 "Base URL of glycam. e.g., https://glycam.org or https://test.glycam.org");
         t_option.setArgs(1);
+        t_option.setRequired(false);
+        t_options.addOption(t_option);
+        // just evaluation
+        t_option = new Option("e", "evaluation", false,
+                "Only run the sequence evaluation. Do not submit for 3D build.");
+        t_option.setArgs(0);
         t_option.setRequired(false);
         t_options.addOption(t_option);
         return t_options;

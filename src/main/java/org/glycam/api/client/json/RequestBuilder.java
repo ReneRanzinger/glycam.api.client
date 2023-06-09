@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RequestBuilder
 {
-    public static String buildGlycanRequest(String a_sequence) throws JsonProcessingException
+    public static String buildGlycanBuildRequest(String a_sequence) throws JsonProcessingException
     {
         Sequence t_sequence = new Sequence();
         t_sequence.setPayload(a_sequence);
@@ -21,6 +21,33 @@ public class RequestBuilder
 
         Build t_build = new Build();
         t_build.setType("Build3DStructure");
+        Services t_services = new Services();
+        t_services.setBuild(t_build);
+
+        Entity t_entity = new Entity();
+        t_entity.setInputs(t_inputs);
+        t_entity.setSerivces(t_services);
+        t_entity.setType("Sequence");
+
+        GlycanRequest t_request = new GlycanRequest();
+        t_request.setEntity(t_entity);
+
+        // create the JSON string
+        ObjectMapper t_mapper = new ObjectMapper();
+        String t_json = t_mapper.writeValueAsString(t_request);
+        return t_json;
+    }
+
+    public static String buildGlycanEvaluateRequest(String a_sequence)
+            throws JsonProcessingException
+    {
+        Sequence t_sequence = new Sequence();
+        t_sequence.setPayload(a_sequence);
+        Inputs t_inputs = new Inputs();
+        t_inputs.setSequence(t_sequence);
+
+        Build t_build = new Build();
+        t_build.setType("Evaluate");
         Services t_services = new Services();
         t_services.setBuild(t_build);
 

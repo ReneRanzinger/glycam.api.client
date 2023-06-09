@@ -10,6 +10,7 @@ public class AppArguments
     private Long m_pollingSleepTime = 3000L;
     private boolean m_verbose = false;
     private String m_glycamBaseUrl = "https://glycam.org";
+    private boolean m_evaluateOnly = false;
 
     public String getGlycanFileNamePath()
     {
@@ -73,7 +74,7 @@ public class AppArguments
 
     public boolean isVerbose()
     {
-        return m_verbose;
+        return this.m_verbose;
     }
 
     public void setVerbose(boolean a_verbose)
@@ -83,11 +84,21 @@ public class AppArguments
 
     public String getGlycamBaseUrl()
     {
-        return m_glycamBaseUrl;
+        return this.m_glycamBaseUrl;
     }
 
     public void setGlycamBaseUrl(String a_glycamBaseUrl)
     {
         this.m_glycamBaseUrl = a_glycamBaseUrl;
+    }
+
+    public boolean isEvaluateOnly()
+    {
+        return m_evaluateOnly;
+    }
+
+    public void setEvaluateOnly(boolean a_evaluateOnly)
+    {
+        this.m_evaluateOnly = a_evaluateOnly;
     }
 }

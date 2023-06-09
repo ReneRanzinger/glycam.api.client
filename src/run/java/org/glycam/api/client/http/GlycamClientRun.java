@@ -24,7 +24,7 @@ public class GlycamClientRun
         t_sequence = "DGalpa1-3DGalpb1-OH";
         GlycamJob t_job = new GlycamJob();
         t_job.setGlycam(t_sequence);
-        t_client.submitGlycan(t_job);
+        t_client.submitGlycanForBuild(t_job);
 
         System.out.println(t_job.getHttpCode());
         System.out.println(t_job.getResponse());
