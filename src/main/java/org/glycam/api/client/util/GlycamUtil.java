@@ -188,7 +188,7 @@ public class GlycamUtil
     private void autoSave(List<GlycamJob> a_jobs, Integer a_counterTotalJobs)
     {
         // store the jobs
-        System.out.println("Autosave after " + a_counterTotalJobs.toString() + " jobs.");
+        this.printMessage("Autosave after " + a_counterTotalJobs.toString() + " jobs.");
         try
         {
             GlycamJobSerializer.serialize(a_jobs, this.m_outputFolder + File.separator
